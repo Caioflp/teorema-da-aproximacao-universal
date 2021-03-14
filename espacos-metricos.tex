@@ -1,0 +1,157 @@
+% !TeX root = ./master.tex
+\section{Um pouco sobre Espaços Métricos}
+
+Para estudar os próximos resultados, precisaremos do Teorema da Categoria de Baire.
+Pelo bem da completude do texto, primeiro introduziremos algumas noções relativas a Espaços Métricos que serão utilizadas na demonstração.
+
+\begin{defn}
+    Dado um conjunto \( X \) qualquer, uma \emph{métrica} em \( X \) é uma função \( d : X \times X \to \R \) tal que:
+    \begin{enumerate}[label=\roman*)]
+        \item \( d(x, x) = 0 \);
+        \item \( d(x, y) > 0 \) se \( x \neq y \);
+        \item \( d(x, y) = d(y, x) \);
+        \item \( d(x, z) \leq d(x, y) + d(y, z) \).
+    \end{enumerate}
+\end{defn}
+
+
+\begin{defn}
+    Um \emph{espaço métrico} é um par \( ( X, d ) \) onde \( X \) é um conjunto e \( d \) é uma métrica em \( X \).
+\end{defn}
+
+    Por vezes, onde não houver prejuízo ao entendimento do texto, utilizaremos apenas o nome do conjunto para nos referirmos ao espaço métrico por ele formado.
+
+\begin{defn}
+    Um suconjunto \( M \) de um espaço métrico \( (X, d) \) é dito \emph{limitado} se existe \( c \in \R \) tal que \( d(x, y) \leq c \) para todos \( x, y \in M \).
+    Nesse caso, o definimimos o \emph{diâmetro} de \( M \), denotado por \( \diam M \), como \( \sup \left\{ d(x, y) \tq x, y \in M \right\} \).
+    Se \( M \) é ilimitado, ou seja, dado \( c > 0 \) existem \( x, y \in M \) com \( d(x, y) > c \), dizemos que \( \diam M = \infty \).
+\end{defn}
+
+%% \begin{exmp}[A reta]
+%%     Um espaço métrico tradicional é o conjunto \( \R \) munido da métrica usual \( d : \R^2 \to \R \) dada por \( d(x, y) = \abs{ x-y }\).
+%%     As propriedades i) a iv) resultam das propriedades básicas do valor absoluto de um número real.
+%% \end{exmp}
+%% 
+%% \begin{exmp}[A métrica ``zero-um''] Todo conjunto \( X \) pode se tornar um espaço métrico se definirmos nele a métrica \( d \) dada por \( d(x, x) = 0 \) e \( d(x, y) = 1 \) se \( x \neq y \).
+%% As propriedades necessárias são claramente verdadeiras.
+%% \end{exmp}
+
+\begin{defn}
+    Dado um espaço métrico \( ( X, d ) \) e um ponto \( a \in X \), chamamos de \emph{bola aberta de raio r centrada em a}, e denotamos por \( B(a, r) \), o conjunto \[
+        \left\{ x \in X \tq d(x, a) < r \right\}
+    .\]
+\end{defn}
+
+\begin{defn}
+    Dado um espaço métrico \( ( X, d ) \) e um subconjunto \( Y \subset X \), chamamos de \emph{interior} de \( Y \), e denotamos por \( \intt Y \), o subconjunto de \( Y \) formado pelos elementos \( a \in Y \) tais que existe \( r > 0 \) satisfazendo \( B(a, r) \subset Y \).
+\end{defn}
+
+\begin{defn}
+    Um subconjunto \( A \) de um espaço métrico \( (X, d) \) é dito \emph{aberto} se \( A = \intt A \).
+\end{defn}
+
+\begin{defn}
+    Dado um subconjunto \( M \) de um espaço métrico \( (X, d) \), um ponto \( x \in X \) é dito \emph{aderente} a \( M \) se toda bola aberta centrada em \( x \) tiver interseção não-vazia com \( M \).
+    Chamamos de \emph{fecho} de \( M \), e denotamos por \( \overline{M} \), o conjunto dos pontos de aderência de \( M \).
+\end{defn}
+
+\begin{defn}
+    Um subconjunto \( F \) de um espaço métrico \( (X, d) \) é dito \emph{fechado} se \( F = \overline{F} \).
+\end{defn}
+
+\begin{defn}
+    Dada uma sequência \( (x_{ n })_{ n \in \N } \) de elementos do espaço métrico \( (X, d) \), ou seja, uma função \( f : \N \to X \), dizemos que \( (x_{ n }) \) \emph{converge} para \( L \in X \) se, dado \( \varepsilon > 0 \), existe \( n_{ 0 } \in \N \) tal que, para \( n \geq n_{ 0 } \), vale \( d(x_{ n }, L) < \varepsilon \).
+    Se para todo \( L \in X \) é falso que \( \lim x_{ n } = L \), dizemos que \( ( x_{ n } ) \) é \emph{divergente}.
+\end{defn}
+
+\begin{defn}
+    Uma sequência \( (x_{ n })_{ n \in \N } \) de elementos do espaço métrico \( X \) é dita \emph{de Cauchy} se, dado \( \varepsilon > 0 \), existe \( n_{ 0 } \in \N \) tal que, para \( n, m \geq n_{ 0 } \), vale \( d(x_{ n }, x_{ m }) < \varepsilon \).
+    Equivalentemente, \( (x_{ n }) \) é de Cauchy se, para \( n \geq n_{ 0 } \), vale \( d(x_{ n }, x_{ n+p }) < \varepsilon \) para todo \( p \in \N \).
+\end{defn}
+
+\begin{prop}
+    Toda sequência convergente \( (x_{ n })_{ n \in \N } \) no espaço métrico \( X \) é de Cauchy
+\end{prop}
+
+\begin{proof}
+    Seja \( L = \lim x_{ n } \).
+    Dado \( \varepsilon > 0 \), tome \( n_{ 0 } \in \N \) de modo que, para \( n \geq n_{ 0 } \), valha \( d(n, L) < \varepsilon/2 \).
+    Então, se \( n, m \geq n_{ 0 } \) temos \[
+        d(x_{ n }, x_{ m }) \leq d(x_{ n }, L) + d(x_{ m }, L) = \varepsilon/2 + \varepsilon/2 = \varepsilon
+    .\qedhere\]
+\end{proof}
+
+\begin{exmp}
+    Embora toda sequência convergente seja de Cauchy, é falso que dado um espaço métrico qualquer, toda sequência de Cauchy convirja para um ponto pertencente a ele.
+    Por exemplo, considerando o conjunto \( \Q \) com a métrica \( d \) induzida pela métrica de \( \R \), temos que toda sequência de racionais convergindo para um irracional é de Cauchy, mas diverge em \( \Q \).
+\end{exmp}
+
+\begin{prop}
+    Se \( ( x_{ n } )_{ n \in \N } \) em um espaço métrico \( X \) é de Cauchy e possui um valor de aderência (ou seja, existe uma subsequência convergente \( ( x_{ n_{ k } } ) \) de \( ( x_{ n } ) \)), então \( ( x_{ n } ) \) converge para esse valor de aderência.
+\end{prop}
+
+\begin{proof}
+    Seja \( L \in X \) o limite da subsequência \( ( x_{ n_{ k } } ) \).
+    Então, dado \( \varepsilon > 0 \) conseguimos obter \( k_{ 0 } \in \N \) tal que, se \( k > k_{ 0 } \), então \( d(x_{ n_{ k } }, L) < \varepsilon/2 \).
+    Também conseguimos \( n_{ 0 } \in \N \) tal que, se \( n, m \geq n_{ 0 } \) então \( d(x_{ n }, x_{ m }) < \varepsilon/2 \).
+    Tome \( \ell > \max \left\{ n_{ 0 }, k_{ 0 } \right\} \).
+    Então claramente \( n_{ \ell } \geq \ell \) e, com isso, \[
+        d(x_{ \ell }, L) \leq d(x_{ \ell }, x_{ n_{ \ell } }) + d(x_{ n_{ \ell } }, L) < \varepsilon/2 + \varepsilon/2 = \varepsilon
+    .\qedhere\]
+\end{proof}
+
+
+\begin{defn}
+    Um espaço métrico \( ( X, d ) \) é dito \emph{completo} se toda sequência de Cauchy em \( X \) converge para um elemento de \( X \).
+\end{defn}
+
+
+
+\begin{prop}
+    \label{prop: fechados_encaixados}
+    Um espaço métrico \( ( X, d ) \) é completo se, e somente se, dada uma sequência decrescente \( F_{ 1 } \supset F_{ 2 } \supset \cdots \) de conjuntos não-vazios fechados em \( X \), tais que \( \lim \diam F_{ n } = 0 \), existe \( a \in X \) com \[
+        \left\{ a \right\} = \bigcap_{ n=1 }^{ \infty } F_{ i }
+    .\]
+\end{prop}
+
+\begin{proof}
+    Suponha que \( X \) seja completo e considere \( ( F_{ n } )_{ n \in \N } \) como no enunciado do Teorema.
+    Para cada conjunto \( F_{ n } \), escolha \( x_{ n } \in F_{ n } \), formando uma sequência \( ( x_{ n } )_{ n \in \N } \) de Cauchy.
+    De fato, como \( \lim \diam F_{ n } = 0 \), dado \( \varepsilon > 0 \) existe \( n_{ 0 } \in \N \) tal que para \( n \geq n_{ 0 } \), temos \( d(x, y) < \varepsilon \) para todos \( x, y \in F_{ n } \).
+    De \( F_{ 1 } \supset F_{ 2 } \supset \cdots \) concluímos que \( n, m > n_{ 0 } \) implicam \( x_{ n }, x_{ m } \in F_{ n_{ 0 } } \) o que implica \( d(x_{ n }, x_{ m }) < \varepsilon \).
+
+    Da completude de \( X \) concluímos que existe \( x = \lim x_{ n } \).
+    Como todos \( F_{ n } \) são fechados e, para \( m \geq n \) temos \( x_{ m } \in F_{ n } \), conclui-se que \( x \in F_{ n } \) para todo \( n \in \N \), ou seja, \[
+        x \in \bigcap_{ n=1 }^{ \infty } F_{ n }
+    .\]
+    Suponha, agora, que \( X \) seja um espaço métrico no qual toda sequência de fechados como a do enunciado convirja.
+    Seja \( ( x_{ n } )_{ n \in \N } \) uma sequência de Cauchy em \( X \).
+    Defina, para cada \( n \in \N \), o conjunto \( F_{ n } = \left\{ x_{ n }, x_{ n+1 }, \dots \right\} \).
+    Então \( ( \overline{F_{ n }} )_{ n \in \N } \) é uma sequência decrescente de conjuntos fechados tais que \( \lim \diam \overline{F_{ n }} = \lim \diam F_{ n } = 0 \).
+    Por hipótese, existe \( a \in \bigcap \overline{F_{ n }} \).
+    Como \( a \) é limite de sequência de pontos de \( F_{ k } \) para todo \( k \in \N \), para cada \( k \) podemos escolher \( a_{ n_{ k } } \in F_{ k } \) de modo que \( d(a, a_{ n_{ k } }) < 1/k \) e, assim,  \( \lim a_{ n_{ k } } = a \).
+    Claramente \( n_{ k } > k \) para todo \( k \in \N \), portanto, passando a uma subsequência se necessário, \( a_{ n_{ k } } \) é subsequência de \( (x_{ n }) \) o que implica, como \( (x_{ n }) \) é de Cauchy, \( \lim x_{ n } = a \).
+\end{proof}
+
+\begin{teo}[Teorema da Categoria de Baire]
+    Se \( ( X, d ) \) é um espaço métrico completo e \( A_{ 1 }, A_{ 2 }, \dots \) são abertos densos em \( X \), então \[
+        A = \bigcap_{ i=1 }^{ \infty } A_{ i }
+    \]
+    é denso em \( X \).
+\end{teo}
+
+\begin{proof}
+    Devemos mostrar que dado \( V \) um conjunto aberto em \( X \), temos \( A \cap V \neq \emptyset \).
+    Nossa estratégia será construir uma sequência decrescente \( F_{ 1 } \supset F_{ 2 } \supset \cdots \) de conjuntos fechados não-vazios tais que \( \lim \diam F_{ n } = 0 \) e, para todo \( n \in \N \), \( F_{ n } \subset A_{ n } \cap V \).
+    Então, pela Proposição \ref{prop: fechados_encaixados}, o ponto \( x \) que satisfaz \( \left\{ x \right\} = \bigcap F_{ n } \) é tal que \( x \in V \) e \( x \in F_{ n } \subset A_{ n } \) para todo \( n \), ou seja, \( x \in A \) e, portanto, \( x \in A \cap V \).
+
+    Começamos obeservando que, como \( A_{ 1 } \) é denso, \( A_{ 1 } \cap V \) é um conjunto aberto não-vazio.
+    Logo, existe \( B_{ 1 } \) bola aberta não-vazia de raio menor que \( 1 \), tal que \( \overline{B_{ 1 }} \subset A_{ 1 } \cap V \).
+    Suponha, agora, definidos \( B_{ 1 }, \dots, B_{ n } \) de forma que, para todo \( 1 < k \leq n \), \( B_{ k } \) é uma bola aberta não-vazia de raio menor que \( 1/k \) tal que \( \overline{B_{ k }} \subset V \cap A_{ k } \cap B_{ k-1 } \).
+    Novamente, como \( A_{ n+1 } \) é denso, \( A_{ n+1 } \cap B_{ n } \) é um conjunto aberto não vazio.
+    Logo, definimos \( B_{ n+1 } \) como uma bola aberta não-vazia contida em \( A_{ n+1 } \cap B_{ n } \), de raio menor que \( 1/( n+1 ) \) tal que \( \overline{B_{ n+1 }} \subset A_{ n+1 } \cap B_{ n } \subset A_{ n+1 } \cap V \ \).
+
+    Com isso, obtemos uma sequência decrescente \( B_{ 1 } \supset \cdots \supset B_{ n } \supset \cdots \) de bolas abertas não-vazias, com o raio de \( B_{ n } \) menor que \( 1/n \), cujos fechos \( \overline{B_{ 1 }} \supset \cdots \supset \overline{B_{ n }} \supset \cdots \) formam uma sequência decrescente de conjuntos fechados não-vazios, com \( \diam \overline{B_{ n }} \leq 1/n \) e \( \overline{B_{ n }} \subset A_{ n } \cap V \) para todo \( n \in \N \), o que, como apontado anteriormente, termina a prova.
+\end{proof}
+
+
