@@ -1,0 +1,40 @@
+% !TeX root = ./master.tex
+\section{O Teorema de Hahn-Banach}
+
+%% Escrever sobre o Teorema, dar uma intuição da importância dele
+
+\subsection{O Lema de Zorn}
+
+Aqui apresentaremos alguns conceitos de Teoria dos Conjuntos que serão utilizados na demonstração de Teorema de Hahn-Banach.
+Dado um conjunto \( X \) uma \emph{relação} em \( X \) é um subconjunto \( R \) de \( X \times X \). 
+Escreveremos \( x R y \) para indicar que \( ( x, y ) \in R \).
+
+Uma \emph{relação de ordem parcial} em \( X \) é uma relação que satisfaz, dados \( x, y, z \in X \):
+\begin{enumerate}[label=\roman*)]
+    \item \( x R x \) (\emph{reflexividade});
+    \item Se \( x R y \) e \( y R x \), então \( x = y \) (\emph{antisimetria});
+    \item Se \( x R y \) e \( y R z \), então \( x R z \) (\emph{transitividade});
+\end{enumerate}
+O termo \emph{parcial} é utilizado para indicar que podem existir elementos de \( X \) não relacionados por essa ordem.
+Caso tenhamos \( x R y \) ou \( y R x \) para todos \( x, y \in X \), então \( R \) é dita uma relação de ordem \emph{total}.
+Utilizaremos o símbolo \( \prec \) para indicar uma ordem parcial.
+Dizemos então que \( ( X, \prec ) \) é um conjunto parcialmente ordenado.
+Se \( \prec \) também é total, \( ( X, \prec ) \) é totalmente ordenado.
+Claramente todo subconjunto de \( X \) também é parcialmente ordenado, com a ordem induzida por \( \prec \).
+
+Um \emph{elemento maximal} de um conjunto ordenado \( X \) é um elemento \( x \) tal que se \( y \in X \) com \( x \prec y \), então \( y = x \).
+Uma \emph{cota superior} de um subconjunto \( Y \subset X \) é um elemento \( x \in X \) tal que \( y \prec x \) para todo \( y \in Y \).
+Observe que se \( \prec \) não é total, não necessariamente um elemento maximal de \( Y \subset X \) é uma cota superior de \( Y \).
+
+Dois exemplos usuais de conjuntos ordenados são \( \R \) e \( \mathcal{P} ( X ) \), para um dado conjunto \( X \).
+O primeiro é um conjunto totalmente ordenado pela ordem usual \( \leq \), o qual não possui elemento maximal.
+O segundo se torna um conjunto ordenado ao dizermos que dados \( A, B \subset X \), temos \( A \prec B \) se, e somente se \( A \subset  B \).
+Essa ordem não é total e o único elemento maximal de \( \mathcal{P} ( X ) \) é o próprio \( X \).
+
+\begin{axiom}[Lema de Zorn]
+    Todo conjunto parcialmente ordenado, tal que todos seus subconjuntos totalmente ordenados possuam cota superior, possui elemento maximal.
+\end{axiom}
+
+Agora provaremos um resultado que exemplifica como o Lema de Zorn geralmente é utilizado.
+
+%% pagina 69 pdf impa
