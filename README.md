@@ -1,0 +1,1 @@
+Objeto de estudo: Teorema da Aproximação Universal (para redes neurais)
