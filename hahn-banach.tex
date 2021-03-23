@@ -82,10 +82,10 @@ Seja \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), para algum conjunto
 Como \( f \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), essa coleção é não-vazia e, portanto, podemos ordená-la parcialmente utilizando a relação de inclusão (considerando que \( g_{ \lambda } \) é um subconjunto de \( M_{ \lambda } \times \R \)).
 Desejamos mostrar que existe um elemento maximal de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \).
 Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) é uma subcoleção totalmente ordenada, definimos \( g \) como \[
-    g \define \bigcup_{ \lambda \in L' } g_{ \lambda }
+    g \defeq \bigcup_{ \lambda \in L' } g_{ \lambda }
 ,\]
 ou seja, \( g \) é um funcional linear em \( \bigcup_{ \lambda \in L } M_{ \lambda } \) tal que \( g(v) = g_{ \lambda } (v) \), onde \( v \in M_{ \lambda } \).
-De fato \( g \) está bem definida, pois se \( v \in M_{ \lambda_{ 1 } } \cup M_{ \lambda_{ 2 } } \) com \( \lambda_{ 1 } \neq \lambda_{ 2 } \), ambos pertencentes a \( L' \), então podemos supor, sem perda de generalidade, que \( g_{ \lambda_{ 2 } } \subset g_{ \lambda_{ 1 } } \) e, assim, \( g_{ \lambda_{ 1 } } (v) = g_{ \lambda_{ 2 } }(v) \). 
+De fato \( g \) está bem definida, pois se \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } \) com \( \lambda_{ 1 } \neq \lambda_{ 2 } \), ambos pertencentes a \( L' \), então podemos supor, sem perda de generalidade, que \( g_{ \lambda_{ 2 } } \subset g_{ \lambda_{ 1 } } \) e, assim, \( g_{ \lambda_{ 1 } } (v) = g_{ \lambda_{ 2 } }(v) \). 
 É fácil verificar que \( g \) estende \( f \) e é dominado por \( p \).
 Logo, \( g \) é uma cota superior de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) e, pelo Lema de Zorn, existe \( F \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), definido em \( W \subset  V \), maximal.
 
@@ -94,7 +94,7 @@ Para demonstrar esse fato, suponha, por absurdo, que ele seja falso, ou seja, qu
 Nossa estratégia será construir um uma extensão \( G \) de \( F \), dominada por \( p \), definida em \( U = \lin (W \cup \left\{ \eta \right\}) \), contradizendo a maximalidade de \( F \).
 
 Para definirmos \( G \), basta atribuirmos um valor para \( G(\eta) \).
-De fato, todo elemento de \( U \) é da forma \( w + h \eta \), onde \( w \in W \) e \( \alpha \in \R \).
+De fato, todo elemento de \( U \) é da forma \( w + \alpha \eta \), onde \( w \in W \) e \( \alpha \in \R \).
 Logo, pondo \[
     G(w + \alpha \eta) = F(w) + \alpha G(\eta)
 ,\]

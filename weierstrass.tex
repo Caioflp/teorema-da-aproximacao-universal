@@ -30,7 +30,7 @@ Em seguida, devemos definir a classe de polinômios que utilizaremos na demonstr
     \label{def: bernstein}
     Dada \( g : X \to \R \) definimos o \( n \)-ésimo polinômio de Bernstein de \( g \) como
     \begin{equation}
-        B_{ n }(x, g) \define
+        B_{ n }(x, g) \defeq
         \sum_{ k=0 }^{ n } g \left( \frac{ k }{ n } \right) \binom{n}{k} x^{ k } ( 1 - x )^{ n - k }
         \label{eq: bernstein}
     .\end{equation}
@@ -74,7 +74,7 @@ Com essas ferramentas, podemos então apresentar a
     Portanto, dado \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que se \( x, y \in [0, 1] \) satisfazem \( \abs{ x - y } < \delta \) então \[
         \abs{ f(x) - f(y) } < \frac{ \varepsilon }{ 2 }
     .\]
-    Agora, definimos \( M \define \norm{ f }_{ \infty } \) e fixamos \( \xi \in [0, 1] \).
+    Agora, definimos \( M \defeq \norm{ f }_{ \infty } \) e fixamos \( \xi \in [0, 1] \).
     Logo, se \( \abs{ x - \xi } \geq \delta \) temos \[
         \abs{ f(x) - f(\xi) } \leq 2M \leq 2M \left( \frac{ x - \xi }{ \delta } \right)^2
     .\]
