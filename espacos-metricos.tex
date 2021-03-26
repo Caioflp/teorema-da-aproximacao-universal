@@ -1,8 +1,7 @@
-% !TeX root = ./master.tex
-\section{Um pouco sobre Espaços Métricos}
+% !TeX root = ./main.tex
+\section{Elementos de Espaços Métricos}
 
-Para estudar os próximos resultados, precisaremos do Teorema da Categoria de Baire.
-Pelo bem da completude do texto, primeiro introduziremos algumas noções relativas a Espaços Métricos que serão utilizadas na demonstração.
+Neste apêndice introduzimos o necessário para se compreender o Teorema de Baire, utilizado na demonstração do \( 13^{ \circ } \) problema de Hilbert.
 
 \begin{defn}
     Dado um conjunto \( X \) qualquer, uma \emph{métrica} em \( X \) é uma função \( d : X \times X \to \R \) tal que:
@@ -154,4 +153,8 @@ Pelo bem da completude do texto, primeiro introduziremos algumas noções relati
     Com isso, obtemos uma sequência decrescente \( B_{ 1 } \supset \cdots \supset B_{ n } \supset \cdots \) de bolas abertas não-vazias, com o raio de \( B_{ n } \) menor que \( 1/n \), cujos fechos \( \overline{B_{ 1 }} \supset \cdots \supset \overline{B_{ n }} \supset \cdots \) formam uma sequência decrescente de conjuntos fechados não-vazios, com \( \diam \overline{B_{ n }} \leq 1/n \) e \( \overline{B_{ n }} \subset A_{ n } \cap V \) para todo \( n \in \N \), o que, como apontado anteriormente, termina a prova.
 \end{proof}
 
+Terminaremos essa seção com a definição de função contínua, que será usada posteriormente.
 
+\begin{defn}
+    Dados espaços métricos \( (X, d_{ X }) \) e \( (Y, d_{ Y }) \), uma função \( f : X \to Y \) é dita \emph{contínua} em \( a \in X \) se, para todo \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que, se \( d_{ X }(x, a) < \delta \), então \( d_{ Y }(f(x), f(a)) < \varepsilon \).
+\end{defn}

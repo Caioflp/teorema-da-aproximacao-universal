@@ -1,0 +1,74 @@
+% !TeX root = ./main.tex
+
+\section{Elementos de Análise Funcional}
+
+Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de Álgebra Linear, utilizadas nas aplicações do Teorema de Hahn-Banach.
+
+\begin{defn}
+    Dado um espaço vetorial \( V \) sobre um corpo \( \K \), uma \emph{norma} em \( V \) é uma função \( \norm{ \cdot } : V \to [0, +\infty) \) tal que
+    \begin{enumerate}[label=\roman*)]
+        \item \( \norm{ v } = 0 \) se, e somente se \( v = 0 \) (normas são \emph{positivas definidas});
+        \item \( \norm{ \alpha v } = \abs{ \alpha } \norm{ v } \) para todo \( v \in V \) e \( \alpha \in \K \) (\emph{homogeneidade absoluta});
+        \item \( \norm{ v + w } \leq \norm{ v } + \norm{ w } \) para todos \( v, w \in V \) (\emph{desigualdade triangular}).
+    \end{enumerate}
+\end{defn}
+Uma função que cumpre as propriedades ii) e iii) acima é denominada uma \emph{semi-norma}.
+Um espaço vetorial junto de sua norma e denominado um \emph{espaço vetorial normado}.
+A menos de onde houver ambiguidade, utilizaremos o mesmo símbolo \( \norm{ \cdot } \) para nos referir a normas de qualquer espaço vetorial normado.
+O vetor dentro do símbolo deixará claro a norma de qual espaço está sendo utilizada.
+
+É interessante perceber que todo espaço vetorial normado é um espaço métrico, quando se introduz nele a métrica induzida pela norma: \( (v, w) \mapsto \norm{ v - w } \).
+As propriedades de uma métrica são facilmente verificadas.
+
+\begin{defn}
+    Uma transformação linear \( T : V \to W \) entre dois espaços vetoriais normados é dita \emph{limitada} se existe \( C \in [0, +\infty) \) tal que \( \norm{ Tv } \leq C \norm{ v } \) para todo \( v \in V \).
+\end{defn}
+Essa definição naturalmente é diferente da definição usual de função limitada, pois, como \( T(\lambda v) = \lambda (Tv) \), impossível termos \( \norm{ Tv } \leq C \) para todo \( v \in V \) se \( T \) é não nula.
+
+O próximo teorema ilustra a utilidade dessa definição de transformação limitada.
+
+\begin{teo}
+    Seja \( T : V \to W \) uma transformação linear entre espaços vetoriais normados.
+    As seguintes afirmativas são equivalentes:
+    \begin{enumerate}[label=\roman*)]
+        \item \( T \) é contínua;
+        \item \( T \) é contínua em \( 0 \);
+        \item \( T \) é limitada.
+    \end{enumerate}
+\end{teo}
+\begin{proof}
+    A implição de i) para ii) é óbvia.
+    Suponha, agora, que \( T \) é contínua em \( 0 \).
+    Tomando \( \varepsilon = 1 \), conseguimos \( \delta > 0 \) tal que se \( \norm{ v } \leq \delta \), então \( \norm{ Tv } < 1 \).
+    Agora, dado \( v \in V \), \( v \neq 0 \), tome o vetor \( v' \defeq \delta v / \norm{ v } \).
+    Claramente temos \( \norm{ v' } = \delta \), ou seja, \( \norm{ Tv' } < 1 \), o que implica \( \norm{ Tv } < \delta^{ -1 } \norm{ v } \).
+    Logo, tomando \( C = \delta^{ -1 } \), \( T \) é limitada.
+    Por fim, se \( T \) é limitada, dados \( a \in V \) e \( \varepsilon \), tome \( \delta < \varepsilon/C \).
+    Com isso se \( \norm{ x - a } < \delta \) temos:
+    \begin{equation}
+        \norm{ Tx - Ta } = \norm{ T(x - a) } \leq C \norm{ x - a } < C \cdot \varepsilon/C = \varepsilon
+    .\end{equation}
+    Portanto, \( T \) é contínua.
+\end{proof}
+
+Denotamos pro \( L(V, W) \) o conjunto das transformações lineares limitadas de \( V \) em \( W \).
+Esse conjunto, com as operações usuais de adição e multiplicação por escalar, é um espaço vetorial.
+Podemos, ainda, definir nele uma norma, dada por
+\begin{align}
+    \norm{ T } &\defeq \sup \left\{ \frac{ \norm{ Tv } }{ \norm{ v } } : v \in V - \left\{ 0 \right\} \right\} \label{ali: first} \\
+    &= \sup \left\{ \norm{ Tv } : v \in V, \norm{ v } = 1 \right\} \label{ali: sec} \\
+    &= \inf \left\{ C : \norm{ Tv } \leq C \norm{ v } \text{ para todo } v \in V \right\}
+    \label{ali: third}
+.\end{align}
+Claramente os dois primeiros conjuntos são iguais, logo seus supremos também o são.
+Para ver que vale (\ref{ali: third}), perceba que, por (\ref{ali: first}), temos \( \norm{ Tv } \leq \norm{ T } \norm{ v } \) para todo \( v \in V \).
+Portanto, sendo \( A \) o conjunto em (\ref{ali: third}), temos \( \norm{ T } \in A \), ou seja, \( \inf A \leq \norm{ T } \).
+Além disso, dado \( C \in A \), temos \( C \geq \norm{ Tv } / \norm{ v } \) para todo \( v \in V - \left\{ 0 \right\} \).
+Logo, \( \norm{ T } \leq C \) e, com isso, \( \norm{ T } \leq \inf A \).
+Sendo assim, vale (\ref{ali: third}).
+As propriedades i), ii) e iii) decorrem diretamente das propriedades das normas de \( V \) e \( W \) e são facilmente verificadas.
+Sempre trataremos o conjunto \( L(V, W) \) como um espaço vetorial normado munido dessa norma, a qual é denominada \emph{norma de operador}. 
+
+No caso especial em que \( W = \K \),
+o espaço \( L(V, \K) \) é denominado \emph{espaço dual} de \( V \) e é denotado por \( V^{ * } \).
+Os elementos de \( V^{ * } \) são denominados \emph{funcionais lineares}.
