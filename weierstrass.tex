@@ -40,7 +40,7 @@ Note a semelhança entre os polinômios de Bernstein e a expansão binomial de \
 De fato, temos \( B_{ n } (x, 1) = ( 1 + ( 1 - x ) )^{ n } = 1 \).
 Mais geralmente, para toda constante \( c \in \R \) tem-se \( B_{ n } (x, c) = c \).
 
-Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do Teorema \ref{thm: weierstrass}.
+Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do teorema \ref{thm: weierstrass}.
 Dados \( p \) e \( q \) reais, começamos considerando a expansão binomial de \( ( p + q )^{ n } \):\[
     ( p + q )^{ n } =
     \sum_{ k=0 }^{ n } \binom{n}{k} p^{ k } q^{ n-k }
@@ -69,7 +69,7 @@ Como consideramos \( f, g \in C([0, 1]) \), segue da Definição \ref{def: berns
 
 Com essas ferramentas, podemos então apresentar a
 %% Provar desigualdades envolvendo polinômios de Bernstein e explicar a restrição ao intervalo [0, 1]
- \begin{proof}[Demonstração do Teorema \ref{thm: weierstrass}]
+ \begin{proof}[Demonstração do teorema \ref{thm: weierstrass}]
     Observamos inicialmente que como \( f \) é uma função contínua definida em um compacto, é uniformemente contínua.
     Portanto, dado \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que se \( x, y \in [0, 1] \) satisfazem \( \abs{ x - y } < \delta \) então \[
         \abs{ f(x) - f(y) } < \frac{ \varepsilon }{ 2 }

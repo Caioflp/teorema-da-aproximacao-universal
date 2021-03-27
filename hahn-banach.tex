@@ -1,9 +1,8 @@
 % !TeX root = ./main.tex
 \section{O Teorema de Hahn-Banach}
 
-Dado um espaço vetorial \( V \) sobre um corpo \( \K \) , um \emph{funcional linear} em \( V \) é uma função linear \( f : V \to \K \).
-Se \( V \) é um espaço vetorial real (ou seja, \( \K = \R \)), um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que \[
-    p ( x + y ) \leq p(x) + p(y) \text{ e } p(\lambda x) = \lambda p(x) \text{ para todos \( x, y \in V \) e \( \lambda \in \R \)}
+Se \( V \) é um espaço vetorial real, um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que \[
+    p ( x + y ) \leq p(x) + p(y) \text{ e } p(\lambda x) = \lambda p(x) \text{ para todos \( x, y \in V \) e \( \lambda \in \R_{ \geq 0 } \)}
 .\]
 Observe que nada se exige sobre o sinal de \( p \).
 Um exemplo de funcional sublinear é uma seminorma em \( V \).
@@ -17,11 +16,11 @@ Um exemplo de funcional sublinear é uma seminorma em \( V \).
 
 Em outras palavras, se, em um espaço vetorial, temos um funcional sublinear que domina um funcional linear definido em um subespaço, podemos extender esse funcional ao espaço todo, mantendo a relação de dominância.
 
-Antes de apresentar a demonstração do Teorema \ref{thm: hahn-banach}, vamos introduzir alguns conceitos de Teoria dos Conjuntos.
+Antes de apresentar a demonstração do teorema \ref{thm: hahn-banach}, vamos introduzir alguns conceitos de Teoria dos Conjuntos.
 
-%% Escrever sobre o Teorema, dar uma intuição da importância dele
+%% Escrever sobre o teorema, dar uma intuição da importância dele
 
-\subsection{O Lema de Zorn}
+\subsection{O lema de Zorn}
 
 Dados conjuntos \( X \) uma \emph{relação} de \( X \) em \( Y \) é um subconjunto \( R \) de \( X \times Y \). 
 Escreveremos \( x R y \) para indicar que \( ( x, y ) \in R \).
@@ -50,11 +49,11 @@ O primeiro é um conjunto totalmente ordenado pela ordem usual \( \leq \), o qua
 O segundo se torna um conjunto ordenado ao dizermos que dados \( A, B \subset X \), temos \( A \prec B \) se, e somente se \( A \subset  B \).
 Essa ordem não é total e o único elemento maximal de \( \mathcal{P} ( X ) \) é o próprio \( X \).
 
-\begin{axiom}[Lema de Zorn]
+\begin{axiom}[lema de Zorn]
     Todo conjunto parcialmente ordenado, tal que todos seus subconjuntos totalmente ordenados possuam cota superior, possui elemento maximal.
 \end{axiom}
 
-Encerramos essa apresentação com um resultado que exemplifica como o Lema de Zorn geralmente é utilizado.
+Encerramos essa apresentação com um resultado que exemplifica como o lema de Zorn geralmente é utilizado.
 
 \begin{prop}
     Todo espaço vetorial não trivial, ou seja, que possui elementos não nulos, possui uma base.
@@ -71,12 +70,12 @@ Encerramos essa apresentação com um resultado que exemplifica como o Lema de Z
     Logo \( \left\{ x_{ i }, \dots, x_{ n } \right\} \subset  \beta_{ k } \) e, como \( \beta_{ k } \) é linearmente independente, também o são os \( x_{ i } \).
     Dessa forma, \( C \) é um conjunto linearmente independente, pertencente a \( A \) e que claramente é uma cota superior de \( B \).
 
-    Portanto, aplicando o Lema de Zorn obtemos um elemento maximal \( \Lambda \) de \( A \).
+    Portanto, aplicando o lema de Zorn obtemos um elemento maximal \( \Lambda \) de \( A \).
     Denotando por \( \lin \Lambda \) o conjunto formado pelas combinações lineares de elementos de \( \Lambda \), afirmamos que \( \lin \Lambda = A \).
-    Com efeito, supondo, por absurdo, que exista \( v \in V - \lin \Lambda \), temos que \( \Lambda \cup \left\{ v \right\} \) é linearmente independente, ou seja, pertence a \( A \) e contém \( \Lambda \), um contradição pois \( \Lambda \) é maximal.
+    Com efeito, supondo, por absurdo, que exista \( v \in V \backslash \lin \Lambda \), temos que \( \Lambda \cup \left\{ v \right\} \) é linearmente independente, ou seja, pertence a \( A \) e contém \( \Lambda \), um contradição pois \( \Lambda \) é maximal.
 \end{proof}
 
-\subsection{Demonstração do Teorema de Hahn-Banach}
+\subsection{Demonstração do teorema de Hahn-Banach}
 
 Seja \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), para algum conjunto de índices \( L \), a coleção das extensões lineares de \( f \) em conjuntos \( M_{ \lambda } \) tais que \( M \subset  M_{ \lambda } \subset V \), que são dominadas por \( p \).
 Como \( f \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), essa coleção é não-vazia e, portanto, podemos ordená-la parcialmente utilizando a relação de inclusão, considerando que \( g_{ \lambda } \) é um subconjunto de \( M_{ \lambda } \times \R \).
@@ -88,10 +87,10 @@ Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in 
 ou seja, \( g \) é um funcional linear em \( \bigcup_{ \lambda \in L } M_{ \lambda } \) tal que \( g(v) = g_{ \lambda } (v) \), onde \( v \in M_{ \lambda } \).
 De fato \( g \) está bem definida, pois se \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } \) com \( \lambda_{ 1 } \neq \lambda_{ 2 } \), ambos pertencentes a \( L' \), então podemos supor, sem perda de generalidade, que \( g_{ \lambda_{ 2 } } \subset g_{ \lambda_{ 1 } } \) e, assim, \( g_{ \lambda_{ 1 } } (v) = g_{ \lambda_{ 2 } }(v) \), para \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } = M_{ \lambda_{ 2 } } \). 
 É fácil verificar que \( g \) estende \( f \) e é dominado por \( p \).
-Logo, \( g \) é uma cota superior de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) e, pelo Lema de Zorn, existe \( F \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), definido em \( W \subset  V \), maximal.
+Logo, \( g \) é uma cota superior de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) e, pelo lema de Zorn, existe \( F \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), definido em \( W \subset  V \), maximal.
 
 Intuitivamente é claro que \( F \) deve estar definida em todo o espaço \( V \), de modo que é a extensão de Hahn-Banach de \( f \).
-Para demonstrar esse fato, suponha, por absurdo, que ele seja falso, ou seja, que exista \( \eta \in V - W \).
+Para demonstrar esse fato, suponha, por absurdo, que ele seja falso, ou seja, que exista \( \eta \in V \backslash W \).
 Nossa estratégia será construir um uma extensão \( G \) de \( F \), dominada por \( p \), definida em \( U = \lin (W \cup \left\{ \eta \right\}) \), contradizendo a maximalidade de \( F \).
 
 Para definirmos \( G \), basta atribuirmos um valor para \( G(\eta) \).
@@ -142,4 +141,91 @@ Caso \( \alpha < 0 \):
     &= p(w + \alpha \eta)
 .\end{align*}
 Se \( \alpha = 0 \), \( G \) coincide com \( F \) e claramente é dominada por \( p \).
-Sendo assim, chegamos a uma contradição com a maximalidade de \( F \), o que conclui a prova.
+Sendo assim, chegamos a uma contradição com a maximalidade de \( F \), o que conclui a prova. \qed
+
+No caso especial em que \( p \) é uma seminorma, a condição \( f \leq p \) é equivalente a \( \abs{ f } \leq p \), pois \( -f(x) = f(-x) \leq p(-x) = p(x) \).
+
+\subsection{Aplicações do teorema de Hahn-Banach}
+
+Aqui vamos utilizar o teorema de Hahn-Banach para provar um resultado sobre subespaços vetoriais densos que será utilizado na prova do teorema da Aproximação Universal.
+Começamos apresentando uma aplicação do teorema de Hahn-Banach para ilustrar como ele é geralmente utilizado.
+
+\begin{teo}
+    Seja \( V \) um espaço vetorial normado.
+    Então:
+    \begin{enumerate}[label=\roman*)]
+        \item Se \( 0 \neq v \in V \), então existe \( f \in V^{ * } \) tal que \( f(v) = \norm{ v } \) e \( \norm{ f } = 1 \);
+        \item Se \( v \) e \( w \) são elementos distintos de \( V \), então existe \( f \in V^{ * } \) tal que \( f(v) \neq f(w) \);
+        \item Se \( v \in V \) satisfaz \( f(v) = 0 \) para todo \( f \in V^{ * } \), então \( v = 0 \);
+        \item Se \( v \in V \), então
+        \begin{equation}
+            \norm{ v }
+            = \sup_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
+            = \max_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
+        .\end{equation}
+    \end{enumerate}
+\end{teo}
+\begin{proof}
+    Para provar \emph{i}, basta aplicar Hahn-Banach com o funcional sublinear dado pela norma, o subespaço \( M = \lin (\left\{ v \right\}) \) e o funcional \( f : M \to \R \) dado por \( f(\alpha v) = \alpha \norm{ v } \).
+    Sendo \( F \) a extensão de Hahn-Banach de \( f \), temos \( F(v) = \norm{ v } \) e, como o funcional sublinear é a norma de \( V \), vale \( \abs{ F(x) } \leq \norm{ x } \) para todo \( x \in V \).
+    Como há um caso de igualdade, vale \( \norm{ F } = 1 \).
+    Em \emph{ii}, como \( v \neq w \), então \( v - w \neq 0 \).
+    Por \emph{i}, isso implica a existência de um funcional \( f \) tal que \( f(v - w) = \norm{ v - w } \neq 0 \), ou seja, \( f(v) \neq f(w) \).
+    Claramente \emph{iii} segue diretamente de \emph{ii}.
+    Como, para todo \( f \in V^{ * } \), vale \( \abs{ f(v) } \leq \norm{ f } \norm{ v } \), temos
+    \begin{equation}
+        \norm{ v } \geq \sup_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
+    .\end{equation}
+    Por \emph{i}, existe \( g \in V^{ * } \) tal que \( g(v) = \norm{ v } \) e \( \norm{ g } = 1 \), de modo que
+    \begin{equation}
+        \norm{ v } = \frac{ \abs{ g(v) } }{ \norm{ g } }
+    ,\end{equation}
+    ou seja, vale a igualdade e podemos trocar \( \sup \) por \( \max \).
+\end{proof}
+
+A próxima proposição será útil para provar o principal resultado dessa seção.
+\begin{prop}
+    Seja \( V \) um espaço vetorial normado e \( M \) um subespaço próprio fechado de \( V \).
+    Dado \( v \in V \backslash M \), definimos \( \delta = d(v, M) \defeq \inf \left\{ \norm{ v - w } : w \in M \right\} \).
+    Então existe um funcional \( f \in V^{ * } \) tal que \( \norm{ f } = 1 \), \( f(v) = \delta \) e \( f  \mid_{ M } = 0 \).
+    \label{prop: closed_subset}
+\end{prop}
+\begin{proof}
+    Como \( M \) é fechado, \( \delta > 0 \).
+    Defina o funcional \( g : \lin ( \left\{ v \right\} \cup M ) \to \R \) dado por
+    \begin{equation}
+        g(\alpha v + w) = \alpha \delta
+    ,\end{equation}
+    onde \( \alpha \in \R \) e \( w \in M \).
+    Claramente temos \( g \mid_{ M } = 0 \) e \( g(v) = \delta \).
+    Agora perceba que
+    \begin{equation}
+        \abs{ g(\alpha v + w) } = \abs{ \alpha } \delta \leq \abs{ \alpha } \norm{ v + w / \alpha } = \norm{ \alpha v + w }
+    ,\end{equation}
+    de modo que \( \norm{ g } \leq 1 \).
+    Além disso, para todo \( w \in M \) vale
+    \begin{equation}
+        \norm{ g } \geq \frac{ \abs{ g(v + w) } }{ \norm{ v + w } } = \frac{ \delta }{ \norm{ v + w } }
+    .\end{equation}
+    Portanto,
+    \begin{equation}
+        \norm{ g } \geq \sup_{ w \in M } \frac{ \delta }{ \norm{ v + w } } = \frac{ \delta }{ \inf_{ w \in M } \norm{ v - w } } = 1
+    .\end{equation}
+    Logo, \( \norm{ g } \geq 1 \) e, com isso, \( \norm{ g } = 1 \).
+    Agora podemos aplicar Hahn-Banach, obtendo a extensão \( f \) de \( g \), utilizando como funcional sublinear a norma em \( V \).
+\end{proof}
+
+Agora o teorema que será usada na prova do teorema da Aproximação Universal.
+
+\begin{teo}
+    Um subespaço \( M \) de um espaço vetorial \( V \) é denso se, e somente se, o único elemento de \( V^{ * } \) que se anula em \( M \) é o funcional nulo.
+\end{teo}
+\begin{proof}
+    Suponha que \( N \) é um subespaço denso de \( V \) e seja \( f \in V^{ * } \) um funcional que se anula em \( M \).
+    Dado \( v \in V \backslash M \), seja \( ( x_{ n } )_{ n \in \N } \) tal que \( x_{ n } \in M \) para todo \( n \) e \( x_{ n } \to v \).
+    Como \( f \) é uma transformação linear limitada, é contínua e, portanto, \( f(x_{ n }) \to f(v) \).
+    Porém \( f(x_{ n }) = 0 \) para todo \( n \), ou seja, \( f(x_{ n }) \to 0 = f(v) \), de modo que \( f = 0 \).
+
+    Reciprocamente, se o único elemento de \( V^{ * } \) que se anula em \( M \) é o funcional nulo, então necessariamente \( V \) é denso.
+    Caso contrário, \( \overline{M} \) seria um subespaço próprio fechado de \( V \) e, pela proposição \ref{prop: closed_subset} existiria um funcional não nulo que se anula em \( \overline{M} \) e, consequentemente, em \( M \).
+\end{proof}

@@ -2,7 +2,7 @@
 
 \section{Elementos de Análise Funcional}
 
-Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de Álgebra Linear, utilizadas nas aplicações do Teorema de Hahn-Banach.
+Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de Álgebra Linear, utilizadas nas aplicações do teorema de Hahn-Banach.
 
 \begin{defn}
     Dado um espaço vetorial \( V \) sobre um corpo \( \K \), uma \emph{norma} em \( V \) é uma função \( \norm{ \cdot } : V \to [0, +\infty) \) tal que
@@ -12,7 +12,7 @@ Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de 
         \item \( \norm{ v + w } \leq \norm{ v } + \norm{ w } \) para todos \( v, w \in V \) (\emph{desigualdade triangular}).
     \end{enumerate}
 \end{defn}
-Uma função que cumpre as propriedades ii) e iii) acima é denominada uma \emph{semi-norma}.
+Uma função que cumpre as propriedades \emph{ii} e \emph{iii} acima é denominada uma \emph{semi-norma}.
 Um espaço vetorial junto de sua norma e denominado um \emph{espaço vetorial normado}.
 A menos de onde houver ambiguidade, utilizaremos o mesmo símbolo \( \norm{ \cdot } \) para nos referir a normas de qualquer espaço vetorial normado.
 O vetor dentro do símbolo deixará claro a norma de qual espaço está sendo utilizada.
@@ -37,7 +37,7 @@ O próximo teorema ilustra a utilidade dessa definição de transformação limi
     \end{enumerate}
 \end{teo}
 \begin{proof}
-    A implição de i) para ii) é óbvia.
+    A implição de \emph{i} para \emph{ii} é óbvia.
     Suponha, agora, que \( T \) é contínua em \( 0 \).
     Tomando \( \varepsilon = 1 \), conseguimos \( \delta > 0 \) tal que se \( \norm{ v } \leq \delta \), então \( \norm{ Tv } < 1 \).
     Agora, dado \( v \in V \), \( v \neq 0 \), tome o vetor \( v' \defeq \delta v / \norm{ v } \).
@@ -55,7 +55,7 @@ Denotamos pro \( L(V, W) \) o conjunto das transformações lineares limitadas d
 Esse conjunto, com as operações usuais de adição e multiplicação por escalar, é um espaço vetorial.
 Podemos, ainda, definir nele uma norma, dada por
 \begin{align}
-    \norm{ T } &\defeq \sup \left\{ \frac{ \norm{ Tv } }{ \norm{ v } } : v \in V - \left\{ 0 \right\} \right\} \label{ali: first} \\
+    \norm{ T } &\defeq \sup \left\{ \frac{ \norm{ Tv } }{ \norm{ v } } : v \in V \backslash \left\{ 0 \right\} \right\} \label{ali: first} \\
     &= \sup \left\{ \norm{ Tv } : v \in V, \norm{ v } = 1 \right\} \label{ali: sec} \\
     &= \inf \left\{ C : \norm{ Tv } \leq C \norm{ v } \text{ para todo } v \in V \right\}
     \label{ali: third}

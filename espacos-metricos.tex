@@ -1,7 +1,7 @@
 % !TeX root = ./main.tex
 \section{Elementos de Espaços Métricos}
 
-Neste apêndice introduzimos o necessário para se compreender o Teorema de Baire, utilizado na demonstração do \( 13^{ \circ } \) problema de Hilbert.
+Neste apêndice introduzimos o necessário para se compreender o teorema de Baire, utilizado na demonstração do \( 13^{ \circ } \) problema de Hilbert.
 
 \begin{defn}
     Dado um conjunto \( X \) qualquer, uma \emph{métrica} em \( X \) é uma função \( d : X \times X \to \R \) tal que:
@@ -132,7 +132,7 @@ Neste apêndice introduzimos o necessário para se compreender o Teorema de Bair
     Claramente \( n_{ k } > k \) para todo \( k \in \N \), portanto, passando a uma subsequência se necessário, \( a_{ n_{ k } } \) é subsequência de \( (x_{ n }) \) o que implica, como \( (x_{ n }) \) é de Cauchy, \( \lim x_{ n } = a \).
 \end{proof}
 
-\begin{teo}[Teorema da Categoria de Baire]
+\begin{teo}[teorema da Categoria de Baire]
     Se \( X \) é um espaço métrico completo e \( A_{ 1 }, A_{ 2 }, \dots \) são abertos densos em \( X \), então \[
         A = \bigcap_{ i=1 }^{ \infty } A_{ i }
     \]
@@ -142,7 +142,7 @@ Neste apêndice introduzimos o necessário para se compreender o Teorema de Bair
 \begin{proof}
     Devemos mostrar que dado \( V \) um conjunto aberto em \( X \), temos \( A \cap V \neq \emptyset \).
     Nossa estratégia será construir uma sequência decrescente \( F_{ 1 } \supset F_{ 2 } \supset \cdots \) de conjuntos fechados não-vazios tais que \( \lim \diam F_{ n } = 0 \) e, para todo \( n \in \N \), \( F_{ n } \subset A_{ n } \cap V \).
-    Então, pela Proposição \ref{prop: fechados_encaixados}, o ponto \( x \) que satisfaz \( \left\{ x \right\} = \bigcap F_{ n } \) é tal que \( x \in V \) e \( x \in F_{ n } \subset A_{ n } \) para todo \( n \), ou seja, \( x \in A \) e, portanto, \( x \in A \cap V \).
+    Então, pela proposição \ref{prop: fechados_encaixados}, o ponto \( x \) que satisfaz \( \left\{ x \right\} = \bigcap F_{ n } \) é tal que \( x \in V \) e \( x \in F_{ n } \subset A_{ n } \) para todo \( n \), ou seja, \( x \in A \) e, portanto, \( x \in A \cap V \).
 
     Começamos obeservando que, como \( A_{ 1 } \) é denso, \( A_{ 1 } \cap V \) é um conjunto aberto não-vazio.
     Logo, existe \( B_{ 1 } \) bola aberta não-vazia de raio menor que \( 1 \), tal que \( \overline{B_{ 1 }} \subset A_{ 1 } \cap V \).
