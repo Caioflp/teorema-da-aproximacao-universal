@@ -3,6 +3,14 @@
 \usepackage{mathtools, amsthm}
 \usepackage{exercise-sheet}
 \usepackage{global-macros}
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\usepackage{csquotes}
+\addbibresource{bibliografia.bib}
+
 \input{preamble.tex}
 
 \title{Teorema da Aproximação Universal}
@@ -12,6 +20,10 @@
 \begin{document}
 
 \maketitle
+
+\tableofcontents
+
+\newpage
 
 \input{weierstrass}
 \input{hilbert}
