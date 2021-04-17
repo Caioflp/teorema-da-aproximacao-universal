@@ -1,9 +1,10 @@
 % !TeX root = ./main.tex
 \section{Teorema de Hahn-Banach}
 
-Se \( V \) é um espaço vetorial real, um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que \[
+Se \( V \) é um espaço vetorial real, um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que
+\begin{equation}
     p ( x + y ) \leq p(x) + p(y) \text{ e } p(\lambda x) = \lambda p(x) \text{ para todos \( x, y \in V \) e \( \lambda \in \R_{ \geq 0 } \)}
-.\]
+.\end{equation}
 Observe que nada se exige sobre o sinal de \( p \).
 Um exemplo de funcional sublinear é uma seminorma em \( V \).
 
@@ -61,9 +62,10 @@ Encerramos essa apresentação com um resultado que exemplifica como o lema de Z
 \begin{proof}
     Seja \( V \) o espaço vetorial em questão, e \( A \) a coleção de todos os subconjuntos linearmente independentes de \( V \).
     Claramente essa coleção é parcialmente ordenada pela relação de inclusão.
-    Dada uma subcoleção \( B \subset A \) totalmente ordenada, considere o conjunto \[
+    Dada uma subcoleção \( B \subset A \) totalmente ordenada, considere o conjunto
+    \begin{equation}
         C = \bigcup_{ \beta \in B } \beta
-    .\]
+    .\end{equation}
     Afirmamos que \( C \in A \).
     De fato, dado um conjunto finito \( \left\{ x_{ 1 }, \dots, x_{ n } \right\} \subset C \), sejam \( \beta_{ 1 }, \dots, \beta_{ n } \) os conjuntos de \( B \) tais que \( x_{ i } \in \beta_{ i } \) para todo \( i \leq n \).
     Como \( B \) é totalmente ordenado, existe \( \beta_{ k } \) tal que \( \beta_{ i } \subset \beta_{ k } \) para todo \( i \leq n \).
@@ -81,9 +83,10 @@ Seja \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), para algum conjunto
 Como \( f \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), essa coleção é não-vazia e, portanto, podemos ordená-la parcialmente utilizando a relação de inclusão, considerando que \( g_{ \lambda } \) é um subconjunto de \( M_{ \lambda } \times \R \).
 Mais especificamente, diremos que \( g_{ \alpha } \subset g_{ \beta } \) se tivermos \( M_{ \alpha } \subset M_{ \beta } \) e \( g_{ \beta } \mid_{ M_{ \alpha } } = g_{ \alpha } \), ou seja, se \( g_{ \beta } \) for uma extensão de \( g_{ \alpha } \).
 Desejamos mostrar que existe um elemento maximal de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \).
-Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) é uma subcoleção totalmente ordenada, definimos \( g \) como \[
+Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) é uma subcoleção totalmente ordenada, definimos \( g \) como
+\begin{equation}
     g \defeq \bigcup_{ \lambda \in L' } g_{ \lambda }
-,\]
+,\end{equation}
 ou seja, \( g \) é um funcional linear em \( \bigcup_{ \lambda \in L } M_{ \lambda } \) tal que \( g(v) = g_{ \lambda } (v) \), onde \( v \in M_{ \lambda } \).
 De fato \( g \) está bem definida, pois se \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } \) com \( \lambda_{ 1 } \neq \lambda_{ 2 } \), ambos pertencentes a \( L' \), então podemos supor, sem perda de generalidade, que \( g_{ \lambda_{ 2 } } \subset g_{ \lambda_{ 1 } } \) e, assim, \( g_{ \lambda_{ 1 } } (v) = g_{ \lambda_{ 2 } }(v) \), para \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } = M_{ \lambda_{ 2 } } \). 
 É fácil verificar que \( g \) estende \( f \) e é dominado por \( p \).
@@ -95,32 +98,37 @@ Nossa estratégia será construir um uma extensão \( G \) de \( F \), dominada 
 
 Para definirmos \( G \), basta atribuirmos um valor para \( G(\eta) \).
 De fato, todo elemento de \( U \) é da forma \( w + \alpha \eta \), onde \( w \in W \) e \( \alpha \in \R \).
-Logo, pondo \[
+Logo, pondo
+\begin{equation}
     G(w + \alpha \eta) = F(w) + \alpha G(\eta)
-,\]
+,\end{equation}
 claramente \( G \) é uma extensão de \( F \).
 O passo crucial é definir \( G(\eta) \) de forma que \( G \) seja dominada por \( p \).
 Para tanto, vamos nos atentar a algumas desigualdades.
-Dados \( w_{ 1 }, w_{ 2 } \in W \), vale \[
+Dados \( w_{ 1 }, w_{ 2 } \in W \), vale
+\begin{equation}
     F(w_{ 1 }) + F(w_{ 2 }) =
     F(w_{ 1 } + w_{ 2 }) \leq
     p(w_{ 1 } + w_{ 2 }) \leq
     p(w_{ 1 } - \eta) + p(\eta + w_{ 2 })
-.\]
-Equivalentemente: \[
+.\end{equation}
+Equivalentemente:
+\begin{equation}
     F(w_{ 1 }) - p(w_{ 1 } - \eta) \leq p(\eta + w_{ 2 }) - F(w_{ 2 })
-.\]
-Ou seja, temos \[
+.\end{equation}
+Ou seja, temos
+\begin{equation}
     \sup \left\{ F(w_{ 1 }) - p(w_{ 1 } - \eta) \tq w_{ 1 } \in W \right\} \leq
     \inf \left\{ p(\eta + w_{ 2 }) - F(w_{ 2 }) \tq w_{ 2 } \in W \right\}
-.\]
-Defina, então, \( G(\eta) \) de modo que \[
+.\end{equation}
+Defina, então, \( G(\eta) \) de modo que
+\begin{equation}
     \sup \left\{ F(w_{ 1 }) - p(w_{ 1 } - \eta) \tq w_{ 1 } \in W \right\} \leq
     G(\eta) \leq
     \inf \left\{ p(\eta + w_{ 2 }) - F(w_{ 2 }) \tq w_{ 2 } \in W \right\}
-.\]
+.\end{equation}
 Dessa forma, dado \( w + \alpha \eta \in U \), se \( \alpha > 0 \) temos
-\begin{align*}
+\begin{align}
     G(w + \alpha \eta) &=
     F(w) + \alpha G(\eta) \\
     &\leq F(w) + \alpha \left( 
@@ -128,9 +136,9 @@ Dessa forma, dado \( w + \alpha \eta \in U \), se \( \alpha > 0 \) temos
     \right) \\
     &= F(w) + p(w + \alpha \eta) - F(w) \\
     &= p(w + \alpha \eta)
-.\end{align*}
+.\end{align}
 Caso \( \alpha < 0 \):
-\begin{align*}
+\begin{align}
     G(w + \alpha \eta) &=
     F(w) + \alpha G(\eta) \\
     &\leq F(w) + \alpha \left( 
@@ -139,7 +147,7 @@ Caso \( \alpha < 0 \):
     \right) \\
     &= F(w) - F(w) - p(-w - \alpha \eta) \\
     &= p(w + \alpha \eta)
-.\end{align*}
+.\end{align}
 Se \( \alpha = 0 \), \( G \) coincide com \( F \) e claramente é dominada por \( p \).
 Sendo assim, chegamos a uma contradição com a maximalidade de \( F \), o que conclui a prova. \qed
 

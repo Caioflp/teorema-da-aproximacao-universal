@@ -17,15 +17,161 @@ Uma dessas generalizações é apresentada no teorema a seguir.
         \label{eq: kolmogorov_2}
     .\end{equation}
 \end{teo}
-
-Nos atentaremos ao caso especial em que \( n = 2 \):
-
+\begin{rem}
+    Denotamos o espaço das funções contínuas de \( \I^{ n } \) em \( \R \) por \( C(\I^{ n }) \).
+    Notamos que esse espaço, com a norma do supremo, se torna um espaço métrico completo, com a distância dada por
+    \begin{equation}
+        d \left( 
+            ( f_{ 1 }, \dots, f_{ n } ),
+            ( g_{ 1 }, \dots, g_{ n } )
+        \right)
+        = \max \left\{ 
+            \norm{ f_{ 1 } - g_{ 1 } }_{ \infty },
+            \dots,
+            \norm{ f_{ n } - g_{ n } }_{ \infty }
+        \right\}
+    .\end{equation}
+    O leitor pode encontrar resultados e definições elementares relativas a espaços métricos (inclusive o teorema da categoria de Baire, que será usado a seguir) no apêndice \ref{ap: espacos_metricos}.
+\end{rem}
+Aqui nos atentaremos ao caso especial em que \( n = 2 \):
 \begin{teo}
-    Existem \( \lambda \in \R \) e funções \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in [C(\I)]^{ 5 } \) tais que, para toda função \( f \in C(\I^{ 2 }) \) existe \( g : \R \to \R \), contínua, satisfazendo, para todos \( ( x_{ 1 }, x_{ 2 } ) \in \I^{ 2 } \), \[
+    Existem \( \lambda \in \R \) e funções \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in [C(\I)]^{ 5 } \) tais que, para toda função \( f \in C(\I^{ 2 }) \) existe \( g : \R \to \R \), contínua, satisfazendo, para todos \( ( x_{ 1 }, x_{ 2 } ) \in \I^{ 2 } \),
+    \begin{equation}
         f ( x_{ 1 }, x_{ 2 } ) =
         \sum_{ k=1 }^{ 5 } g ( \varphi_{ k } ( x_{ 1 } ) + \lambda \varphi_{ k } ( x_{ 2 } ) )
-    .\]
+    .\end{equation}
+    \label{teo: hilbert13}
 \end{teo}
-
-Para a prova que apresentaremos, necessitamos de alguns lemas
- 
+\begin{rem}
+    Por uma questão de economia de notação, definimos
+    \begin{equation}
+        \Phi_{ k }(x, y) = \sum_{ k=1 }^{ 5 } \varphi_{ k } (x) + \lambda \varphi_{ k } (y)
+    .\end{equation}
+\end{rem}
+Para a prova que apresentaremos, necessitamos de alguns lemas.
+O primeiro deles clarifica a existência e a escolha de \( \lambda \).
+\begin{lem}
+    Existe um número real \( \lambda \) tal que, para quaisquer \( x_{ 1 }, x_{ 2 }, x_{ 3 }, x_{ 4 } \in \Q \),
+    \begin{equation}
+        x_{ 1 } + \lambda y_{ 1 } = x_{ 2 } + \lambda y_{ 2 }
+        \text{ implica }
+        x_{ 1 } = x_{ 2 } \text{ e } y_{ 1 } = y_{ 2 }
+    .\end{equation}
+    \label{lem: lambda}
+\end{lem}
+\begin{proof}
+    Basta escolher \( \lambda \in \R \backslash \Q \), pois se \( x_{ 1 } + \lambda y_{ 1 } = x_{ 2 } + \lambda x_{ 2 } \), então \( x_{ 1 } - x_{ 2 } = \lambda ( y_{ 2 } - y_{ 1 } ) \).
+    Como \( x_{ 1 } - x_{ 2 } \in \Q \) necessariametente o lado direito deve ser \( 0 \), ou seja, \( y_{ 2 } = y_{ 1 } \) e \( x_{ 2 } = x_{ 1 } \).
+\end{proof}
+\begin{lem}
+    Fixe \( \lambda \) satisfazendo o lema \ref{lem: lambda}.
+    Seja \( f \in C(\I^2) \) com \( \norm{ f }_{ \infty } = 1 \).
+    Seja \( U_{ f } \) o suconjunto de \( [C(\I)]^{ 5 } \) tal que \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in U_{ f } \) se, e somente se, existe uma \( g \in C(\R) \) tal que
+    \begin{equation}
+        \abs{ g(t) } \leq \frac{ 1 }{ 7 } \text{ para todo } t \in \R
+        \label{eq: g_bound}
+    ,\end{equation}
+    e
+    \begin{equation}
+        \abs{ 
+            f(x, y)
+            - \sum_{ i=1 }^{ 5 } (g \circ \Phi_{ k })(x, y) )
+         }
+         < \frac{ 7 }{ 8 }, \text{ para todo } x, y \in \I^2
+         \label{eq: dif_bound}
+    .\end{equation}
+    Então \( U_{ f } \) é um suconjunto aberto e denso de \( [C(\I)]^{ 5 } \).
+    \label{lem: uf}
+\end{lem}
+Enquanto é fácil perceber que \( U_{ f } \) é aberto, pois se \( \varphi = ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \) satisfaz (\ref{eq: g_bound}) e (\ref{eq: dif_bound}) para uma dada \( g \), então todas as tuplas suficientemente perto de \( \varphi \) também satisfarão, a prova da densidade é mais extensa e será omitida, por não ser do interesse desse trabalho.
+Nos restringimos a mencionar que ela necessita do lema \ref{lem: lambda}.
+%% Colocar referência de onde ela pode ser encontrada
+\begin{lem}
+    Seja \( \lambda \) como no lema \ref{lem: lambda}.
+    Então existem \( \varphi_{ 1 }, \dots, \varphi_{ 5 } \in C(\I) \) com a propriedade de que, dada \( f \in C(\I^2) \), existe uma \( g \in C(\R) \) satisfazendo
+    \begin{equation}
+        \abs{ g(t) } \leq \frac{ 1 }{ 7 } \norm{ f }_{ \infty } \text{ para todo } t \in \R
+    ,\end{equation}
+    e
+    \begin{equation}
+        \norm{ 
+            f - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
+         }_{ \infty } < \frac{ 8 }{ 9 } \norm{ f }_{ \infty }
+    .\end{equation}
+    \label{lem: baire}
+\end{lem}
+\begin{proof}
+    Podemos supor, sem perda de generalidade, que \( \norm{ f }_{ \infty } = 1 \).
+    Seja \( (h_{ j })_{ j\in\N } \) uma sequência de funções pertencentes a \( C(\I^2) \) tal que o conjunto \( \left\{ h_{ j } : j\in \N \right\} \) é denso na esfera unitária de \( C(\I^2) \).
+    Na notação do lema \ref{lem: uf}, cada \( h_{ j } \) determina um conjunto \( U_{ j } = U_{ h_{ j } } \subset  [C(\I)]^{ 5 } \) aberto e denso.
+    Pelo teorema da categoria de Baire, o conjunto
+    \begin{equation}
+        V = \bigcap_{ j\in\N } U_{ j }
+    .\end{equation}
+    é denso em \( [C(\I)]^{ 5 } \).
+    Pela densidade de \( \left\{ h_{ j } : j \in \N \right\} \), existe \( m \in \N \) tal que \( \norm{ f - h_{ m } }_{ \infty } < 1/72 \).
+    Além disso, pelo lema \ref{lem: uf} podemos tomar \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in V \subset  U_{ m } \) tal que exista \( g \in C(\I) \) satisfazendo
+    \begin{equation}
+        \abs{ g(t) } \leq \frac{ 1 }{ 7 } \text{ para todo } t \in \R
+    ,\end{equation}
+    e
+    \begin{equation}
+        \norm{ 
+            h_{ m } - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
+         }_{ \infty } < \frac{ 7 }{ 8 }
+    .\end{equation}
+    Com isso,
+    \begin{equation}
+        \norm{ 
+            f - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
+         }_{ \infty } \leq
+        \norm{ f - h_{ m } }_{ \infty }
+        + \norm{ 
+            h_{ m } - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
+         }_{ \infty }
+         < \frac{ 1 }{ 72 } + \frac{ 7 }{ 8 }
+         = \frac{ 8 }{ 9 }
+    ,\end{equation}
+    o que termina a prova.
+\end{proof}
+Agora podemos enunciar a demonstração do teorema \ref{teo: hilbert13}.
+\begin{proof}[Demonstração do teorema \ref{teo: hilbert13}]
+    Pelo lema \ref{lem: baire}, podemos fixar \( \lambda \in \R \) e \( \varphi_{ 1 }, \dots, \varphi_{ 5 } \in C(\I) \) tais que, dada \( f \in C(\I^2) \), existe \( g_{ 0 } \in C(\R) \) satisfazendo
+    \begin{equation}
+        \abs{ g_{ 0 }(t) } \leq \frac{ 1 }{ 7 } \norm{ f }_{ \infty } \text{ para todo } t \in \R
+        \label{eq: g}
+    ,\end{equation}
+    e
+    \begin{equation}
+        \norm{ 
+            f -
+            \sum_{ k=1 }^{ 5 } g_{ 0 } \circ \Phi_{ k }
+         }_{ \infty }
+         < \frac{ 8 }{ 9 } \norm{ f }_{ \infty }
+         \label{eq: f-(phi o g)}
+    .\end{equation}
+    Defina \( f_{ 0 } \defeq f \). Então, supondo definidas \( f_{ 0 }, \dots, f_{ n } \), \( g_{ 0 }, \dots, g_{ n } \), ponha \( f_{ n+1 } = f_{ n } - \sum_{ k=1 }^{ 5 } g_{ n } \circ \Phi_{ k } \).
+    Logo, existe \( g_{ n+1 } \) satisfazendo (\ref{eq: g}) e (\ref{eq: f-(phi o g)}) com \( g_{ n+1 } \) no lugar de \( g_{ 0 } \) e \( f_{ n+1 } \) no lugar de \( f \).
+    
+    Dessa forma, temos \( \norm{ g_{ n } }_{ \infty } \leq \frac{ 1 }{ 7 } \norm{ f_{ n } }_{ \infty } \) e \( \norm{ f_{ n+1 } }_{ \infty } = \norm{ f_{ n } - \sum_{ k=1 }^{ 5 } g_{ n } \circ \Phi_{ k } }_{ \infty } \leq \frac{ 8 }{ 9 } \norm{ f_{ n } }_{ \infty } \).
+    Portanto,
+    \begin{equation}
+        \norm{ f_{ n } }_{ \infty } \leq \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f_{ 0 } }_{ \infty } = \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f }_{ \infty }
+    ,\end{equation}
+    e
+    \begin{equation}
+        \norm{ g_{ n } }_{ \infty } <
+        \frac{ 1 }{ 7 } \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f }
+    .\end{equation}
+    Sendo assim, a série \( \sum g_{ n } \) converge em módulo para uma certa \( g \in C(\R) \) e, com isso,
+    \begin{equation}
+        f = \sum_{ n\in\N } f_{ n } - f_{ n+1 }
+        = \sum_{ n\in\N } \sum_{ k=1 }^{ 5 } g_{ n } \circ \Phi_{ k }
+        = \sum_{ k=1 }^{ n } \left( 
+            \sum_{ n\in\N } g_{ n }
+         \right)
+         \circ \Phi_{ k }
+        = \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
+    ,\end{equation}
+    o que conclui a demonstração.
+\end{proof}

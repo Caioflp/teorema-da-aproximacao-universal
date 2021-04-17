@@ -4,24 +4,27 @@
 
 Desejamos mostrar que dada uma função contínua \( f : [a, b] \to \R \), podemos aproximá-la arbitrariamente bem por funções polinomiais \( p : [a, b] \to \R \).
 
-Em outras palavras, seja \( C( [a, b]) \) o espaço das funções contínuas em \( [a, b] \). Indicamos por \( \norm{ \varphi }_{ \infty } \) a norma do supremo de uma função limitada \( \varphi : [a, b] \to \R \), ou seja, \[
+Em outras palavras, seja \( C( [a, b]) \) o espaço das funções contínuas em \( [a, b] \). Indicamos por \( \norm{ \varphi }_{ \infty } \) a norma do supremo de uma função limitada \( \varphi : [a, b] \to \R \), ou seja,
+\begin{equation}
     \norm{ \varphi }_{ \infty } = \sup \left\{ \abs{ \varphi(x) } \tq x \in [a, b] \right\}
-.\]
+.\end{equation}
 
 Então é verdade que
 
 \begin{teo}
     \label{thm: weierstrass}
-    Dada \( f \in C( [a, b] ) \), para todo \( \varepsilon > 0 \) existe um polinômio \( p : [a, b] \to \R \) tal que \[
+    Dada \( f \in C( [a, b] ) \), para todo \( \varepsilon > 0 \) existe um polinômio \( p : [a, b] \to \R \) tal que
+    \begin{equation}
         \norm{ f - p }_{ \infty } < \varepsilon
-    .\]
+    .\end{equation}
 \end{teo}
 
 Inicialmente, observamos que basta provar o teorema para o caso \( f \in C([0, 1]) \).
 De fato, dada \( f \in C([a, b]) \), considere o homeomorfismo \( \varphi : [0, 1] \to [a, b] \) dado por \( \varphi(x) = a + ( b - a )x \), cuja inversa é \( \varphi^{ -1 } : [a, b] \to [0, 1] \) dada por \( \varphi^{ -1 } (x) = \frac{ x - a }{ b - a } \).
-Então a função \( g = f \circ \varphi \) pertence a \( C([0, 1]) \) e, dado \( \varepsilon > 0 \), se existe um polinômio \( p(x) \) com \( \norm{ g - p }_{ \infty } < \varepsilon \), temos também, como \( \varphi^{ -1 } \) é um polinômio de grau \( 1 \), \[
+Então a função \( g = f \circ \varphi \) pertence a \( C([0, 1]) \) e, dado \( \varepsilon > 0 \), se existe um polinômio \( p(x) \) com \( \norm{ g - p }_{ \infty } < \varepsilon \), temos também, como \( \varphi^{ -1 } \) é um polinômio de grau \( 1 \),
+\begin{equation}
     \norm{ g \circ \varphi^{ -1 } - p \circ \varphi^{ -1 } }_{ \infty } < \varepsilon
-.\]
+.\end{equation}
 Como \( g \circ \varphi^{ -1 } = f \) e \( p \circ \varphi^{ -1 } \) é um polinômio, o resultado vale também para \( C([a, b]) \).
 
 Em seguida, devemos definir a classe de polinômios que utilizaremos na demonstração.
@@ -41,14 +44,16 @@ De fato, temos \( B_{ n } (x, 1) = ( 1 + ( 1 - x ) )^{ n } = 1 \).
 Mais geralmente, para toda constante \( c \in \R \) tem-se \( B_{ n } (x, c) = c \).
 
 Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do teorema \ref{thm: weierstrass}.
-Dados \( p \) e \( q \) reais, começamos considerando a expansão binomial de \( ( p + q )^{ n } \):\[
+Dados \( p \) e \( q \) reais, começamos considerando a expansão binomial de \( ( p + q )^{ n } \):
+\begin{equation}
     ( p + q )^{ n } =
     \sum_{ k=0 }^{ n } \binom{n}{k} p^{ k } q^{ n-k }
-.\]
-Considerando ambos lados da igualdade como funções de \( p \), podemos derivá-los com relação a essa variável, obtendo \[
+.\end{equation}
+Considerando ambos lados da igualdade como funções de \( p \), podemos derivá-los com relação a essa variável, obtendo 
+\begin{equation}
     n ( p + q )^{ n-1 } =
     \sum_{ k=0 }^{ n } k \binom{n}{k} p^{ k-1 } q^{ n-k }
-.\]
+.\end{equation}
 Multiplicando ambos lados por \( p/n \), ficamos com
     \begin{equation}
         p ( p + q )^{ n-1 } =
@@ -71,13 +76,15 @@ Com essas ferramentas, podemos então apresentar a
 %% Provar desigualdades envolvendo polinômios de Bernstein e explicar a restrição ao intervalo [0, 1]
  \begin{proof}[Demonstração do teorema \ref{thm: weierstrass}]
     Observamos inicialmente que como \( f \) é uma função contínua definida em um compacto, é uniformemente contínua.
-    Portanto, dado \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que se \( x, y \in [0, 1] \) satisfazem \( \abs{ x - y } < \delta \) então \[
+    Portanto, dado \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que se \( x, y \in [0, 1] \) satisfazem \( \abs{ x - y } < \delta \) então
+    \begin{equation}
         \abs{ f(x) - f(y) } < \frac{ \varepsilon }{ 2 }
-    .\]
+    .\end{equation}
     Agora, definimos \( M \defeq \norm{ f }_{ \infty } \) e fixamos \( \xi \in [0, 1] \).
-    Logo, se \( \abs{ x - \xi } \geq \delta \) temos \[
+    Logo, se \( \abs{ x - \xi } \geq \delta \) temos
+    \begin{equation}
         \abs{ f(x) - f(\xi) } \leq 2M \leq 2M \left( \frac{ x - \xi }{ \delta } \right)^2
-    .\]
+    .\end{equation}
     Combinando as duas últimas desigualdades, concluímos que para todo \( x \in [0, 1] \) vale
     \begin{equation}
         \abs{ f(x) - f(\xi) } \leq 2M \left( \frac{ x - \xi }{ \delta } \right)^2 + \frac{ \varepsilon }{ 2 }
@@ -97,12 +104,14 @@ Com essas ferramentas, podemos então apresentar a
         \label{al: elem_bernstein}
     .\end{align}
     Aqui fizemos uso das propriedades de \( B_{ n } (x, f) \) que seguem de \( x \in [0, 1] \), discutidas anteriormente.
-    Utilizando as equações (\ref{eq: id_1}) e (\ref{eq: id_2}), com a substituição \( p = x \) e \( q = 1 - x \), concluímos que \[
+    Utilizando as equações (\ref{eq: id_1}) e (\ref{eq: id_2}), com a substituição \( p = x \) e \( q = 1 - x \), concluímos que
+    \begin{equation}
         B_{ n } (x, x) = x
-    \]
-    e que \[
+    .\end{equation}
+    e que
+    \begin{equation}
         B_{ n } (x, x^2) = x^2 \left( 1 - \frac{ 1 }{ n } \right) + \frac{ x }{ n }
-    .\]
+    .\end{equation}
     Substituindo em (\ref{al: elem_bernstein}), ficamos com
     \begin{align}
         \frac{ 2M }{ \delta^2 } \left( B_{ n } (x, x^2) - 2 \xi B_{ n } (x, x) + \xi^2 \right) + \frac{ \varepsilon }{ 2 } &=
