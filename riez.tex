@@ -1,0 +1,49 @@
+\section{Teorema da Representação de Riesz}
+
+O teorema da representação de Riesz, da forma que será enunciado, trata da associação natural que existe entre um espaço de Hilbert \( H \) e o seu dual, \( H^{ * } \). Apesar de ser um fato de certa forma trivial para espaços de dimensão finita, sua demonstração não é tão óbvia para espaços de Hilbert em geral.
+
+Esse teorema possui diversas formulações.
+Apesar de não ser a que apresentaremos inicialmente a utilizada na demonstração do teorema da aproximação universal, acreditamos que é importante apresentá-lo primeiro no contexto mais geral de espaços de Hilbert.
+
+Entretanto, antes de enunciá-lo e demonstrá-lo, precisamos de dois resultados preliminares.
+
+\begin{lem}
+    Num espaço com produto intero, tem-se que \( v \perp w \), ou seja, \( \dotprod{v,w} = 0 \), se, e somente se,
+    \begin{equation}
+        \norm{ v + \lambda w } \geq \norm{ v }
+        \label{eq: ineq}
+    ,\end{equation}
+    para todo \( \lambda \in \K \).
+\end{lem}
+\begin{proof}
+    Evidementemente temos
+    \begin{equation}
+        0
+        \leq \norm{ v + \lambda w }^2
+        = \norm{ v }^2 + 2 \Re (\dotprod{v,w}) + \abs{ \lambda }^2 \norm{ w }^2
+    .\end{equation}
+    Se \( v \perp w \), então temos
+    \begin{align}
+        \norm{ v + \lambda w }^2
+        &= \norm{ v }^2 + \abs{ \lambda }^2 \norm{ w }^2 \\
+        &\geq \norm{ v }^2
+    ,\end{align}
+    de onde a desigualdade (\ref{eq: ineq}) segue.
+    Reciprocamente, se vale (\ref{eq: ineq}) para todo \( \lambda \in \K \), em especial tomando \( \lambda = -\dotprod{w,v}/ \norm{ w }^2 \) e elevando ambos lados ao quadrado ficamos com \( 0 \leq - \abs{ \dotprod{v,w} }^2 \), o que implica \( v \perp w \).
+\end{proof}
+
+Antes do próximo resultado, uma definição.
+Dado um subespaço \( E \) de um espaço com produto interno \( V \), definimos \[
+    E^{ \perp } = \left\{ v \in V : \dotprod{v,w} = 0 \text{ para todo } w \in E \right\}
+.\]
+
+\begin{teo}[Projeção Ortogonal]
+    Se \( E \) é subespaço vetorial fechado de um espaço de Hilbert \( H \), então 
+    \begin{equation}
+        H = E \oplus E^{ \perp }
+    .\end{equation}
+\end{teo}
+\begin{proof}
+    Dado \( v \in H \), definimos \( d(v, E) = \inf \left\{ \norm{ v - w } : w \in E \right\} \).
+    %% TODO: Falar da lei do paralelogramo
+\end{proof}

@@ -68,7 +68,58 @@ Logo, \( \norm{ T } \leq C \) e, com isso, \( \norm{ T } \leq \inf A \).
 Sendo assim, vale (\ref{ali: third}).
 As propriedades i), ii) e iii) decorrem diretamente das propriedades das normas de \( V \) e \( W \) e são facilmente verificadas.
 Sempre trataremos o conjunto \( L(V, W) \) como um espaço vetorial normado munido dessa norma, a qual é denominada \emph{norma de operador}. 
-
 No caso especial em que \( W = \K \),
 o espaço \( L(V, \K) \) é denominado \emph{espaço dual} de \( V \) e é denotado por \( V^{ * } \).
 Os elementos de \( V^{ * } \) são denominados \emph{funcionais lineares}.
+
+\begin{defn}
+    Um \emph{produto interno} no espaço vetorial \( V \) é um funcional \( (v, w) \mapsto \dotprod{v,w} \), de \( V \times V \) em \( \K \), de modo que, para todos \( u, v, w \in V \) e \( \alpha \in \K \) valha
+    \begin{enumerate}[label=\roman*)]
+        \item \( \dotprod{\alpha v + u, w} = \bar{\alpha} \dotprod{v, w} + \dotprod{u, w} \);
+        \item \( \dotprod{v, w} = \overline{\dotprod{v,w}} \);
+        \item \( \dotprod{v, v} \geq \) e \( \dotprod{v, v} = 0 \) se, e somente se, \( v = 0 \).
+    \end{enumerate}
+    O par \( (V, \dotprod{\cdot,\cdot}) \) é chamado, então, de \emph{espaço com produto interno} ou \emph{espaço pré-Hilbertiano}.
+\end{defn}
+Como de costume, \( \bar{\alpha} \) denota o complexo conjugado de \( \alpha \).
+Em um espaço vetorial com produto interno, a menos que se dia o contrário, tem-se \( \norm{ v } = \sqrt{ \dotprod{v,v} } \).
+De fato essa função define uma norma em \( V \), como será mostrado a seguir.
+Antes, porém, devemos estabelecer um resultado fundamental em espaços com produto interno.
+\begin{teo}[Desigualdade de Cauchy-Schwarz]
+    Em um espaço com produto interno \( (V, \dotprod{\cdot,\cdot}) \), tem-se
+    \begin{equation}
+        \abs{ \dotprod{v, w} } \leq \norm{ v } \norm{ w }
+    \end{equation}
+    para todos \( v, w \in V \), com a igualdade ocorrendo se, e somente se, \( v = \lambda w \).
+\end{teo}
+\begin{proof}
+    Se \( \dotprod{v, w} = 0 \), a igualdade é imediata.
+    Caso contrário, então \( w \neq 0 \) e, para \( \lambda \in \K \) tem-se
+    \begin{equation}
+        0 \leq \dotprod{v - \lambda w, v - \lambda w} = \norm{ v }^2 -\lambda \dotprod{v, w} -\bar{\lambda} \dotprod{w, v} + \abs{ \lambda }^2 \norm{ w }^2
+    .\end{equation}
+    tomando \( \lambda = \dotprod{w, v}/\norm{ w }^2 \) vem
+    \begin{equation}
+        0 \leq \norm{ v }^2 - \abs{ \dotprod{v, w} }^2/ \norm{ w }^2
+    ,\end{equation}
+    o que implica
+    \begin{equation}
+        \abs{ \dotprod{v, w} }^2 \leq \norm{ v }^2 \norm{ w }^2
+    ,\end{equation}
+    de onde o resultado se segue.
+    Naturalmente a igualdade ocorre se e somente se existe \( \lambda \) tal que \( \dotprod{v - \lambda w, v - \lambda w} = 0 \), ou seja, \( v = \lambda w \).
+\end{proof}
+
+É fácil ver que as duas primeiras propriedades da norma são satisfeitas por \( \norm{ \cdot } \) como definida anteriormente.
+Para verficar a desigualdade triangular perceba que
+\begin{align}
+    \norm{ v + w }^2
+    &= \norm{ v }^2 + 2 \Re \dotprod{v, w} + \norm{ w }^2 \\
+    &\leq \norm{ v }^2 + 2 \abs{ \dotprod{v, w} } + \norm{ w }^2 \\
+    &\leq \norm{ v }^2 + 2 \norm{ v } \norm{ w } + \norm{ w }^2 \\
+    &= ( \norm{ v } + \norm{ w } )^2
+.\end{align}
+
+\begin{defn}
+    Um \emph{espaço de Hilbert} é um espaço com produto interno completo com relação à norma induzida pelo produto interno.
+\end{defn}
