@@ -1,7 +1,7 @@
 % !TeX root = ./main.tex
 \section{Décimo Terceiro Problema de Hilbert}
 
-Diferentemente do teorema da Aproximação de Weierstrass, o \( 13^{ \circ } \) problema de Hilbert não trata de aproximações, mas de representações exatas de funções.
+Diferentemente do teorema da aproximação de Weierstrass, nosso próximo resultado, o \( 13^{ \circ } \) problema de Hilbert, não trata de aproximações, mas de representações exatas de funções.
 Mais especificamente, Hilbert postulou (utilizando a linguagem matemática de sua época) que existem funções contínuas de \( \I^{ 3 } \) em \( \R \), onde \( \I = [0, 1] \), que não podem ser expressas por meio da composição e adição de funções de \( \R^{ 2 } \) em \( \R \).
 
 Décadas após ser postulada, essa conjectura eventualmente foi demonstrada \emph{falsa}.
@@ -9,6 +9,7 @@ A prova foi dada por Vladimir Igorevich Arnol'd, 14 anos após a morte de Hilber
 Ele e seu orientador de Doutorado, Andrej Nikolajewitsch Kolmogorov, provaram que, na verdade, toda função contínua \( f : \I^{ n } \to \R \) pode ser expressa como composições e adições de funções contínuas de \( \R \to \R \).
 Com o trabalho de outros matemáticos, esse resultado foi generalizado.
 Uma dessas generalizações é apresentada no teorema a seguir.
+O leitor interassado poderá encontrar mais informações em \cite{hilbert}.
 \begin{teo}[Kolmogorov, Arnol'd, Kahane, Lorentz e Sprecher]
     Para todo \( n \in \N \) com \( n \geq 2 \), existem números reais \( \lambda_{ 1 }, \lambda_{ 2 }, \dots, \lambda_{ n } \) e funções contínuas \( \varphi_{ k } : \I \to \R \), para \( k = 1, \dots, 2n + 1 \), com a propriedade de que para toda função contínua \( f : \I^{ n } \to \R \) existe uma função contínua \( g : \R \to \R \) tal que, para todo \( ( x_{ 1 }, \dots, x_{ n } ) \in \I^{ n } \),
     \begin{equation}
@@ -35,28 +36,25 @@ Uma dessas generalizações é apresentada no teorema a seguir.
 \end{rem}
 Aqui nos atentaremos ao caso especial em que \( n = 2 \):
 \begin{teo}
-    Existem \( \lambda \in \R \) e funções \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in [C(\I)]^{ 5 } \) tais que, para toda função \( f \in C(\I^{ 2 }) \) existe \( g : \R \to \R \), contínua, satisfazendo, para todos \( ( x_{ 1 }, x_{ 2 } ) \in \I^{ 2 } \),
-    \begin{equation}
+    Existem \( \lambda \in \R \) e funções \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in [C(\I)]^{ 5 } \) tais que, para toda função \( f \in C(\I^{ 2 }) \) existe \( g : \R \to \R \), contínua, satisfazendo, para todos \( ( x_{ 1 }, x_{ 2 } ) \in \I^{ 2 } \), \[
         f ( x_{ 1 }, x_{ 2 } ) =
         \sum_{ k=1 }^{ 5 } g ( \varphi_{ k } ( x_{ 1 } ) + \lambda \varphi_{ k } ( x_{ 2 } ) )
-    .\end{equation}
+    .\]
     \label{teo: hilbert13}
 \end{teo}
 \begin{rem}
-    Por uma questão de economia de notação, definimos
-    \begin{equation}
+    Por uma questão de economia de notação, definimos \[
         \Phi_{ k }(x, y) = \sum_{ k=1 }^{ 5 } \varphi_{ k } (x) + \lambda \varphi_{ k } (y)
-    .\end{equation}
+    .\]
 \end{rem}
 Para a prova que apresentaremos, necessitamos de alguns lemas.
 O primeiro deles clarifica a existência e a escolha de \( \lambda \).
 \begin{lem}
-    Existe um número real \( \lambda \) tal que, para quaisquer \( x_{ 1 }, x_{ 2 }, x_{ 3 }, x_{ 4 } \in \Q \),
-    \begin{equation}
+    Existe um número real \( \lambda \) tal que, para quaisquer \( x_{ 1 }, x_{ 2 }, x_{ 3 }, x_{ 4 } \in \Q \), \[
         x_{ 1 } + \lambda y_{ 1 } = x_{ 2 } + \lambda y_{ 2 }
         \text{ implica }
         x_{ 1 } = x_{ 2 } \text{ e } y_{ 1 } = y_{ 2 }
-    .\end{equation}
+    .\]
     \label{lem: lambda}
 \end{lem}
 \begin{proof}
@@ -88,40 +86,34 @@ Nos restringimos a mencionar que ela necessita do lema \ref{lem: lambda}.
 %% Colocar referência de onde ela pode ser encontrada
 \begin{lem}
     Seja \( \lambda \) como no lema \ref{lem: lambda}.
-    Então existem \( \varphi_{ 1 }, \dots, \varphi_{ 5 } \in C(\I) \) com a propriedade de que, dada \( f \in C(\I^2) \), existe uma \( g \in C(\R) \) satisfazendo
-    \begin{equation}
+    Então existem \( \varphi_{ 1 }, \dots, \varphi_{ 5 } \in C(\I) \) com a propriedade de que, dada \( f \in C(\I^2) \), existe uma \( g \in C(\R) \) satisfazendo \[
         \abs{ g(t) } \leq \frac{ 1 }{ 7 } \norm{ f }_{ \infty } \text{ para todo } t \in \R
-    ,\end{equation}
-    e
-    \begin{equation}
+    ,\]
+    e \[
         \norm{ 
             f - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
          }_{ \infty } < \frac{ 8 }{ 9 } \norm{ f }_{ \infty }
-    .\end{equation}
+    .\]
     \label{lem: baire}
 \end{lem}
 \begin{proof}
     Podemos supor, sem perda de generalidade, que \( \norm{ f }_{ \infty } = 1 \).
     Seja \( (h_{ j })_{ j\in\N } \) uma sequência de funções pertencentes a \( C(\I^2) \) tal que o conjunto \( \left\{ h_{ j } : j\in \N \right\} \) é denso na esfera unitária de \( C(\I^2) \).
     Na notação do lema \ref{lem: uf}, cada \( h_{ j } \) determina um conjunto \( U_{ j } = U_{ h_{ j } } \subset  [C(\I)]^{ 5 } \) aberto e denso.
-    Pelo teorema da categoria de Baire, o conjunto
-    \begin{equation}
+    Pelo teorema da categoria de Baire, o conjunto \[
         V = \bigcap_{ j\in\N } U_{ j }
-    .\end{equation}
+    \]
     é denso em \( [C(\I)]^{ 5 } \).
     Pela densidade de \( \left\{ h_{ j } : j \in \N \right\} \), existe \( m \in \N \) tal que \( \norm{ f - h_{ m } }_{ \infty } < 1/72 \).
-    Além disso, pelo lema \ref{lem: uf} podemos tomar \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in V \subset  U_{ m } \) tal que exista \( g \in C(\I) \) satisfazendo
-    \begin{equation}
+    Além disso, pelo lema \ref{lem: uf} podemos tomar \( ( \varphi_{ 1 }, \dots, \varphi_{ 5 } ) \in V \subset  U_{ m } \) tal que exista \( g \in C(\I) \) satisfazendo \[
         \abs{ g(t) } \leq \frac{ 1 }{ 7 } \text{ para todo } t \in \R
-    ,\end{equation}
-    e
-    \begin{equation}
+    ,\]
+    e \[
         \norm{ 
             h_{ m } - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
          }_{ \infty } < \frac{ 7 }{ 8 }
-    .\end{equation}
-    Com isso,
-    \begin{equation}
+    .\]
+    Com isso, \[
         \norm{ 
             f - \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
          }_{ \infty } \leq
@@ -131,7 +123,7 @@ Nos restringimos a mencionar que ela necessita do lema \ref{lem: lambda}.
          }_{ \infty }
          < \frac{ 1 }{ 72 } + \frac{ 7 }{ 8 }
          = \frac{ 8 }{ 9 }
-    ,\end{equation}
+    ,\]
     o que termina a prova.
 \end{proof}
 Agora podemos enunciar a demonstração do teorema \ref{teo: hilbert13}.
@@ -154,17 +146,14 @@ Agora podemos enunciar a demonstração do teorema \ref{teo: hilbert13}.
     Logo, existe \( g_{ n+1 } \) satisfazendo (\ref{eq: g}) e (\ref{eq: f-(phi o g)}) com \( g_{ n+1 } \) no lugar de \( g_{ 0 } \) e \( f_{ n+1 } \) no lugar de \( f \).
     
     Dessa forma, temos \( \norm{ g_{ n } }_{ \infty } \leq \frac{ 1 }{ 7 } \norm{ f_{ n } }_{ \infty } \) e \( \norm{ f_{ n+1 } }_{ \infty } = \norm{ f_{ n } - \sum_{ k=1 }^{ 5 } g_{ n } \circ \Phi_{ k } }_{ \infty } \leq \frac{ 8 }{ 9 } \norm{ f_{ n } }_{ \infty } \).
-    Portanto,
-    \begin{equation}
+    Portanto, \[
         \norm{ f_{ n } }_{ \infty } \leq \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f_{ 0 } }_{ \infty } = \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f }_{ \infty }
-    ,\end{equation}
-    e
-    \begin{equation}
+    ,\]
+    e \[
         \norm{ g_{ n } }_{ \infty } <
         \frac{ 1 }{ 7 } \left( \frac{ 8 }{ 9 } \right)^{ n } \norm{ f }
-    .\end{equation}
-    Sendo assim, a série \( \sum g_{ n } \) converge em módulo para uma certa \( g \in C(\R) \) e, com isso,
-    \begin{equation}
+    .\]
+    Sendo assim, a série \( \sum g_{ n } \) converge em módulo para uma certa \( g \in C(\R) \) e, com isso, \[
         f = \sum_{ n\in\N } f_{ n } - f_{ n+1 }
         = \sum_{ n\in\N } \sum_{ k=1 }^{ 5 } g_{ n } \circ \Phi_{ k }
         = \sum_{ k=1 }^{ n } \left( 
@@ -172,6 +161,6 @@ Agora podemos enunciar a demonstração do teorema \ref{teo: hilbert13}.
          \right)
          \circ \Phi_{ k }
         = \sum_{ k=1 }^{ 5 } g \circ \Phi_{ k }
-    ,\end{equation}
+    ,\]
     o que conclui a demonstração.
 \end{proof}

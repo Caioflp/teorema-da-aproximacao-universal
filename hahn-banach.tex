@@ -1,10 +1,16 @@
 % !TeX root = ./main.tex
 \section{Teorema de Hahn-Banach}
 
-Se \( V \) é um espaço vetorial real, um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que
-\begin{equation}
-    p ( x + y ) \leq p(x) + p(y) \text{ e } p(\lambda x) = \lambda p(x) \text{ para todos \( x, y \in V \) e \( \lambda \in \R_{ \geq 0 } \)}
-.\end{equation}
+Um dos dois teoremas essenciais para a prova do teorema da aproximação universal é o teorema de Hahn-Banach.
+Em análise funcional ele é relevante por garantir a existência de funcionais lineares limitados em um espaço vetorial normado qualquer.
+Nossa exposição é inteiramente baseada em \cite{func-anal} e o leitor que quiser revisar os conceitos de análise funcional necessários para compreendê-la poderá encontrá-los no apêndice \ref{app: func anal}.
+
+\begin{defn}
+    Se \( V \) é um espaço vetorial real, um \emph{funcional sublinear} em \( V \) é uma função \( p : V \to \R \) tal que \[
+        p ( x + y ) \leq p(x) + p(y) \text{ e } p(\lambda x) = \lambda p(x) \text{ para todos \( x, y \in V \) e \( \lambda \in \R_{ \geq 0 } \)}
+    .\]
+\end{defn}
+
 Observe que nada se exige sobre o sinal de \( p \).
 Um exemplo de funcional sublinear é uma seminorma em \( V \).
 
@@ -62,10 +68,9 @@ Encerramos essa apresentação com um resultado que exemplifica como o lema de Z
 \begin{proof}
     Seja \( V \) o espaço vetorial em questão, e \( A \) a coleção de todos os subconjuntos linearmente independentes de \( V \).
     Claramente essa coleção é parcialmente ordenada pela relação de inclusão.
-    Dada uma subcoleção \( B \subset A \) totalmente ordenada, considere o conjunto
-    \begin{equation}
+    Dada uma subcoleção \( B \subset A \) totalmente ordenada, considere o conjunto \[
         C = \bigcup_{ \beta \in B } \beta
-    .\end{equation}
+    .\]
     Afirmamos que \( C \in A \).
     De fato, dado um conjunto finito \( \left\{ x_{ 1 }, \dots, x_{ n } \right\} \subset C \), sejam \( \beta_{ 1 }, \dots, \beta_{ n } \) os conjuntos de \( B \) tais que \( x_{ i } \in \beta_{ i } \) para todo \( i \leq n \).
     Como \( B \) é totalmente ordenado, existe \( \beta_{ k } \) tal que \( \beta_{ i } \subset \beta_{ k } \) para todo \( i \leq n \).
@@ -83,10 +88,9 @@ Seja \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), para algum conjunto
 Como \( f \in \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \), essa coleção é não-vazia e, portanto, podemos ordená-la parcialmente utilizando a relação de inclusão, considerando que \( g_{ \lambda } \) é um subconjunto de \( M_{ \lambda } \times \R \).
 Mais especificamente, diremos que \( g_{ \alpha } \subset g_{ \beta } \) se tivermos \( M_{ \alpha } \subset M_{ \beta } \) e \( g_{ \beta } \mid_{ M_{ \alpha } } = g_{ \alpha } \), ou seja, se \( g_{ \beta } \) for uma extensão de \( g_{ \alpha } \).
 Desejamos mostrar que existe um elemento maximal de \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L } \).
-Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) é uma subcoleção totalmente ordenada, definimos \( g \) como
-\begin{equation}
+Dado \( L' \subset L \) tal que \( \left\{ g_{ \lambda } \right\}_{ \lambda \in L' } \) é uma subcoleção totalmente ordenada, definimos \( g \) como \[
     g \defeq \bigcup_{ \lambda \in L' } g_{ \lambda }
-,\end{equation}
+,\]
 ou seja, \( g \) é um funcional linear em \( \bigcup_{ \lambda \in L } M_{ \lambda } \) tal que \( g(v) = g_{ \lambda } (v) \), onde \( v \in M_{ \lambda } \).
 De fato \( g \) está bem definida, pois se \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } \) com \( \lambda_{ 1 } \neq \lambda_{ 2 } \), ambos pertencentes a \( L' \), então podemos supor, sem perda de generalidade, que \( g_{ \lambda_{ 2 } } \subset g_{ \lambda_{ 1 } } \) e, assim, \( g_{ \lambda_{ 1 } } (v) = g_{ \lambda_{ 2 } }(v) \), para \( v \in M_{ \lambda_{ 1 } } \cap M_{ \lambda_{ 2 } } = M_{ \lambda_{ 2 } } \). 
 É fácil verificar que \( g \) estende \( f \) e é dominado por \( p \).
@@ -98,37 +102,32 @@ Nossa estratégia será construir um uma extensão \( G \) de \( F \), dominada 
 
 Para definirmos \( G \), basta atribuirmos um valor para \( G(\eta) \).
 De fato, todo elemento de \( U \) é da forma \( w + \alpha \eta \), onde \( w \in W \) e \( \alpha \in \R \).
-Logo, pondo
-\begin{equation}
+Logo, pondo \[
     G(w + \alpha \eta) = F(w) + \alpha G(\eta)
-,\end{equation}
+,\]
 claramente \( G \) é uma extensão de \( F \).
 O passo crucial é definir \( G(\eta) \) de forma que \( G \) seja dominada por \( p \).
 Para tanto, vamos nos atentar a algumas desigualdades.
-Dados \( w_{ 1 }, w_{ 2 } \in W \), vale
-\begin{equation}
+Dados \( w_{ 1 }, w_{ 2 } \in W \), vale \[
     F(w_{ 1 }) + F(w_{ 2 }) =
     F(w_{ 1 } + w_{ 2 }) \leq
     p(w_{ 1 } + w_{ 2 }) \leq
     p(w_{ 1 } - \eta) + p(\eta + w_{ 2 })
-.\end{equation}
-Equivalentemente:
-\begin{equation}
+.\]
+Equivalentemente: \[
     F(w_{ 1 }) - p(w_{ 1 } - \eta) \leq p(\eta + w_{ 2 }) - F(w_{ 2 })
-.\end{equation}
-Ou seja, temos
-\begin{equation}
+.\]
+Ou seja, temos \[
     \sup \left\{ F(w_{ 1 }) - p(w_{ 1 } - \eta) \tq w_{ 1 } \in W \right\} \leq
     \inf \left\{ p(\eta + w_{ 2 }) - F(w_{ 2 }) \tq w_{ 2 } \in W \right\}
-.\end{equation}
-Defina, então, \( G(\eta) \) de modo que
-\begin{equation}
+.\]
+Defina, então, \( G(\eta) \) de modo que \[
     \sup \left\{ F(w_{ 1 }) - p(w_{ 1 } - \eta) \tq w_{ 1 } \in W \right\} \leq
     G(\eta) \leq
     \inf \left\{ p(\eta + w_{ 2 }) - F(w_{ 2 }) \tq w_{ 2 } \in W \right\}
-.\end{equation}
+.\]
 Dessa forma, dado \( w + \alpha \eta \in U \), se \( \alpha > 0 \) temos
-\begin{align}
+\begin{align*}
     G(w + \alpha \eta) &=
     F(w) + \alpha G(\eta) \\
     &\leq F(w) + \alpha \left( 
@@ -136,9 +135,9 @@ Dessa forma, dado \( w + \alpha \eta \in U \), se \( \alpha > 0 \) temos
     \right) \\
     &= F(w) + p(w + \alpha \eta) - F(w) \\
     &= p(w + \alpha \eta)
-.\end{align}
+.\end{align*}
 Caso \( \alpha < 0 \):
-\begin{align}
+\begin{align*}
     G(w + \alpha \eta) &=
     F(w) + \alpha G(\eta) \\
     &\leq F(w) + \alpha \left( 
@@ -147,7 +146,7 @@ Caso \( \alpha < 0 \):
     \right) \\
     &= F(w) - F(w) - p(-w - \alpha \eta) \\
     &= p(w + \alpha \eta)
-.\end{align}
+.\end{align*}
 Se \( \alpha = 0 \), \( G \) coincide com \( F \) e claramente é dominada por \( p \).
 Sendo assim, chegamos a uma contradição com a maximalidade de \( F \), o que conclui a prova. \qed
 
@@ -155,7 +154,7 @@ No caso especial em que \( p \) é uma seminorma, a condição \( f \leq p \) é
 
 \subsection{Aplicações do teorema de Hahn-Banach}
 
-Aqui vamos utilizar o teorema de Hahn-Banach para provar um resultado sobre subespaços vetoriais densos que será utilizado na prova do teorema da Aproximação Universal.
+Aqui vamos utilizar o teorema de Hahn-Banach para provar um resultado sobre subespaços vetoriais densos que será utilizado na prova do teorema da aproximação universal.
 Começamos apresentando uma aplicação do teorema de Hahn-Banach para ilustrar como ele é geralmente utilizado.
 
 \begin{teo}
@@ -165,12 +164,11 @@ Começamos apresentando uma aplicação do teorema de Hahn-Banach para ilustrar 
         \item Se \( 0 \neq v \in V \), então existe \( f \in V^{ * } \) tal que \( f(v) = \norm{ v } \) e \( \norm{ f } = 1 \);
         \item Se \( v \) e \( w \) são elementos distintos de \( V \), então existe \( f \in V^{ * } \) tal que \( f(v) \neq f(w) \);
         \item Se \( v \in V \) satisfaz \( f(v) = 0 \) para todo \( f \in V^{ * } \), então \( v = 0 \);
-        \item Se \( v \in V \), então
-        \begin{equation}
+        \item Se \( v \in V \), então \[
             \norm{ v }
             = \sup_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
             = \max_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
-        .\end{equation}
+        .\]
     \end{enumerate}
 \end{teo}
 \begin{proof}
@@ -180,14 +178,12 @@ Começamos apresentando uma aplicação do teorema de Hahn-Banach para ilustrar 
     Em \emph{ii}, como \( v \neq w \), então \( v - w \neq 0 \).
     Por \emph{i}, isso implica a existência de um funcional \( f \) tal que \( f(v - w) = \norm{ v - w } \neq 0 \), ou seja, \( f(v) \neq f(w) \).
     Claramente \emph{iii} segue diretamente de \emph{ii}.
-    Como, para todo \( f \in V^{ * } \), vale \( \abs{ f(v) } \leq \norm{ f } \norm{ v } \), temos
-    \begin{equation}
+    Como, para todo \( f \in V^{ * } \), vale \( \abs{ f(v) } \leq \norm{ f } \norm{ v } \), temos \[
         \norm{ v } \geq \sup_{ 0 \neq f \in V^{ * } } \frac{ \abs{ f(v) } }{ \norm{ f } }
-    .\end{equation}
-    Por \emph{i}, existe \( g \in V^{ * } \) tal que \( g(v) = \norm{ v } \) e \( \norm{ g } = 1 \), de modo que
-    \begin{equation}
+    .\]
+    Por \emph{i}, existe \( g \in V^{ * } \) tal que \( g(v) = \norm{ v } \) e \( \norm{ g } = 1 \), de modo que \[
         \norm{ v } = \frac{ \abs{ g(v) } }{ \norm{ g } }
-    ,\end{equation}
+    ,\]
     ou seja, vale a igualdade e podemos trocar \( \sup \) por \( \max \).
 \end{proof}
 
@@ -200,25 +196,21 @@ A próxima proposição será útil para provar o principal resultado dessa seç
 \end{prop}
 \begin{proof}
     Como \( M \) é fechado, \( \delta > 0 \).
-    Defina o funcional \( g : \lin ( \left\{ v \right\} \cup M ) \to \R \) dado por
-    \begin{equation}
+    Defina o funcional \( g : \lin ( \left\{ v \right\} \cup M ) \to \R \) dado por \[
         g(\alpha v + w) = \alpha \delta
-    ,\end{equation}
+    ,\]
     onde \( \alpha \in \R \) e \( w \in M \).
     Claramente temos \( g \mid_{ M } = 0 \) e \( g(v) = \delta \).
-    Agora perceba que
-    \begin{equation}
+    Agora perceba que \[
         \abs{ g(\alpha v + w) } = \abs{ \alpha } \delta \leq \abs{ \alpha } \norm{ v + w / \alpha } = \norm{ \alpha v + w }
-    ,\end{equation}
+    ,\]
     de modo que \( \norm{ g } \leq 1 \).
-    Além disso, para todo \( w \in M \) vale
-    \begin{equation}
+    Além disso, para todo \( w \in M \) vale \[
         \norm{ g } \geq \frac{ \abs{ g(v + w) } }{ \norm{ v + w } } = \frac{ \delta }{ \norm{ v + w } }
-    .\end{equation}
-    Portanto,
-    \begin{equation}
+    .\]
+    Portanto, \[
         \norm{ g } \geq \sup_{ w \in M } \frac{ \delta }{ \norm{ v + w } } = \frac{ \delta }{ \inf_{ w \in M } \norm{ v - w } } = 1
-    .\end{equation}
+    .\]
     Logo, \( \norm{ g } \geq 1 \) e, com isso, \( \norm{ g } = 1 \).
     Agora podemos aplicar Hahn-Banach, obtendo a extensão \( f \) de \( g \), utilizando como funcional sublinear a norma em \( V \).
 \end{proof}

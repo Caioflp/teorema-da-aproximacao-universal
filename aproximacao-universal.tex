@@ -9,14 +9,13 @@ Porém, agora nossas funções alvo são definidas em \( \I^{ n } \), o hipercub
     x \mapsto \sum_{ j=1 }^{ N } \alpha_{ j } \sigma(y_{ j }^{ T }x + \theta_{ j })
     \label{eq: neural_func}
 ,\end{equation}
-onde \( \alpha_{ j }, \theta_{ j } \in \R \), \( y_{ j } \in \R^{ n } \) para todo \( 1 \leq j \leq N \) são parâmetros e a função pré-fixada \( \sigma : \R \to \R \) é uma \emph{sigmoide}, ou seja, é tal que
-\begin{equation}
+onde \( \alpha_{ j }, \theta_{ j } \in \R \), \( y_{ j } \in \R^{ n } \) para todo \( 1 \leq j \leq N \) são parâmetros e a função pré-fixada \( \sigma : \R \to \R \) é uma \emph{sigmoide}, ou seja, é tal que \[
     \sigma(x) \to
     \begin{cases}
         1, \text{ se } x \to +\infty \\
         0, \text{ se } x \to -\infty
     \end{cases}
-.\end{equation}
+.\]
 Como pode-se ver, a função \( \sigma \) é a componente \emph{não-linear} da aproximação.
 Apesar de agora essa parecer uma escolha muito peculiar, funções do tipo apresentado em (\ref{eq: neural_func}) são muito relevantes em várias aplicações, como a próxima subseção deixará mais claro.
 
@@ -69,19 +68,17 @@ são densas em \( C(\I^{ n }) \) com respeito à norma do supremo.
 Faremos isso primeiro para uma classe mais geral de funções \( \sigma \) e depois mostraremos que as sigmoides pertencem a essa classe.
 
 \begin{defn}
-    Dizemos que \( \sigma \) é \emph{discriminatória} se, para uma medida \( \mu \in M(I^{ n }) \), termos
-    \begin{equation}
+    Dizemos que \( \sigma \) é \emph{discriminatória} se, para uma medida \( \mu \in M(I^{ n }) \), termos \[
         \int_{ \I^{ n } } \sigma(y^{ T }x + \theta)  \ \mathrm{d}\mu = 0
-    \end{equation}
+    \]
     para todos \( y \in \R^{ n } \) e \( \theta \in \R \) implica em \( \mu = 0 \).
 \end{defn}
 
 \begin{teo}[Teorema da aproximação universal]
     Seja \( \sigma \) uma função contínua discriminatória qualquer.
-    Então as somas finitas da forma
-    \begin{equation}
+    Então as somas finitas da forma \[
         G(x) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma(y_{ j }^{ T }x + \theta_{ j })
-    \end{equation}
+    \]
     são densas em \( C(\I^{ n }) \).
     Em outras palavras, dada qualquer \( f \in C(\I^{ n }) \) e \( \varepsilon > 0 \), existe uma soma, \( G(x) \), da forma acima, tal que \[
         \norm{ G - f }_{ \infty } < \varepsilon

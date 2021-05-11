@@ -5,42 +5,43 @@ Em geral, elas têm como objetivo representar os funcionais lineares contínuos 
 
 Apesar de a versão que abordaremos inicialmente não ser a utilizada na demonstração do teorema da aproximação universal, acreditamos que é importante apresentar esse teorema primeiro no contexto mais geral de espaços de Hilbert.
 
+Novamente, nossa exposição desse resultado clássico da análise funcional foi formulada com base em \cite{func-anal} e o leitor que quiser recordar conceitos fundamentais poderá encontrálos no apêndice \ref{app: func anal}.
+
 \subsection{Em espaços de Hilbert}
 
 Da forma que será primeiramente enunciado, esse resultado trata da associação natural que existe entre um espaço de Hilbert \( H \) e o seu dual, \( H^{ * } \). Apesar de ser um fato de certa forma trivial para espaços de dimensão finita, sua demonstração não é tão óbvia para espaços de Hilbert em geral.
 Para demonstrá-lo, precisamos, antes, de passar por três resultados preliminares.
+O leitor poderá encontrar alguns dos conceitos de análise funcional utilizados no apêndice correspondente.
 
 \begin{lem}
     Dados \( v, w \) pertencentes a \( (V, \dotprod{\cdot,\cdot}) \), tem-se que \( v \perp w \), ou seja, \( \dotprod{v,w} = 0 \), se, e somente se,
     \begin{equation}
         \norm{ v + \lambda w } \geq \norm{ v }
         \label{eq: ineq}
-    ,\end{equation}
+    .\end{equation}
     para todo \( \lambda \in \K \).
     \label{lem: perp_equiv}
 \end{lem}
 \begin{proof}
-    Evidementemente temos
-    \begin{equation}
+    Evidementemente temos \[
         0
         \leq \norm{ v + \lambda w }^2
         = \norm{ v }^2 + 2 \Re (\dotprod{v,w}) + \abs{ \lambda }^2 \norm{ w }^2
-    .\end{equation}
+    .\]
     Se \( v \perp w \), então temos
-    \begin{align}
+    \begin{align*}
         \norm{ v + \lambda w }^2
         &= \norm{ v }^2 + \abs{ \lambda }^2 \norm{ w }^2 \\
         &\geq \norm{ v }^2
-    ,\end{align}
+    ,\end{align*}
     de onde a desigualdade (\ref{eq: ineq}) segue.
     Reciprocamente, se vale (\ref{eq: ineq}) para todo \( \lambda \in \K \), em especial tomando \( \lambda = -\dotprod{w,v}/ \norm{ w }^2 \) e elevando ambos lados ao quadrado ficamos com \( 0 \leq - \abs{ \dotprod{v,w} }^2 \), o que implica \( v \perp w \).
 \end{proof}
 
 \begin{lem}[Lei do paralelogramo]
-    Dados \( v, w \) pertencentes a \( (V, \dotprod{\cdot,\cdot}) \), tem-se
-    \begin{equation}
+    Dados \( v, w \) pertencentes a \( (V, \dotprod{\cdot,\cdot}) \), tem-se \[
         \norm{ v + w }^2 + \norm{ v - w }^2 = 2 \norm{ v }^2 + 2 \norm{ w }^2
-    .\end{equation}
+    .\]
 \end{lem}
 
 Como a demonstração desse lema consiste simplesmente em expandir o lado esquerdo da igualdade e usar as propridedades de produto interno, será deixada a cargo do leitor.
@@ -51,46 +52,42 @@ Dado um subespaço \( E \) de um espaço com produto interno \( V \), definimos 
 .\]
 
 \begin{teo}[Projeção ortogonal]
-    Se \( E \) é subespaço vetorial fechado de um espaço de Hilbert \( H \), então 
-    \begin{equation}
+    Se \( E \) é subespaço vetorial fechado de um espaço de Hilbert \( H \), então \[
         H = E \oplus E^{ \perp }
-    .\end{equation}
+    .\]
     \label{teo: proj_ort}
 \end{teo}
 \begin{proof}
     Dado \( v \in H \), definimos \( \delta = \inf \left\{ \norm{ v - w } : w \in E \right\} \).
     Seja \( (w_{ n })_{ n\in\N } \) uma sequência de elementos de \( E \) tais que \( \norm{ v - w_{ n } } \to \delta \).
-    Então, sendo \( k \) e \( \ell \) números naturais, aplicando a lei do paralelogramo para os vetores \( w_{ k } - v \) e \( w_{ \ell } - v \) obtemos:
-    \begin{equation}
+    Então, sendo \( k \) e \( \ell \) números naturais, aplicando a lei do paralelogramo para os vetores \( w_{ k } - v \) e \( w_{ \ell } - v \) obtemos: \[
         2 \norm{ w_{ k } - v }^2 + 2 \norm{ w_{ \ell } - v }^2
         = \norm{ w_{ k } + w_{ \ell } - 2v }^2 + \norm{ w_{ k } - w_{ \ell } }
-    ,\end{equation}
+    ,\]
     o que implica, remanejando e lembrando que \( (w_{ k } + w_{ \ell })/2 \in E \),
-    \begin{align}
+    \begin{align*}
         \norm{ w_{ k } - w_{ \ell } }
         &= 2 \norm{ w_{ k } - v }^2 + 2 \norm{ w_{ \ell } - v }^2 - 4 \norm{ (w_{ k } + w_{ \ell })/2 - v }^2 \\
         &\leq 2 \norm{ w_{ k } - v }^2 + 2 \norm{ w_{ \ell } - v }^2 - 4 \delta^2
-    .\end{align}
+    .\end{align*}
     Com isso, concluímos que \( (w_{ n }) \) é uma sequência de Cauchy.
     Como \( H \) é um espaço de Hilbert, temos que \( w_{ n } \to w \in E \), pois \( E \) é fechado e, pela continuidade da norma, temos \( \norm{ v - w } = \delta \).
 
     Intuitivamente, \( w \) é o elemento de \( E \) mais próximo de \( v \).
     Logo, é razoável esperar que ele seja a projeção ortogonal de \( v \) em \( E \).
     Para confirmar essa suspeita, devemos verificar que \( v - w \in E^{ \perp } \).
-    De fato, para todo \( \lambda \in \K \) e todo \( u \in E \) temos
-    \begin{equation}
+    De fato, para todo \( \lambda \in \K \) e todo \( u \in E \) temos \[
         \norm{ (v - w) + \lambda u }
         = \norm{ v + (-w + \lambda u) }
         \geq \delta
         = \norm{ v - w }
-    .\end{equation}
+    .\]
     Portanto, pelo lema \ref{lem: perp_equiv}, concluímos que \( v - w \in E^{ \perp } \).
     Sendo assim, temos \( v = w + (v - w) \), onde \( w \in E \) e \( v - w \in E^{ \perp } \).
     Para mostrar a unicidade dessa decomposição, suponha que \( v = w_{ 1 } + u_{ 1 } = w_{ 2 } + u_{ 2 } \), onde \( w_{ 1 }, w_{ 2 } \in E \) e \( u_{ 1 }, u_{ 2 } \in E^{ \perp } \).
-    Então
-    \begin{equation}
+    Então \[
         w_{ 1 } - w_{ 2 } = u_{ 2 } - u_{ 1 } \in E \cap E^{ \perp }
-    ,\end{equation}
+    ,\]
     o que implica \( w_{ 1 } - w_{ 2 } = u_{ 2 } - u_{ 1 } = 0 \), ou seja, \( w_{ 1 } = w_{ 2 } \) e \( u_{ 1 } = u_{ 2 } \).
 \end{proof}
 
@@ -111,10 +108,9 @@ Agora podemos prosseguir para o principal resultado dessa subseção.
     Logo, \( \norm{ f_{ v } } \leq \norm{ v } \).
     Por outro lado, temos \( \norm{ v }^2 = \dotprod{v,v} = f_{ v }(v) \leq \norm{ f_{ v } } \norm{ v } \), ou seja, \( \norm{ v } \leq \norm{ f_{ v } } \) e acabamos.
 
-    Além disso claramente \( \gamma \) é antilinear, pois 
-    \begin{equation}
+    Além disso claramente \( \gamma \) é antilinear, pois \[
         \gamma (\alpha v + w) = \dotprod{\alpha v + w, \cdot} = \bar{\alpha} \dotprod{v, \cdot} + \dotprod{w,\cdot} = \bar{\alpha} \gamma(v) + \gamma(w)
-    .\end{equation}
+    .\]
 
     A parte menos óbvia, e que dá nome ao teorema, é a da sobrejetividade.
     Repare que, com essa propriedade, todo funcional \( f \in H^{ * } \) fica unicamente associado a um determinado \( v \in H \) tal que \( f = \gamma(v) \).

@@ -1,6 +1,7 @@
 % !TeX root = ./main.tex
 
 \section{Elementos de Análise Funcional}
+\label{app: func anal}
 
 Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de Álgebra Linear.
 
@@ -44,10 +45,9 @@ O próximo teorema ilustra a utilidade dessa definição de transformação limi
     Claramente temos \( \norm{ v' } = \delta \), ou seja, \( \norm{ Tv' } < 1 \), o que implica \( \norm{ Tv } < \delta^{ -1 } \norm{ v } \).
     Logo, tomando \( C = \delta^{ -1 } \), \( T \) é limitada.
     Por fim, se \( T \) é limitada, dados \( a \in V \) e \( \varepsilon \), tome \( \delta < \varepsilon/C \).
-    Com isso se \( \norm{ x - a } < \delta \) temos:
-    \begin{equation}
+    Com isso se \( \norm{ x - a } < \delta \) temos: \[
         \norm{ Tx - Ta } = \norm{ T(x - a) } \leq C \norm{ x - a } < C \cdot \varepsilon/C = \varepsilon
-    .\end{equation}
+    .\]
     Portanto, \( T \) é contínua.
 \end{proof}
 
@@ -86,39 +86,36 @@ Em um espaço vetorial com produto interno, a menos que se dia o contrário, tem
 De fato essa função define uma norma em \( V \), como será mostrado a seguir.
 Antes, porém, devemos estabelecer um resultado fundamental em espaços com produto interno.
 \begin{teo}[Desigualdade de Cauchy-Schwarz]
-    Em um espaço com produto interno \( (V, \dotprod{\cdot,\cdot}) \), tem-se
-    \begin{equation}
+    Em um espaço com produto interno \( (V, \dotprod{\cdot,\cdot}) \), tem-se \[
         \abs{ \dotprod{v, w} } \leq \norm{ v } \norm{ w }
-    \end{equation}
+    \]
     para todos \( v, w \in V \), com a igualdade ocorrendo se, e somente se, \( v = \lambda w \).
 \end{teo}
 \begin{proof}
     Se \( \dotprod{v, w} = 0 \), a igualdade é imediata.
-    Caso contrário, então \( w \neq 0 \) e, para \( \lambda \in \K \) tem-se
-    \begin{equation}
+    Caso contrário, então \( w \neq 0 \) e, para \( \lambda \in \K \) tem-se \[
         0 \leq \dotprod{v - \lambda w, v - \lambda w} = \norm{ v }^2 -\lambda \dotprod{v, w} -\bar{\lambda} \dotprod{w, v} + \abs{ \lambda }^2 \norm{ w }^2
-    .\end{equation}
-    tomando \( \lambda = \dotprod{w, v}/\norm{ w }^2 \) vem
-    \begin{equation}
+    .\]
+    tomando \( \lambda = \dotprod{w, v}/\norm{ w }^2 \) vem \[
         0 \leq \norm{ v }^2 - \abs{ \dotprod{v, w} }^2/ \norm{ w }^2
-    ,\end{equation}
-    o que implica
-    \begin{equation}
+    ,\]
+    o que implica \[
         \abs{ \dotprod{v, w} }^2 \leq \norm{ v }^2 \norm{ w }^2
-    ,\end{equation}
+    ,\]
     de onde o resultado se segue.
     Naturalmente a igualdade ocorre se e somente se existe \( \lambda \) tal que \( \dotprod{v - \lambda w, v - \lambda w} = 0 \), ou seja, \( v = \lambda w \).
 \end{proof}
 
 É fácil ver que as duas primeiras propriedades da norma são satisfeitas por \( \norm{ \cdot } \) como definida anteriormente.
 Para verficar a desigualdade triangular perceba que
-\begin{align}
+\begin{align*}
     \norm{ v + w }^2
     &= \norm{ v }^2 + 2 \Re \dotprod{v, w} + \norm{ w }^2 \\
     &\leq \norm{ v }^2 + 2 \abs{ \dotprod{v, w} } + \norm{ w }^2 \\
     &\leq \norm{ v }^2 + 2 \norm{ v } \norm{ w } + \norm{ w }^2 \\
     &= ( \norm{ v } + \norm{ w } )^2
-.\end{align}
+.\end{align*}
+Portanto, \( \norm{ \cdot } \) de fato é uma norma, denominada \emph{norma induzida pelo produto interno}.
 
 \begin{defn}
     Um \emph{espaço de Hilbert} é um espaço com produto interno completo com relação à norma induzida pelo produto interno.
