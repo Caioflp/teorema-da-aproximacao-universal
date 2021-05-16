@@ -76,13 +76,78 @@ Faremos isso primeiro para uma classe mais geral de funções \( \sigma \) e dep
 
 \begin{teo}[Teorema da aproximação universal]
     Seja \( \sigma \) uma função contínua discriminatória qualquer.
-    Então as somas finitas da forma \[
+    Então as somas finitas da forma
+    \begin{equation}
         G(x) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma(y_{ j }^{ T }x + \theta_{ j })
-    \]
+        \label{eq: neural_func_form}
+    .\end{equation}
     são densas em \( C(\I^{ n }) \).
     Em outras palavras, dada qualquer \( f \in C(\I^{ n }) \) e \( \varepsilon > 0 \), existe uma soma, \( G(x) \), da forma acima, tal que \[
         \norm{ G - f }_{ \infty } < \varepsilon
     .\]
 \end{teo}
+
+\begin{proof}
+    Seja \( S \subset C(\I^{ n }) \) o conjunto das funções descritas por (\ref{eq: neural_func_form}).
+    Claramente ele é um subespaço de \( C(\I^{ n }) \), o qual nós afirmamos ser denso.
+    Suponha, por absurdo, que ele não o seja, isto é, se \( R \) é o fecho de \( S \), suponha que tenhamos \( C(\I^{ n }) \backslash \neq \emptyset \).
+    Então, pelo teorema \ref{thm: hahn_banach_corolary}, existe um funcional linear limitado \( L : C(\I^{ n }) \to \R \), não nulo, tal que \( L(R) = 0 \).
+    Pelo teorema da representação de Riesz, esse funcional é da forma \[
+        L(h)
+        = \int_{ \I^{ n } } h(x) \ \mathrm{d}\mu(x)
+    ,\]
+    para alguma \( \mu \in M(\I^{ n }) \) e toda \( h \in C(\I^{ n }) \).
+    Em particular, como \( \sigma(y^{ T }x + \theta) \in S \) para todos \( y \in \R^{ n } \) e \( \theta \in \R \), temos \[
+        \int_{ \I^{ n } } \sigma(y^{ T }x + \theta) \ \mathrm{d}\mu(x) = 0
+    \]
+    para todos \( y, \theta \).
+    Porém, como \( \sigma \) é, por hipótese, discriminatória, isso implica \( L \) ser o funcional nulo, onde chegamos a uma contradição.
+    Portanto, \( R = C(\I^{ n }) \), ou seja, \( S \) é denso em \( C(\I^{ n }) \).
+\end{proof}
+
+Tendo provado o teorema para funções discriminatórias, nos resta mostrar que, de fato, sigmoides são discriminatórias.
+
+\begin{lem}
+    Todas sigmoides limitadas e mensuráveis são discriminatórias.
+\end{lem}
+
+\begin{proof}
+    Seja \( \sigma \) uma sigmoide e suponha que, para uma dada medida \( \mu \in M(\I^{ n }) \), tenhamos \[
+        \int_{ \I^{ n } } \sigma(y^{ T }x + \theta) \ \mathrm{d}\mu(x)
+    \]
+    para todos \( y \in \R^{ n } \) e \( \theta \in \R \).
+    Desejamos provar que isso implica \( \mu = 0 \).
+
+    Começamos a demonstração reparando que, para quaisquer \( x, y, \theta, \varphi \) temos \[
+        \sigma(\lambda(y^{ T }x + \theta) + \varphi)
+        \to
+        \begin{cases}
+            1, \text{ para } y^{ T }x + \theta > 0 \text{ quando } \lambda \to +\infty \\
+            0, \text{ para } y^{ T }x + \theta < 0 \text{ quando } \lambda \to +\infty \\
+            \sigma(\varphi), \text{ para } y^{ T }x + \theta = 0 \text{ para todo } \lambda \\
+        \end{cases}
+    .\]
+    Logo, a família de funções \( \sigma_{ \lambda }(x) = \sigma(\lambda(y^{ T }x + \theta) + \varphi) \) é limitada e converge pontualmente à função \[
+        \gamma(x) =
+        \begin{cases}
+            1 \text{ para } y^{ T }x + \theta > 0 \\
+            0 \text{ para } y^{ T }x + \theta < 0 \\
+            \sigma(\varphi) \text{ para } y^{ T }x + \theta = 0 \\
+        \end{cases}
+    \]
+    quando \( \lambda \to +\infty \).
+
+    Seja \( \Pi_{ y, \theta } \) o hiperplano definido por \( \left\{ x \in \R^{ n } : y^{ T }x + \theta = 0 \right\} \) e seja \( H_{ y, \theta } \) o meio-espaço aberto definido por \( \left\{ x \in \R : y^{ T }x + \theta > 0 \right\} \).
+    Então, pelo teorema da convergência dominada de Lebesgue, temos %% entender melhor essa aplicação do TCD
+    \begin{align*}
+        0 &=
+        \int_{ \I^{ n } } \sigma_{ \lambda }(x)  \ \mathrm{d}\mu(x) \\
+        &= \int_{ \I^{ n } } \gamma(x) \ \mathrm{d}\mu(x) \\
+        &= \sigma(\varphi)\mu(\Pi_{ y, \theta }) + \mu(H_{ y, \theta })
+    \end{align*}
+    para todos \( \varphi, \theta \) e \( y \).
+
+    Agora mostraremos que se 
+\end{proof}
 
 
