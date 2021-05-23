@@ -132,3 +132,184 @@ Agora podemos prosseguir para o principal resultado dessa subseção.
     .\]
     Sendo assim, \( f = \gamma(\overline{f(w)}w) \).
 \end{proof}
+
+\subsection{Em teoria da medida}
+
+No contexto de teoria da medida, existem alguns resultados que são reconhecidos como ``teorema da representação de Riesz''.
+O mais conhecido estabelece que dual do espaço das funções cujo módulo é \( p \) integrável em um espaço de medida \( (\Omega, \Sigma, \mu) \), o espaço \( L_{ p } \), onde \( 1 < p < +\infty \), é representado pelo espaço \( L_{ q } \), onde \( 1/p + 1/q = 1 \).
+Mais precisamente, se \( G : L_{ p } \to \R \) é um funcional linear limitado, então existe \( g \in L_{ q } \) tal que, para toda \( f \in L_{ p } \) temos \[
+    G(f) = \int fg \ \mathrm{d}\mu
+.\]
+Se \( \mu \) é uma medida \( \sigma \)-finita, então o resultado também é válido para \( L_{ 1 } \), cujo espaço dual é \( L_{ \infty } \).
+Observe que se \(  p = q = 2 \), então o espaço \( L_{ 2 } \) é um espaço de Hilbert e, então, o teorema da representação de Riesz se torna o mesmo apresentado na subseção anterior.
+
+Outro teorema que também leva esse nome, e que é o que utilizaremos para provar o \uat , utiliza medidas para representar funcionais definidos num espaço de funções reais contínuas.
+A versão exata de que precisamos tem uma demonstração que foge do escopo deste trabalho, portanto, antes de apresentá-la vamos enunciar e demonstrar uma versão mais simples, que trata dos funcionais definidos em \( C([a, b]) \).
+Porém antes, uma definição:
+\begin{defn}
+    Dado um espaço \( F \) formado pelas funções de um conjunto qualquer \( X \) em \( \R \), um funcional linear \( G : F \to \R \) é dito \emph{positivo} se \( G(f) \geq 0 \) sempre que \( f \geq 0 \), ou seja, sempre que \( f(x) \geq 0 \) para todo \( x \in X \).
+\end{defn}
+
+\begin{rem}
+    Perceba que se \( f \leq g \) para todo \( x \in X \), então \( g-f \geq 0 \), o que implica \( G(g-f) \geq 0 \) e, pela linearidade de \( G \), \( G(g) \geq G(f) \).
+\end{rem}
+
+\begin{teo}[Teorema da representação de Riesz]
+    Seja \( J = [a, b] \).
+    Se \( G \) é um funcional linear limitado positivo no espaço \( C(J) \), munido com a norma do supremo, então existe uma medida \( \gamma \), definida nos subconjuntos de Borel de \( \R \), tal que
+    \begin{equation}
+        G(f) = \int_{ J } f \ \mathrm{d}\gamma
+        \label{eq: representation}
+    .\end{equation}
+    para toda \( f \in C(J) \).
+    Além disso, \( \norm{ G } = \gamma(J) \).
+\end{teo}
+\begin{proof}
+    A demonstração aqui apresentada envolve conceitos e resultados não-triviais de teoria da medida, os quais ocupariam muito espaço se fossem apresentados em um apêndice como fizemos até aqui.
+    O leitor não familizarizado com esse assunto pode utilizar o capítulo 9 do livro de onde obtemos essa prova, \cite{bartle}, como referência.
+
+    Começamos definindo uma classe de funções auxiliares que nos será útil.
+    Para todo \( t \) tal que \( a \leq t < b \), seja \( \varphi_{ t,n } \) a função pertencente a \( C(J) \) que é igual a \( 1 \) em \( [a, t] \), é igual a \( 0 \) em \( \left(t+ \frac{ 1 }{ n }, b\right] \) e é linear em \( \left(t, t + \frac{ 1 }{ n }\right] \).
+    Se \( n \leq m \) e \( x \in J \), então \( 0 \leq \varphi_{ t, m }(x) \leq \varphi_{ t, m }(x) \leq 1 \), de modo que, pela observação feita anteriormente, as sequências \( (G(\varphi_{ t, n }))_{ n\in\N } \) são monótonas não-crescentes e limitadas.
+    Portanto, para cada \( t \in [a, b) \) podemos definir \[
+        g(t) = \lim_{ n\to\infty } G(\varphi_{ t,n })
+    .\]
+    Além disso, pomos \( g(t) = 0 \) para \( t < a \) e, se \( t \geq b \), definimos \( g(t) = G(\varphi_{ b }) \), onde \( \varphi_{ b }(x) = 1 \) para todo \( x \in J \).
+    Como \( \varphi_{ t_{ 0 }, n } \leq \varphi_{ t_{ 1 }, n } \) para \( t_{ 0 } \leq t_{ 1 } \), vê-se que \( g \) é uma função monótona não-decrescente em \( \R \).
+
+    Nosso objetivo é utilizar o teorema da extensão de Hahn para definir uma medida \( \gamma \) nos subconjuntos de Borel de \( \R \), tal que \( \gamma((\alpha, \beta]) = g(\beta) - g(\alpha) \), porém, para tanto, precisamos antes demonstrar que \( g \) é contínua pela direita.
+    Isso é claro se \( t < a \) ou se \( t \geq b \), porém não se \( t \in [a, b) \).
+    Neste último caso, tome \( \varepsilon > 0 \) e seja \( n_{ 0 } \in \N \) suficientemente grande para que tenhamos
+    \begin{equation}
+        n_{ 0 } > \sup \left\{ 2, \frac{ \norm{ G } }{ \varepsilon } \right\}
+        \label{eq: n0}
+    .\end{equation}
+    e, também,
+    \begin{equation}
+        g(t) \leq G(\varphi_{ t, n_{ 0 } }) \leq g(t) + \varepsilon
+        \label{eq: g_sandwich}
+    .\end{equation}
+
+    Agora definimos uma nova função auxiliar.
+    Seja \( \psi_{ n } \in C(J) \), \( n > 2 \), tal que \( \psi_{ n } \) é igual a \( 1 \) em \( \left[a, t + \frac{ 1 }{ n^2 }\right] \), é igual a \( 0 \) em \( \left(t + \frac{ 1 }{ n } - \frac{ 1 }{ n^2 }, b\right] \) e é linear em \[
+        \left(t + \frac{ 1 }{ n^2 }, t + \frac{ 1 }{ n } - \frac{ 1 }{ n^2 }\right)
+    .\]
+    Um exercício mecânico de analisar os valores de \( \psi_{ n } \) e \( \varphi_{ t, n } \) nos pontos onde a diferença entre elas é máxima revela que \( \norm{ \psi_{ n } - \varphi_{ t, n } }_{ \infty } \leq \frac{ 1 }{ n } \).
+    Logo,
+    \begin{align*}
+        G(\psi_{ n }) - G(\varphi_{ t, n })
+        &\leq\abs{ G(\psi_{ n }) - G(\varphi_{ t, n }) } \\
+        &= \abs{ G(\psi_{ n } - \varphi_{ t, n }) } \\
+        &\leq \norm{ G } \norm{ \psi_{ n } - \varphi_{ t, n } }_{ \infty } \\
+        &\leq \frac{ \norm{ G } }{ n }
+    ,\end{align*}
+    de onde obtemos \[
+        G(\psi_{ n }) \leq G(\varphi_{ t, n }) + \frac{ \norm{ G } }{ n }
+    \]
+    para todo \( n \in \N \).
+    Em especial, tomando \( n \geq n_{ 0 } \) ficamos com, devido a (\ref{eq: n0}) e (\ref{eq: g_sandwich}), \[
+        G(\psi_{ n_{ 0 } }) \leq g(t) + 2 \varepsilon
+    .\]
+    Como \( g \) é monótona não-decrescente, temos \( g(t) \leq g \left(t + \frac{ 1 }{ n_{ 0 }^2 } \right) \).
+    Além disso, se \( n \) é suficentemente grande é fácil ver que \[
+        \varphi_{ t + \frac{ 1 }{ n_{ 0 }^2 }, n } \leq \psi_{ n_{ 0 } }
+    ,\]
+    o que implica \( g \left( t + \frac{ 1 }{ n_{ 0 }^2 } \right) \leq G(\psi_{ n_{ 0 } }) \).
+    Com isso, concluímos que \[
+        g(t) \leq g \left( t + \frac{ 1 }{ n_{ 0 }^2 } \right) \leq g(t) + 2 \varepsilon
+    \]
+    e, assim, \( g \) é contínua pela direita.
+
+    Aplicando o teorema da extensão de Hahn, existe uma medida \( \gamma \), nos subconjuntos de Borel de \( \R \), tal que \( \gamma \left((\alpha, \beta]\right) = g(\beta) - g(\alpha) \).
+    Em particular, isso implica que \( \gamma(E) = 0 \), se \( E \cap J = \emptyset \), que \[
+        \gamma ([a, c]) = \gamma((a-1, a) \cup [a, c]) = \gamma((a-1, c]) = g(c)
+    \]
+    e que \( \norm{ G } = \abs{ G(\varphi_{ b }) } = g(b) = \gamma(J) \).
+
+    Resta mostrar que, de fato, \( \gamma \) representa \( G \) no sentido de (\ref{eq: representation}).
+    Pela continuidade uniforme de \( f \) em \( J \), fixamos \( \varepsilon > 0 \), e tomamos \( \delta > 0 \) tal que se \( \abs{ x - y } < \delta \) e \( x, y \in J \), então \( \abs{ f(x) - f(y) } < \varepsilon \).
+    Agora seja \( a = t_{ 0 } < t_{ 1 } < \cdots < t_{ m } = b \) uma partição de \( J \) tal que \( \sup \left\{ t_{ k } - t_{ k-1 } \right\} < \frac{ \delta }{ 2 } \) e tome \( n \in \N \) grande o suficiente para que tenhamos \( 2/n < \inf \{t_{ k } - t_{ k-1 }\} \) e, para \( k = 1, \dots, m \),
+    \begin{equation}
+        g(t_{ k }) \leq G(\varphi_{ t_{ k }, n }) \leq g(t_{ k }) + \frac{ \varepsilon }{ m \norm{ f }_{ \infty } }
+        \label{eq: g_sandwich_2}
+    .\end{equation}
+    Defina em \( J \), então, as funções
+    \begin{align*}
+        f_{ 1 }(x)
+        = \varphi_{ t_{ 1 }, n }(x) + \sum_{ k=2 }^{ m } f(t_{ k }) \left(
+            \varphi_{ t_{ k }, n }(x) - \varphi_{ t_{ k-1 }n }(x)
+        \right) \\
+        f_{ 2 }(x)
+        = f(t_{ 1 }) \chi_{ [t_{ 0 }, t_{ 1 }] }(x) +
+        \sum_{ k=2 }^{ m } f(t_{ k }) \chi_{ (t_{ k-1 }, t_{ k }] }(x)
+    .\end{align*}
+    Perceba que \( f_{ 1 } \in C(J) \) e que \( f_{ 2 } \) é uma função escada em \( J \).
+    Está claro que \( \sup \left\{ \abs{ f_{ 2 }(x) - f(x) } : x \in J \right\} \leq \varepsilon \) e com um certo esforço é possível mostrar que \( \norm{ f_{ 1 } - f }_{ \infty } \leq \varepsilon \).
+    Portanto, temos
+    \begin{equation}
+        \abs{ G(f) - g(f_{ 1 }) } \leq \varepsilon \norm{ G }
+        \label{eq: triangle_1}
+    .\end{equation}
+    Rescrevendo (\ref{eq: g_sandwich_2}), temos \[
+        0 \leq G(\varphi_{ t_{ k }, n }) - g(t_{ k }) \leq \frac{ \varepsilon }{ m \norm{ f }_{ \infty } }
+    \]
+    para todo \( k = 1, \dots, m \).
+    Logo, se \( 2 \leq k \leq m \), temos
+    \begin{align*}
+        \abs{ G(\varphi_{ t_{ k }, n } - \varphi_{ t_{ k-1 }, n }) - (g_{ t_{ k } } - g_{ t_{ k-1 } })}
+        &= \abs{ \left(
+            G(\varphi_{ t_{ k }, n }) - g_{ t_{ k } }
+        \right) -
+        \left(
+            G(\varphi_{ t_{ k-1 }, n } - g(t_{ k-1 }))
+        \right)} \\
+        &\leq \frac{ \varepsilon }{ m \norm{ f }_{ \infty } }
+    .\end{align*}
+    Aplicando \( G \) a \( f_{ 1 } \) e integrando \( f_{ 2 } \) com respeito a \( \gamma \), a desigualdade acima implica
+    \begin{equation}
+        \abs{ 
+            G(f_{ 1 }) - \int_{ J } f_{ 2 } \ \mathrm{d}\gamma
+            \leq \varepsilon
+         }
+        \label{eq: triangle_2}
+    .\end{equation}
+    Porém, como \( f_{ 2 } \) está a uma distância de no máximo \( \varepsilon \) de \( f \), também temos
+    \begin{equation}
+        \abs{ 
+            \int_{ J } f_{ 2 } \ \mathrm{d}\gamma
+            - \int_{ J } f \ \mathrm{d}\gamma
+            \leq \varepsilon \gamma(J)
+         }
+        \label{eq: triangle_3}
+    .\end{equation}
+    Combinando (\ref{eq: triangle_1}), (\ref{eq: triangle_2}), (\ref{eq: triangle_3}) e utilizando a desigualdade triangular, obtemos \[
+        \abs{ G(f) - \int_{ J } f \ \mathrm{d}\gamma }
+        \leq \varepsilon (2 \norm{ G } + 1)
+    .\]
+    Como \( \varepsilon \) é arbitrário, temos (\ref{eq: representation}).
+\end{proof}
+
+\begin{rem}
+    Como é demonstrado no capítulo 9 de \cite{bartle}, se \( G \) for um funcional linear limitado qualquer em \( C(J) \), podemos decompô-lo como \( G = G^{ + } - G^{ - } \), onde \( G^{ + } \) e \( G^{ - } \) são funcionais lineares limitados positivos.
+    Sendo \( \gamma \) e \( \nu \) as medidas que representam \( G^{ + } \) e \( G^{ - } \) no sentido de (\ref{eq: representation}), respectivamente, se definirmos a medida com sinal \( \mu = \gamma - \nu \), então teremos \[
+        G(f) = \int_{ J } f \ \mathrm{d}\mu
+    \]
+    para toda \( f \in C(J) \).
+\end{rem}
+
+Terminamos essa seção com uma versão mais geral desse teorema, que utilizaremos na prova do \uat.
+O leitor interessado em uma demonstração pode consultar a seção 13.5 de \cite{royden}.
+
+\begin{Riesz}
+    Seja \( X \) um espaço compacto Hausdorff e \( C(X) \) o espaço das funções reais contínuas em \( X \).
+    Então, a cada funcional linear limintado \( F \) em \( C(X) \) corresponde uma única medida de Baire, finita, com sinal, \( \nu \) em \( X \) tal que \[
+        F(f) = \int f \ \mathrm{d}\nu
+    \]
+    para cada \( f \) em \( C(X) \).
+    Além disso, \( \norm{ F } = \abs{ \nu }(X) \).
+\end{Riesz}
+
+\begin{rem}
+    Utilizaremos esse teorema com \( X = [0, 1]^{ n } \).
+    Como nesse caso \( X \) é um espaço métrico compacto, a medida \( \nu \) será uma medida de Borel.
+\end{rem}
