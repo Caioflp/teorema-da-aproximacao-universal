@@ -1,0 +1,18 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'd:\fgv\2021.1\ic\relatorio\output-files\main.blg'
+[146] biber-MSWIN64:340> INFO - === 
+[196] Biber.pm:415> INFO - Reading 'd:\fgv\2021.1\ic\relatorio\output-files\main.bcf'
+[337] Biber.pm:952> INFO - Found 8 citekeys in bib section 0
+[354] Biber.pm:4340> INFO - Processing section 0
+[368] Biber.pm:4531> INFO - Looking for bibtex format file '../bib/bibliografia.bib' for section 0
+[438] bibtex.pm:1689> INFO - LaTeX decoding ...
+[453] bibtex.pm:1494> INFO - Found BibTeX data source '../bib/bibliografia.bib'
+[484] Utils.pm:395> WARN - legacy month field 'January' in entry 'weierstrass' is not an integer - this will probably not sort properly.
+[488] Utils.pm:395> WARN - legacy month field 'January' in entry 'hilbert' is not an integer - this will probably not sort properly.
+[535] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[535] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[535] Biber.pm:4168> INFO - Sorting list 'ynt/global//global/global' of type 'entry' with template 'ynt' and locale 'pt-PT'
+[535] Biber.pm:4174> INFO - No sort tailoring available for locale 'pt-PT'
+[551] bbl.pm:654> INFO - Writing 'd:\fgv\2021.1\ic\relatorio\output-files\main.bbl' with encoding 'UTF-8'
+[555] bbl.pm:757> INFO - Output to d:\fgv\2021.1\ic\relatorio\output-files\main.bbl
+[566] Biber.pm:128> INFO - WARNINGS: 2
