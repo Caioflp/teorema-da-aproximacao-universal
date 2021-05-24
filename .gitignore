@@ -1,4 +1,4 @@
 *.synctex.gz
 *.fls
-*.output-files
+output-files
 .vscode
