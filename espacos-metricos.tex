@@ -21,6 +21,48 @@ Aqui apresentamos noções básicas relativas a espaços métricos, amplamente u
 
     Por vezes, onde não houver prejuízo ao entendimento do texto, utilizaremos apenas o nome do conjunto para nos referirmos ao espaço métrico por ele formado.
 
+\begin{exmp}
+    Dados dois espaços métricos \( (X, d_{ X }) \) e \( (Y, d_{ Y }) \), o produto cartesiano \( X \times Y \) se torna um espaço métrico se definirmos nele a métrica \[
+        d_{ X\times Y }((x_{ 1 }, y_{ 1 }), (x_{ 2 }, y_{ 2 })) = \max \left\{ d_{ X }(x_{ 1 }, x_{ 2 }), d_{ Y }(y_{ 1 }, y_{ 2 }) \right\}
+    .\]
+    De fato, as três primeiras propriedades são evidentes.
+    Para provar a desigualdade triangular, sejam \( (x_{ 1 }, y_{ 1 }), (x_{ 2 }, y_{ 2 }) \) e \( (x_{ 3 }, y_{ 3 }) \in X \times Y \).
+    Então
+    \begin{align*}
+        d_{ X\times Y } (
+            (x_{ 1 }, y_{ 1 }),
+            (x_{ 3 }, y_{ 3 })
+        )
+        &= \max \left\{ 
+            d_{ X }(x_{ 1 }, x_{ 3 }),
+            d_{ Y }(y_{ 1 }, y_{ 2 })
+        \right\} \\
+        &\leq \max \left\{ 
+            d_{ X }(x_{ 1 }, x_{ 2 }) + 
+            d_{ X }(x_{ 2 }, x_{ 3 }),
+            d_{ Y }(y_{ 1 }, y_{ 2 }) + 
+            d_{ Y }(y_{ 2 }, y_{ 3 }),
+        \right\} \\
+        &\leq \max \left\{
+            d_{ X }(x_{ 1 }, x_{ 2 }),
+            d_{ Y }(y_{ 1 }, y_{ 2 })
+        \right\} +
+        \max \left\{ 
+            d_{ X }(x_{ 2 }, x_{ 3 }),
+            d_{ Y }(y_{ 2 }, y_{ 3 })
+        \right\} \\
+        &= d_{ X\times Y }(
+            (x_{ 1 }, y_{ 1 }),
+            (x_{ 2 }, y_{ 2 })
+        ) +
+        d_{ X\times Y }(
+            (x_{ 2 }, y_{ 2 }),
+            (x_{ 3 }, y_{ 3 })
+        )
+    .\end{align*}
+    Caso nada seja dito explicitamente, sempre subentende-se que \( X \times Y \) está dotado dessa métrica.
+\end{exmp}
+
 \begin{defn}
     Um suconjunto \( M \) de um espaço métrico \( X \) é dito \emph{limitado} se existe \( c \in \R \) tal que \( d(x, y) \leq c \) para todos \( x, y \in M \).
     Nesse caso, o definimimos o \emph{diâmetro} de \( M \), denotado por \( \diam M \), como \( \sup \left\{ d(x, y) \tq x, y \in M \right\} \).

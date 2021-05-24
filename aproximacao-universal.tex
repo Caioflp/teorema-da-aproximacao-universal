@@ -104,7 +104,36 @@ Tendo provado o teorema para funções discriminatórias, nos resta mostrar que,
     \end{align*}
     para todos \( \varphi, \theta \) e \( y \).
 
-    Agora mostraremos que se 
+    %% Conferir com yuri
+    Fazendo \( \varphi \to +\infty \), concluímos que \[
+        0 = \mu(\Pi_{ y, \theta }) + \mu(H_{ y, \theta })
+    \]
+    para todos \( y, \theta \).
+    Devemos mostrar agora que isso implica que isso implica a medida \( \mu \) ser, em si, nula.
+    Observe que a dificuldade vem do fato de que \( \mu \) não é positiva.
+
+    Fixe \( y \).
+    Vamos definir um funcional linear \( F \) em \( L_{ \infty }(\R) \) como \[
+        F(h) \defeq \int_{ I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu(x)
+    .\]
+    Note que, como \( \mu \) é finita, \( \abs{ F(h) } \leq \abs{ \mu }(\I^{ n }) \norm{ h }_{ \infty } \) e, portanto, \( F \) é um funcional limitado.
+    Agora seja \( h \) a função indicadora do intervalo \( [\theta, \infty) \), de modo que \[
+        F(h) = \int_{ I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu
+        = \mu(\Pi_{ y, -\theta }) + \mu(H_{ y, -\theta }) = 0
+    .\]
+    De maneira análoga, \( F(h) = 0 \) se \( h \) é a função indicadora do intervalo aberto \( (\theta, \infty) \).
+    Por linearidade, \( F(h) = 0 \) para a função indicadora de qualquer intervalo e, por tanto, para qualquer função simples (soma de funções indicadoras de intervalos).
+    Como funções simples são densas em \( L_{ \infty }(\R) \), pela continuidade de \( F \) concluímos que \( F = 0 \).
+
+    Em particular, as funções limitadas mensuráveis \( s_{ m }(u) = \sen(m^{ T }u) \) e \( c(u) = \cos(m^{ T }u) \) revelam que \[
+        F(s_{ m } + i c_{ m })
+        = \int_{ \I^{ n } } \cos(m^{ T }x) + i \sen(m^{ T }x) \ \mathrm{d}\mu(x)
+        = \int_{ \I^{ n } } e^{ i m^{ T }x } \ \mathrm{d}\mu(x)
+        = 0
+    \]
+    para todo \( m \in \R^{ n } \).
+    Portanto, a transformada de Fourrier de \( \mu \) é \( 0 \) e , portanto, \( \mu \) deve ser a medida nula (o leitor pode consultar o corolário 8.4 de \cite{fourier}).
+    Ou seja, \( \sigma \) é discriminatória.
 \end{proof}
 
 
