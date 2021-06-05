@@ -1,17 +1,16 @@
 \section{Teorema da Representação de Riesz}
 
 Esse teorema possui diversas formulações.
-Em geral, elas têm como objetivo representar os funcionais lineares contínuos em um dado espaço vetorial de uma maneira mais natural, associando-os a elementos daquele mesmo espaço ou de outro.
+Em geral, elas têm como objetivo representar os funcionais lineares contínuos em um dado espaço vetorial de uma maneira mais natural, associando-os a elementos daquele mesmo espaço ou de outro, por meio de um produto interno ou uma operação semelhante.
 
-Apesar de a versão que abordaremos inicialmente não ser a utilizada na demonstração do teorema da aproximação universal, acreditamos que é importante apresentar esse teorema primeiro no contexto natural de espaços de Hilbert.
+Apesar de a versão que abordaremos inicialmente não ser a utilizada na demonstração do \uat, acreditamos que é importante apresentar esse teorema primeiro no contexto natural de espaços de Hilbert.
 
-Novamente, nossa exposição desse resultado clássico da análise funcional foi formulada com base em \cite{func-anal} e o leitor que quiser recordar conceitos fundamentais poderá encontrálos no apêndice \ref{app: func anal}.
+Novamente, nossa exposição desse resultado clássico da Análise Funcional foi formulada com base em \cite{func-anal} e o leitor que quiser recordar conceitos fundamentais poderá encontrálos no Apêndice \ref{app: func anal}.
 
 \subsection{Em espaços de Hilbert}
 
 Da forma que será primeiramente enunciado, esse resultado trata da associação natural que existe entre um espaço de Hilbert \( H \) e o seu dual, \( H^{ * } \). Apesar de ser um fato de certa forma trivial para espaços de dimensão finita, sua demonstração não é tão óbvia para espaços de Hilbert em geral.
 Para demonstrá-lo, precisamos, antes, de passar por três resultados preliminares.
-O leitor poderá encontrar alguns dos conceitos de análise funcional utilizados no apêndice correspondente.
 
 \begin{lem}
     Dados \( v, w \) pertencentes a \( (V, \dotprod{\cdot,\cdot}) \), tem-se que \( v \perp w \), ou seja, \( \dotprod{v,w} = 0 \), se, e somente se,
@@ -19,7 +18,7 @@ O leitor poderá encontrar alguns dos conceitos de análise funcional utilizados
         \norm{ v + \lambda w } \geq \norm{ v }
         \label{eq: ineq}
     .\end{equation}
-    para todo \( \lambda \in \K \).
+    para todo \( \lambda \in \R \).
     \label{lem: perp_equiv}
 \end{lem}
 \begin{proof}
@@ -52,10 +51,10 @@ Dado um subespaço \( E \) de um espaço com produto interno \( V \), definimos 
 .\]
 
 \begin{teo}[Projeção ortogonal]
+    \label{teo: proj_ort}
     Se \( E \) é subespaço vetorial fechado de um espaço de Hilbert \( H \), então \[
         H = E \oplus E^{ \perp }
     .\]
-    \label{teo: proj_ort}
 \end{teo}
 \begin{proof}
     Dado \( v \in H \), definimos \( \delta = \inf \left\{ \norm{ v - w } : w \in E \right\} \).
@@ -82,7 +81,7 @@ Dado um subespaço \( E \) de um espaço com produto interno \( V \), definimos 
         \geq \delta
         = \norm{ v - w }
     .\]
-    Portanto, pelo lema \ref{lem: perp_equiv}, concluímos que \( v - w \in E^{ \perp } \).
+    Portanto, pelo Lema \ref{lem: perp_equiv}, concluímos que \( v - w \in E^{ \perp } \).
     Sendo assim, temos \( v = w + (v - w) \), onde \( w \in E \) e \( v - w \in E^{ \perp } \).
     Para mostrar a unicidade dessa decomposição, suponha que \( v = w_{ 1 } + u_{ 1 } = w_{ 2 } + u_{ 2 } \), onde \( w_{ 1 }, w_{ 2 } \in E \) e \( u_{ 1 }, u_{ 2 } \in E^{ \perp } \).
     Então \[
@@ -101,6 +100,8 @@ Agora podemos prosseguir para o principal resultado dessa subseção.
     ,\end{align*}
     tal que \( f_{ v } = \dotprod{v,\cdot} \), é uma isometria antilinear e sobrejetiva em \( H^{ * } \).
 \end{teo}
+    Repare que, devido à sobrejetividade, todo funcional \( f \in H^{ * } \) fica unicamente associado a um determinado \( v \in H \) tal que \( f = \gamma(v) \).
+    Dizemos, então, que \( v \) \emph{representa} \( f \).
 \begin{proof}
     Para mostrar que \( \gamma \) é uma isometria, provaremos que \( \norm{ f_{ v } } = \norm{ v } \) para todo \( v \in H \).
     De fato, se \( v = 0 \) isso é evidente.
@@ -113,13 +114,11 @@ Agora podemos prosseguir para o principal resultado dessa subseção.
     .\]
 
     A parte menos óbvia, e que dá nome ao teorema, é a da sobrejetividade.
-    Repare que, com essa propriedade, todo funcional \( f \in H^{ * } \) fica unicamente associado a um determinado \( v \in H \) tal que \( f = \gamma(v) \).
-    Dizemos, então, que \( v \) \emph{representa} \( f \).
-    Para demonstrá-la, utilizaremos o teorema \ref{teo: proj_ort}.
+    Para demonstrá-la, utilizaremos o Teorema \ref{teo: proj_ort}.
 
     Dado \( f \in H^{ * } \), se \( f = 0 \) então naturalmente \( f = \gamma(0) \).
     Se \( f \neq 0 \), repare que \( \ker(f) \), o núcleo de \( f \), é um subespaço próprio fechado de \( H \).
-    Pelo teorema \ref{teo: proj_ort}, temos \[
+    Pelo Teorema \ref{teo: proj_ort}, temos \[
         H = \ker(f) \oplus \ker(f)^{ \perp }
     ,\]
     de onde concluímos que existe \( w \in \ker(f)^{ \perp } \) satisfazendo \( \norm{ w } = 1 \).
@@ -133,24 +132,25 @@ Agora podemos prosseguir para o principal resultado dessa subseção.
     Sendo assim, \( f = \gamma(\overline{f(w)}w) \).
 \end{proof}
 
-\subsection{Em teoria da medida}
+\subsection{Em Teoria da Medida}
 
 No contexto de teoria da medida, existem alguns resultados que são reconhecidos como ``teorema da representação de Riesz''.
-O mais conhecido estabelece que dual do espaço das funções cujo módulo é \( p \) integrável em um espaço de medida \( (\Omega, \Sigma, \mu) \), o espaço \( L_{ p } \), onde \( 1 < p < +\infty \), é representado pelo espaço \( L_{ q } \), onde \( 1/p + 1/q = 1 \).
+O mais conhecido estabelece que dual do espaço das funções cujo módulo é \( p \) integrável em um espaço de medida \( (\Omega, \Sigma, \mu) \), denominado espaço \( L_{ p } \), onde \( 1 < p < +\infty \), é representado pelo espaço \( L_{ q } \), onde \( 1/p + 1/q = 1 \).
 Mais precisamente, se \( G : L_{ p } \to \R \) é um funcional linear limitado, então existe \( g \in L_{ q } \) tal que, para toda \( f \in L_{ p } \) temos \[
     G(f) = \int fg \ \mathrm{d}\mu
 .\]
 Se \( \mu \) é uma medida \( \sigma \)-finita, então o resultado também é válido para \( L_{ 1 } \), cujo espaço dual é \( L_{ \infty } \).
 Observe que se \(  p = q = 2 \), então o espaço \( L_{ 2 } \) é um espaço de Hilbert e, então, o teorema da representação de Riesz se torna o mesmo apresentado na subseção anterior.
 
-Outro teorema que também leva esse nome, e que é o que utilizaremos para provar o \uat , utiliza medidas para representar funcionais definidos num espaço de funções reais contínuas.
+Outro teorema que também leva esse nome, e que é o que utilizaremos para provar o \uat, utiliza medidas para representar funcionais definidos num espaço de funções reais contínuas.
 A versão exata de que precisamos tem uma demonstração que foge do escopo deste trabalho, portanto, antes de apresentá-la vamos enunciar e demonstrar uma versão mais simples, que trata dos funcionais definidos em \( C([a, b]) \).
 Porém antes, uma definição:
 \begin{defn}
-    Dado um espaço \( F \) formado pelas funções de um conjunto qualquer \( X \) em \( \R \), um funcional linear \( G : F \to \R \) é dito \emph{positivo} se \( G(f) \geq 0 \) sempre que \( f \geq 0 \), ou seja, sempre que \( f(x) \geq 0 \) para todo \( x \in X \).
+    Dado um espaço \( \mathcal{F} \) formado pelas funções de um conjunto qualquer \( X \) em \( \R \), um funcional linear \( G : \mathcal{F} \to \R \) é dito \emph{positivo} se \( G(f) \geq 0 \) sempre que \( f \geq 0 \), ou seja, sempre que \( f(x) \geq 0 \), para todo \( x \in X \).
 \end{defn}
 
 \begin{rem}
+    \label{rem: G_crescente}
     Perceba que se \( f \leq g \) para todo \( x \in X \), então \( g-f \geq 0 \), o que implica \( G(g-f) \geq 0 \) e, pela linearidade de \( G \), \( G(g) \geq G(f) \).
 \end{rem}
 
@@ -170,14 +170,14 @@ Porém antes, uma definição:
 
     Começamos definindo uma classe de funções auxiliares que nos será útil.
     Para todo \( t \) tal que \( a \leq t < b \), seja \( \varphi_{ t,n } \) a função pertencente a \( C(J) \) que é igual a \( 1 \) em \( [a, t] \), é igual a \( 0 \) em \( \left(t+ \frac{ 1 }{ n }, b\right] \) e é linear em \( \left(t, t + \frac{ 1 }{ n }\right] \).
-    Se \( n \leq m \) e \( x \in J \), então \( 0 \leq \varphi_{ t, m }(x) \leq \varphi_{ t, m }(x) \leq 1 \), de modo que, pela observação feita anteriormente, as sequências \( (G(\varphi_{ t, n }))_{ n\in\N } \) são monótonas não-crescentes e limitadas.
+    Se \( n \leq m \) e \( x \in J \), então \( 0 \leq \varphi_{ t, n }(x) \leq \varphi_{ t, m }(x) \leq 1 \), de modo que, pela Observação \ref{rem: G_crescente}, as sequências \( (G(\varphi_{ t, n }))_{ n\in\N } \) são monótonas não-crescentes e limitadas.
     Portanto, para cada \( t \in [a, b) \) podemos definir \[
         g(t) = \lim_{ n\to\infty } G(\varphi_{ t,n })
     .\]
     Além disso, pomos \( g(t) = 0 \) para \( t < a \) e, se \( t \geq b \), definimos \( g(t) = G(\varphi_{ b }) \), onde \( \varphi_{ b }(x) = 1 \) para todo \( x \in J \).
     Como \( \varphi_{ t_{ 0 }, n } \leq \varphi_{ t_{ 1 }, n } \) para \( t_{ 0 } \leq t_{ 1 } \), vê-se que \( g \) é uma função monótona não-decrescente em \( \R \).
 
-    Nosso objetivo é utilizar o teorema da extensão de Hahn para definir uma medida \( \gamma \) nos subconjuntos de Borel de \( \R \), tal que \( \gamma((\alpha, \beta]) = g(\beta) - g(\alpha) \), porém, para tanto, precisamos antes demonstrar que \( g \) é contínua pela direita.
+    Nosso objetivo é utilizar o Teorema da Extensão de Hahn, de Teoria da Medida, para definir uma medida \( \gamma \) nos subconjuntos de Borel de \( \R \), tal que \( \gamma((\alpha, \beta]) = g(\beta) - g(\alpha) \), porém, para tanto, precisamos antes demonstrar que \( g \) é contínua pela direita.
     Isso é claro se \( t < a \) ou se \( t \geq b \), porém não se \( t \in [a, b) \).
     Neste último caso, tome \( \varepsilon > 0 \) e seja \( n_{ 0 } \in \N \) suficientemente grande para que tenhamos
     \begin{equation}
@@ -220,7 +220,7 @@ Porém antes, uma definição:
     \]
     e, assim, \( g \) é contínua pela direita.
 
-    Aplicando o teorema da extensão de Hahn, existe uma medida \( \gamma \), nos subconjuntos de Borel de \( \R \), tal que \( \gamma \left((\alpha, \beta]\right) = g(\beta) - g(\alpha) \).
+    Aplicando o Teorema da Extensão de Hahn, existe uma medida \( \gamma \), nos subconjuntos de Borel de \( \R \), tal que \( \gamma \left((\alpha, \beta]\right) = g(\beta) - g(\alpha) \).
     Em particular, isso implica que \( \gamma(E) = 0 \), se \( E \cap J = \emptyset \), que \[
         \gamma ([a, c]) = \gamma((a-1, a) \cup [a, c]) = \gamma((a-1, c]) = g(c)
     \]
@@ -269,8 +269,8 @@ Porém antes, uma definição:
     \begin{equation}
         \abs{ 
             G(f_{ 1 }) - \int_{ J } f_{ 2 } \ \mathrm{d}\gamma
-            \leq \varepsilon
-         }
+        }
+        \leq \varepsilon
         \label{eq: triangle_2}
     .\end{equation}
     Porém, como \( f_{ 2 } \) está a uma distância de no máximo \( \varepsilon \) de \( f \), também temos
@@ -278,8 +278,8 @@ Porém antes, uma definição:
         \abs{ 
             \int_{ J } f_{ 2 } \ \mathrm{d}\gamma
             - \int_{ J } f \ \mathrm{d}\gamma
-            \leq \varepsilon \gamma(J)
-         }
+        }
+        \leq \varepsilon \gamma(J)
         \label{eq: triangle_3}
     .\end{equation}
     Combinando (\ref{eq: triangle_1}), (\ref{eq: triangle_2}), (\ref{eq: triangle_3}) e utilizando a desigualdade triangular, obtemos \[

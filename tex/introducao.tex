@@ -4,12 +4,12 @@ Neste trabalho estudaremos resultados que tratam da tarefa de representar um con
 Esse é um tema amplo, presente em diversas áreas da matemática, tanto pura quanto aplicada.
 Faremos esse estudo em alguns contextos diferentes, sendo o principal deles o da aproximação de funções contínuas por meio de redes neurais.
 
-Começaremos pelo teorema da aproximação de Weierstrass, que estabelece a viabilidade de aproximar arbitrariamente bem funções contínuas em um intervalo da reta por meio de polinômios.
+Começaremos pelo Teorema da Aproximação de Weierstrass, que estabelece a viabilidade de aproximar arbitrariamente bem funções contínuas em um intervalo compacto da reta por meio de polinômios.
 Inicialmente provado por Weierstrass em 1885, novas demonstrações surgiram com o tempo.
 A que apresentaremos --- retirada de \cite{weierstrass} --- ainda fornecerá uma forma de, dada uma função contínua, obter os polinômios que a aproximam.
 Essa é uma peculiaridade desse teorema, pois as provas seguintes não são construtivas.
 
-Escolhemos iniciar com esse resultado por sua demonstração ser elementar, não exigindo mais que um curso de análise na reta.
+Escolhemos iniciar com esse resultado por sua demonstração ser elementar, não exigindo mais que um curso de Análise na Reta.
 Além disso, ele trata de aproximações em um contexto mais simples, com apenas uma variável e no qual as funções aproximadoras, os polinômios, são lineares com relação aos seus coeficientes, os parâmetros da aproximação.
 Com isso, esperamos acostumar o leitor ao tipo de questão que nos é de interesse.
 
@@ -17,7 +17,7 @@ Em seguida, moveremos nossa atenção para um dos problemas apresentados por Dav
 Hilbert postulou (utilizando a linguagem matemática de sua época) que existem funções contínuas de \( \I^{ 3 } \) em \( \R \), onde \( \I = [0, 1] \), que não podem ser expressas por meio da composição e adição de funções de \( \R^{ 2 } \) em \( \R \).
 Décadas após ser postulada, essa conjectura eventualmente foi demonstrada \emph{falsa}.
 A prova foi dada por Vladimir Igorevich Arnol'd, 14 anos após a morte de Hilbert.
-Ele e seu orientador de Doutorado, Andrej Nikolajewitsch Kolmogorov, provaram que, na verdade, toda função contínua \( f : \I^{ n } \to \R \) pode ser expressa como composições e adições de funções contínuas de \( \R \to \R \).
+Ele e seu orientador de Doutorado, Andrej Nikolajewitsch Kolmogorov, provaram que, na verdade, toda função contínua \( f : \I^{ n } \to \R \) pode ser expressa como composições e adições de funções contínuas de \( \R \) em \( \R \).
 A formulação exata que apresentaremos --- obtida de \cite{hilbert} --- é ainda mais forte que essa.
 
 Naturalmente, a diferença mais óbvia desse resultado para o anterior é que agora nós temos representações \emph{exatas} para nossas funções de interesse, não apenas aproximações.
@@ -25,7 +25,7 @@ Além disso, esse é um contexto que envolve múltiplas variáveis e no qual as 
 Portanto, é de se esperar que a demonstração apresentada seja mais complexa.
 De fato, apesar de não ser extremamente complicada, ela envolve conceitos e resultados sobre espaços métricos aos quais julgamos apropriado dedicar um apêndice.
 
-O último e principal resultado sobre aproximações que apresentaremos é o teorema da aproximação universal, como formulado em \cite{cybenko89}:
+O último e principal resultado sobre aproximações que apresentaremos é o Teorema da Aproximação Universal, como formulado em \cite{cybenko89}:
 \begin{TAU}
     Seja \( \sigma : \R \to \R \) uma função contínua discriminatória qualquer.
     Então, dada qualquer \( f : \I^{ n } \to \R \), contínua, e \( \varepsilon > 0 \), existe uma soma, \( G : \I^{ n } \to \R \), da seguinte forma:
@@ -43,11 +43,11 @@ Aqui \( y_{ j }^{ T } \) é o transposto do vetor \( y_{ j } \), de modo que \( 
 A definição de função discriminatória será dada posteriormente.
 
 Antes de apresentar comentários sobre esse teorema, é prudente explicar sua relação com redes neurais.
-Como descrito em \cite{lipmann}, as redes neurais artificiais são algoritmos de computação que surgiram como uma tentativa de espelhar o funcionamento de redes neurais orgânicas, como o cérebro humano.
+Como descrito em \cite{lipmann}, as redes neurais artificiais são algoritmos que surgiram como uma tentativa de espelhar o funcionamento de redes neurais orgânicas, como o cérebro humano.
 Em essência, seu objetivo é ``atingir bom desempenho por meio da densa interconexão de elementos computacionais simples.''
 
 Na prática, existem várias formas de atingir esse objetivo.
-No tipo de rede ao qual daremos enfoque, o processo de computação é realizado por um conjuntos de nós, organizados em camadas ordenadas, em que a camada inicial é composta por \( n \) nós de \verb|input| e a camada final, por \( m \) nós de \verb|output|.
+No tipo de rede ao qual daremos enfoque, o processo computacional é realizado por um conjuntos de nós, organizados em camadas ordenadas, em que a camada inicial é composta por \( n \) nós de \verb|input| e a camada final, por \( m \) nós de \verb|output|.
 Entre eles a rede pode possuir camadas intermediárias de tamanho variado.
 Dados \( n \) valores reais para os nós de \verb|input|, a rede produz, nos nós de \verb|output|, \( m \) valores, também reais.
 Logo, ela pode ser considerada uma função de \( \R^{ n } \) em \( \R^{ m } \).
@@ -60,7 +60,7 @@ Logo, ela pode ser considerada uma função de \( \R^{ n } \) em \( \R^{ m } \).
     Aqui temos \( x =
     \begin{bmatrix}
         x_{ 1 } & \cdots & x_{ n }
-    \end{bmatrix}^{ T } \) e \( y_{ j }^{ T }x =
+    \end{bmatrix}^{ T } \) e \( y_{ j }^{ T } =
     \begin{bmatrix}
         w_{ 1,j } & \cdots & w_{ n,j }
     \end{bmatrix} \), o vetor dos pesos de cada nó intermediário.
@@ -74,7 +74,7 @@ O caso em que \( m = 1 \) e há apenas uma camada intermediária de \( N \) nós
 
 
 Repare que o output da rede é exatamente a expressão em (\ref{eq: neural_func_form}).
-Ou seja, o teorema da aproximação universal, doravante conhecido como \uat , estabelece a possibilidade de aproximar arbitrariamente bem funções reais contínuas em \( \I^{ n } \) por meio de redes neurais com uma camada intermediária.
+Ou seja, o Teorema da Aproximação Universal, doravante conhecido como \uat , estabelece a possibilidade de aproximar arbitrariamente bem funções reais contínuas em \( \I^{ n } \) por meio de redes neurais com uma camada intermediária.
 Essa é uma pergunta de extrema relevância, tanto teórica como prática pois, como apontado em \cite{lipmann}, redes neurais artificiais possuem diversas aplicações em campos voltados ao desenvolvimento de classificadores robustos, como a teoria de reconhecimento de fala e de imagens.
 Saber que é possível realizar aproximações arbitrariamente boas utilizando redes neurais artificiais dá mais segurança e incentivo à pesquisa nessas áreas.
 

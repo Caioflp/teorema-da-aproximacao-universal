@@ -1,6 +1,6 @@
 % !TeX root = ./main.tex
 
-\section{Teorema da aproximação de Weierstrass}
+\section{Teorema da Aproximação de Weierstrass}
 
 Como dito na introdução, desejamos mostrar que dada uma função contínua \( f : [a, b] \to \R \), podemos aproximá-la arbitrariamente bem por funções polinomiais \( p : [a, b] \to \R \).
 
@@ -10,7 +10,7 @@ Em outras palavras, seja \( C( [a, b]) \) o espaço vetorial das funções cont�
 
 Então é verdade que
 
-\begin{teo}
+\begin{teo}[Teorema da Aproximação de Weierstrass]
     \label{thm: weierstrass}
     Dada \( f \in C( [a, b] ) \), para todo \( \varepsilon > 0 \) existe um polinômio \( p : [a, b] \to \R \) tal que \[
         \norm{ f - p }_{ \infty } < \varepsilon
@@ -28,7 +28,7 @@ Em seguida, devemos definir a classe de polinômios que utilizaremos na demonstr
 
 \begin{defn}
     \label{def: bernstein}
-    Dada \( g : \R \to \R \) definimos o \( n \)-ésimo polinômio de Bernstein de \( g \) como
+    Dada \( g : \R \to \R \), definimos o \( n \)-ésimo polinômio de Bernstein de \( g \) como
     \begin{equation}
         B_{ n }(x, g) \defeq
         \sum_{ k=0 }^{ n } g \left( \frac{ k }{ n } \right) \binom{n}{k} x^{ k } ( 1 - x )^{ n - k }
@@ -40,7 +40,7 @@ Note a semelhança entre os polinômios de Bernstein e a expansão binomial de \
 De fato, temos \( B_{ n } (x, 1) = ( 1 + ( 1 - x ) )^{ n } = 1 \).
 Mais geralmente, para toda constante \( c \in \R \) tem-se \( B_{ n } (x, c) = c \).
 
-Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do teorema \ref{thm: weierstrass}.
+Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do Teorema \ref{thm: weierstrass}.
 Dados \( p \) e \( q \) reais, começamos considerando a expansão binomial de \( ( p + q )^{ n } \): \[
     ( p + q )^{ n } =
     \sum_{ k=0 }^{ n } \binom{n}{k} p^{ k } q^{ n-k }
@@ -55,7 +55,7 @@ Multiplicando ambos lados por \( p/n \), ficamos com
         \sum_{ k=0 }^{ n } \frac{ k }{ n } \binom{n}{k} p^{ k } q^{ n-k }
         \label{eq: id_1}
     .\end{equation}
-Essa é a primeira identidade, válida para todos \( p, q \in \R \).
+Essa é a primeira identidade que usaremos na demonstração, válida para todos \( p, q \in \R \).
 Derivando novamente com relação a \( p \) e multiplicando ambos lados por \( p/n \) obtemos
 \begin{equation}
     p^2 \left( 1 - \frac{ 1 }{ n } \right) ( p + q )^{ n-2 } + \frac{ p }{ n } ( p + q )^{ n-1 } =
@@ -68,7 +68,7 @@ a segunda identidade que utilizaremos.
 Como consideramos \( f, g \in C([0, 1]) \), segue da Definição \ref{def: bernstein} que se \( f \geq 0 \), então \( B_{ n } (x, f) \geq 0 \) e, se \( f \leq g \), então \( B_{ n } (x, f) \leq B_{ n } (x, g) \).
 
 Com essas ferramentas, podemos então apresentar a
- \begin{proof}[Demonstração do teorema \ref{thm: weierstrass}]
+ \begin{proof}[Demonstração do Teorema \ref{thm: weierstrass}]
     Observamos inicialmente que como \( f \) é uma função contínua definida em um compacto, é uniformemente contínua.
     Portanto, dado \( \varepsilon > 0 \), existe \( \delta > 0 \) tal que, se \( x, y \in [0, 1] \) satisfazem \( \abs{ x - y } < \delta \), então \[
         \abs{ f(x) - f(y) } < \frac{ \varepsilon }{ 2 }
@@ -83,7 +83,7 @@ Com essas ferramentas, podemos então apresentar a
         \label{eq: weierstrass_bound_1}
     .\end{equation}
 
-    Vamos aproximar \( f \) pelos seus polinômios de Bernstein.
+    Vamos, então, aproximar \( f \) pelos seus polinômios de Bernstein.
     Seja \( B_{ n }(x, f) \) o \( n \)-ésimo polinômio de Bernstein de \( f \), avaliado em \( x \).
     Então
     \begin{align}
@@ -91,11 +91,11 @@ Com essas ferramentas, podemos então apresentar a
         &= \abs{B_{ n } (x, f - f(\xi))} \notag \\
         &\leq  B_{ n } \left( x, 2M \left( \frac{ x - \xi }{ \delta } \right)^2 + \frac{ \varepsilon }{ 2 } \right) \notag \\
         &= \frac{ 2M }{ \delta^2 } B_{ n } (x, ( x - \xi )^2) + \frac{ \varepsilon }{ 2 } \notag \\
-        &+ \frac{ 2M }{ \delta^2 } \left( B_{ n } (x, x^2) + B_{ n } (x, -2 x \xi) + \xi^2 \right) + \frac{ \varepsilon }{ 2 } \notag \\
+        &= \frac{ 2M }{ \delta^2 } \left( B_{ n } (x, x^2) + B_{ n } (x, -2 x \xi) + \xi^2 \right) + \frac{ \varepsilon }{ 2 } \notag \\
         &= \frac{ 2M }{ \delta^2 } \left( B_{ n } (x, x^2) - 2 \xi B_{ n } (x, x) + \xi^2 \right) + \frac{ \varepsilon }{ 2 }
         \label{al: elem_bernstein}
     .\end{align}
-    Aqui fizemos uso das propriedades de \( B_{ n } (x, f) \) que seguem de \( x \in [0, 1] \), discutidas anteriormente.
+    Aqui fizemos uso das propriedades de \( B_{ n } (x, f) \) discutidas anteriormente.
     Utilizando as equações (\ref{eq: id_1}) e (\ref{eq: id_2}), com a substituição \( p = x \) e \( q = 1 - x \), concluímos que \[
         B_{ n } (x, x) = x
     .\]

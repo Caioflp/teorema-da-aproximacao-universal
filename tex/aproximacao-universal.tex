@@ -4,17 +4,17 @@
 
 Nesta seção apresentaremos o principal resultado estudado: o teorema da aproximação universal, como formulado em \cite{cybenko89}.
 Como o leitor pode lembrar, quando abordamos o \( 13^{ \circ } \) problema de Hilbert, enunciamos o caso geral e provamos um caso particular do teorema da superposição de Kolmogorov, segundo o qual podemos representar de forma \emph{exata} funções contínuas de \( \I^{ n } \) em \( \R \) utilizando a superposição e composição de funções contínuas de \( \I \) em \( \R \), de uma maneira parecida como a apresentada em (\ref{eq: neural_func_form}).
-Entretanto, como comentado em \cite{cybenko89}, a diferença crucial entre esses dois resultados é que no teorema de Kolmogorov nos é permitido usar uma classe muito maior de não-linearidades, as quais variam de acordo com a função a ser aproximada.
+Entretanto, como comentado em \cite{cybenko89}, a diferença crucial entre esses dois resultados é que no teorema de Kolmogorov nos é permitido usar uma classe muito maior de não-linearidades, as quais variam de acordo com a função a ser representada.
 Isso fornece uma intuição do porquê obter representações exatas é uma tarefa intratável no caso de redes neurais.
 
 \subsection{O Teorema}
 
-Denotaremos o espaço das funções reais contínuas em \( \I^{ n } \) por \( C(\I^{ n }) \) e o espaço das medidas de Borel finitas, com sinal e regulares em \( \I^{ n } \) por \( M(\I^{ n }) \).
+Denotaremos o espaço das medidas de Borel finitas, com sinal e regulares em \( \I^{ n } \) por \( M(\I^{ n }) \).
 Queremos entender sob quais condições as somas da forma \[
     G(x) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma(y_{ j }^{ T }x + \theta_{ j })
 \]
 são densas em \( C(\I^{ n }) \) com respeito à norma do supremo.
-Faremos isso primeiro para uma classe mais geral de funções \( \sigma \) e depois mostraremos que as sigmoides, ou seja, funções \( \sigma \) tais que \[
+Faremos isso primeiro para a classe mais geral de funções \( \sigma \) discriminatórias e depois mostraremos que as sigmoides, ou seja, funções \( \sigma \) tais que \[
     \sigma(x) \to
     \begin{cases}
         1, \text{ se } x \to +\infty \\
@@ -22,7 +22,7 @@ Faremos isso primeiro para uma classe mais geral de funções \( \sigma \) e dep
     \end{cases}
 ,\]
 pertencem a essa classe.
-Essa classe de funções é importante pois as funções de ativação de redes neurais (as não-linearidades em cada nó) são, em geral, sigmoides.
+Sigmoides são importantes pois, em geral, são as funções de ativação de redes neurais (as não-linearidades em cada nó).
 
 \begin{defn}
     Dizemos que \( \sigma \) é \emph{discriminatória} se, para uma medida \( \mu \in M(I^{ n }) \), termos \[
@@ -45,11 +45,11 @@ Essa classe de funções é importante pois as funções de ativação de redes 
 \end{TAU}
 
 \begin{proof}
-    Seja \( S \subset C(\I^{ n }) \) o conjunto das funções descritas por (\ref{eq: neural_func}).
+    Seja \( S \subset C(\I^{ n }) \) o conjunto das funções descritas em (\ref{eq: neural_func}).
     Claramente ele é um subespaço de \( C(\I^{ n }) \), o qual nós afirmamos ser denso.
-    Suponha, por absurdo, que ele não o seja, isto é, se \( R \) é o fecho de \( S \), suponha que tenhamos \( C(\I^{ n }) \backslash \neq \emptyset \).
-    Então, pelo teorema \ref{thm: hahn_banach_corolary}, existe um funcional linear limitado \( L : C(\I^{ n }) \to \R \), não nulo, tal que \( L(R) = 0 \).
-    Pelo teorema da representação de Riesz, esse funcional é da forma \[
+    Suponha, por absurdo, que ele não o seja, isto é, se \( \bar{S} \) é o fecho de \( S \), suponha que tenhamos \( C(\I^{ n }) \backslash \bar{S} \neq \emptyset \).
+    Então, pelo Teorema \ref{thm: hahn_banach_corolary}, existe um funcional linear limitado \( L : C(\I^{ n }) \to \R \), não nulo, tal que \( L(\bar{S}) = 0 \).
+    Além disso, pelo Teorema da Representação de Riesz, esse funcional é da forma \[
         L(h)
         = \int_{ \I^{ n } } h(x) \ \mathrm{d}\mu(x)
     ,\]
@@ -58,8 +58,8 @@ Essa classe de funções é importante pois as funções de ativação de redes 
         \int_{ \I^{ n } } \sigma(y^{ T }x + \theta) \ \mathrm{d}\mu(x) = 0
     \]
     para todos \( y, \theta \).
-    Porém, como \( \sigma \) é, por hipótese, discriminatória, isso implica \( L \) ser o funcional nulo, onde chegamos a uma contradição.
-    Portanto, \( R = C(\I^{ n }) \), ou seja, \( S \) é denso em \( C(\I^{ n }) \).
+    Porém, como \( \sigma \) é discriminatória por hipótese, isso implica \( L \) ser o funcional nulo, onde chegamos a uma contradição.
+    Portanto, \( \bar{S} = C(\I^{ n }) \), ou seja, \( S \) é denso em \( C(\I^{ n }) \).
 \end{proof}
 
 Tendo provado o teorema para funções discriminatórias, nos resta mostrar que, de fato, sigmoides são discriminatórias.
@@ -75,21 +75,21 @@ Tendo provado o teorema para funções discriminatórias, nos resta mostrar que,
     para todos \( y \in \R^{ n } \) e \( \theta \in \R \).
     Desejamos provar que isso implica \( \mu = 0 \).
 
-    Começamos a demonstração reparando que, para quaisquer \( x, y, \theta, \varphi \) temos \[
+    Começamos a demonstração reparando que, para quaisquer \( x, y \in \I^{ n },\) e \( \theta, \varphi \in \R \) temos, quando \( \lambda \to +\infty \) \[
         \sigma(\lambda(y^{ T }x + \theta) + \varphi)
         \to
         \begin{cases}
-            1, \text{ para } y^{ T }x + \theta > 0 \text{ quando } \lambda \to +\infty \\
-            0, \text{ para } y^{ T }x + \theta < 0 \text{ quando } \lambda \to +\infty \\
-            \sigma(\varphi), \text{ para } y^{ T }x + \theta = 0 \text{ para todo } \lambda \\
+            1, \text{ se } y^{ T }x + \theta > 0 \\
+            0, \text{ se } y^{ T }x + \theta < 0 \\
+            \sigma(\varphi), \text{ se } y^{ T }x + \theta = 0 \\
         \end{cases}
     .\]
     Logo, a família de funções \( \sigma_{ \lambda }(x) = \sigma(\lambda(y^{ T }x + \theta) + \varphi) \) é limitada e converge pontualmente à função \[
         \gamma(x) =
         \begin{cases}
-            1 \text{ para } y^{ T }x + \theta > 0 \\
-            0 \text{ para } y^{ T }x + \theta < 0 \\
-            \sigma(\varphi) \text{ para } y^{ T }x + \theta = 0 \\
+            1 \text{ se } y^{ T }x + \theta > 0 \\
+            0 \text{ se } y^{ T }x + \theta < 0 \\
+            \sigma(\varphi) \text{ se } y^{ T }x + \theta = 0 \\
         \end{cases}
     \]
     quando \( \lambda \to +\infty \).
@@ -97,42 +97,41 @@ Tendo provado o teorema para funções discriminatórias, nos resta mostrar que,
     Seja \( \Pi_{ y, \theta } \) o hiperplano definido por \( \left\{ x \in \R^{ n } : y^{ T }x + \theta = 0 \right\} \) e seja \( H_{ y, \theta } \) o meio-espaço aberto definido por \( \left\{ x \in \R : y^{ T }x + \theta > 0 \right\} \).
     Então, pelo teorema da convergência dominada de Lebesgue, temos %% entender melhor essa aplicação do TCD
     \begin{align*}
-        0 &=
-        \int_{ \I^{ n } } \sigma_{ \lambda }(x)  \ \mathrm{d}\mu(x) \\
-        &= \int_{ \I^{ n } } \gamma(x) \ \mathrm{d}\mu(x) \\
+        0 =
+        \int_{ \I^{ n } } \sigma_{ \lambda }(x)  \ \mathrm{d}\mu(x) &= \int_{ \I^{ n } } \gamma(x) \ \mathrm{d}\mu(x) \\
         &= \sigma(\varphi)\mu(\Pi_{ y, \theta }) + \mu(H_{ y, \theta })
     \end{align*}
-    para todos \( \varphi, \theta \) e \( y \).
+    para todos \( \varphi, \theta \in \R \) e \( y \in \I^{ n } \).
 
     %% Conferir com yuri
     Fazendo \( \varphi \to +\infty \), concluímos que \[
         0 = \mu(\Pi_{ y, \theta }) + \mu(H_{ y, \theta })
     \]
     para todos \( y, \theta \).
-    Devemos mostrar agora que isso implica que isso implica a medida \( \mu \) ser, em si, nula.
+    Devemos mostrar agora que isso implica que isso implica a medida com sinal \( \mu \) ser, em si, nula.
     Observe que a dificuldade vem do fato de que \( \mu \) não é positiva.
 
     Fixe \( y \).
     Vamos definir um funcional linear \( F \) em \( L_{ \infty }(\R) \) como \[
-        F(h) \defeq \int_{ I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu(x)
+        F(h) \defeq \int_{ \I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu(x)
     .\]
     Note que, como \( \mu \) é finita, \( \abs{ F(h) } \leq \abs{ \mu }(\I^{ n }) \norm{ h }_{ \infty } \) e, portanto, \( F \) é um funcional limitado.
     Agora seja \( h \) a função indicadora do intervalo \( [\theta, \infty) \), de modo que \[
-        F(h) = \int_{ I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu
+        F(h) = \int_{ \I^{ n } } h(y^{ T }x) \ \mathrm{d}\mu
         = \mu(\Pi_{ y, -\theta }) + \mu(H_{ y, -\theta }) = 0
     .\]
     De maneira análoga, \( F(h) = 0 \) se \( h \) é a função indicadora do intervalo aberto \( (\theta, \infty) \).
     Por linearidade, \( F(h) = 0 \) para a função indicadora de qualquer intervalo e, por tanto, para qualquer função simples (soma de funções indicadoras de intervalos).
-    Como funções simples são densas em \( L_{ \infty }(\R) \), pela continuidade de \( F \) concluímos que \( F = 0 \).
+    Como funções simples são densas em \( L_{ \infty }(\R) \), pela continuidade de \( F \) concluímos que \( F \equiv 0 \) em \( L_{ \infty }(\R) \).
 
-    Em particular, as funções limitadas mensuráveis \( s_{ m }(u) = \sen(m^{ T }u) \) e \( c(u) = \cos(m^{ T }u) \) revelam que \[
+    Em particular, as funções limitadas mensuráveis \( s_{ m }(u) = \sen(m^{ T }u) \) e \( c_{ m }(u) = \cos(m^{ T }u) \) revelam que \[
         F(s_{ m } + i c_{ m })
         = \int_{ \I^{ n } } \cos(m^{ T }x) + i \sen(m^{ T }x) \ \mathrm{d}\mu(x)
         = \int_{ \I^{ n } } e^{ i m^{ T }x } \ \mathrm{d}\mu(x)
         = 0
     \]
     para todo \( m \in \R^{ n } \).
-    Portanto, a transformada de Fourrier de \( \mu \) é \( 0 \) e , portanto, \( \mu \) deve ser a medida nula (o leitor pode consultar o corolário 8.4 de \cite{fourier}).
+    Portanto, a transformada de Fourrier de \( \mu \) é \( 0 \) e assim, \( \mu \) deve ser a medida nula (o leitor pode consultar o Corolário 8.4 de \cite{fourier}).
     Ou seja, \( \sigma \) é discriminatória.
 \end{proof}
 
