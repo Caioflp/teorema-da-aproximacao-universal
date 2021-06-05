@@ -7,13 +7,13 @@ Aqui apresentaremos noções elementares que mesclam conceitos de Análise e de 
 
 \begin{defn}
     Dado um espaço vetorial \( V \) sobre um corpo \( \K \), uma \emph{norma} em \( V \) é uma função \( \norm{ \cdot } : V \to [0, +\infty) \) tal que
-    \begin{enumerate}[label=\roman*)]
+    \begin{enumerate}[label=(\roman*)]
         \item \( \norm{ v } = 0 \) se, e somente se \( v = 0 \) (normas são \emph{positivas definidas});
         \item \( \norm{ \alpha v } = \abs{ \alpha } \norm{ v } \) para todo \( v \in V \) e \( \alpha \in \K \) (\emph{homogeneidade absoluta});
         \item \( \norm{ v + w } \leq \norm{ v } + \norm{ w } \) para todos \( v, w \in V \) (\emph{desigualdade triangular}).
     \end{enumerate}
 \end{defn}
-Uma função que cumpre as propriedades \emph{ii} e \emph{iii} acima é denominada uma \emph{semi-norma}.
+Uma função que cumpre as propriedades (ii) e (iii) acima é denominada uma \emph{semi-norma}.
 Um espaço vetorial junto de sua norma e denominado um \emph{espaço vetorial normado}.
 A menos de onde houver ambiguidade, utilizaremos o mesmo símbolo \( \norm{ \cdot } \) para nos referir a normas de qualquer espaço vetorial normado.
 O vetor dentro do símbolo deixará claro a norma de qual espaço está sendo utilizada.
@@ -31,14 +31,14 @@ O próximo teorema ilustra a utilidade dessa definição de transformação limi
 \begin{teo}
     Seja \( T : V \to W \) uma transformação linear entre espaços vetoriais normados.
     As seguintes afirmativas são equivalentes:
-    \begin{enumerate}[label=\roman*)]
+    \begin{enumerate}[label=(\roman*)]
         \item \( T \) é contínua;
         \item \( T \) é contínua em \( 0 \);
         \item \( T \) é limitada.
     \end{enumerate}
 \end{teo}
 \begin{proof}
-    A implição de \emph{i} para \emph{ii} é óbvia.
+    A implição de (\emph{i}) para (\emph{ii}) é óbvia.
     Suponha, agora, que \( T \) é contínua em \( 0 \).
     Tomando \( \varepsilon = 1 \), conseguimos \( \delta > 0 \) tal que se \( \norm{ v } \leq \delta \), então \( \norm{ Tv } < 1 \).
     Agora, dado \( v \in V \), \( v \neq 0 \), tome o vetor \( v' \defeq \delta v / \norm{ v } \).
@@ -66,7 +66,7 @@ Portanto, sendo \( A \) o conjunto em (\ref{ali: third}), temos \( \norm{ T } \i
 Além disso, dado \( C \in A \), temos \( C \geq \norm{ Tv } / \norm{ v } \) para todo \( v \in V - \left\{ 0 \right\} \).
 Logo, \( \norm{ T } \leq C \) e, com isso, \( \norm{ T } \leq \inf A \).
 Sendo assim, vale (\ref{ali: third}).
-As propriedades i), ii) e iii) decorrem diretamente das propriedades das normas de \( V \) e \( W \) e são facilmente verificadas.
+As propriedades (i), (ii) e (iii) decorrem diretamente das propriedades das normas de \( V \) e \( W \) e são facilmente verificadas.
 Sempre trataremos o conjunto \( L(V, W) \) como um espaço vetorial normado munido dessa norma, a qual é denominada \emph{norma de operador}. 
 No caso especial em que \( W = \K \),
 o espaço \( L(V, \K) \) é denominado \emph{espaço dual} de \( V \) e é denotado por \( V^{ * } \).
@@ -74,7 +74,7 @@ Os elementos de \( V^{ * } \) são denominados \emph{funcionais lineares}.
 
 \begin{defn}
     Um \emph{produto interno} no espaço vetorial \( V \) é um funcional \( (v, w) \mapsto \dotprod{v,w} \), de \( V \times V \) em \( \K \), de modo que, para todos \( u, v, w \in V \) e \( \alpha \in \K \) valha
-    \begin{enumerate}[label=\roman*)]
+    \begin{enumerate}[label=(\roman*)]
         \item \( \dotprod{\alpha v + u, w} = \bar{\alpha} \dotprod{v, w} + \dotprod{u, w} \);
         \item \( \dotprod{v, w} = \overline{\dotprod{v,w}} \);
         \item \( \dotprod{v, v} \geq \) e \( \dotprod{v, v} = 0 \) se, e somente se, \( v = 0 \).

@@ -1,4 +1,21 @@
-\theoremstyle{plain}% default
+%% Packages
+
+\usepackage{mathtools, amsthm}
+\usepackage{exercise-sheet}
+\usepackage{global-macros}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\usepackage{csquotes}
+\usepackage{hyperref}
+
+%% Environments
+
+\theoremstyle{plain} % default
 \newtheorem{teo}{Teorema}[section]
 \newtheorem{lem}{Lema}[section]
 \newtheorem{prop}{Proposição}[section]
@@ -37,3 +54,7 @@
 \DeclareMathOperator{\vspan}{span}
 \DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\lin}{Lin}
+
+%% Numbering
+
+\numberwithin{equation}{section}
