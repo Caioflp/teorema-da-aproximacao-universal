@@ -1,0 +1,34 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {portuguese}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introdução}{2}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Teorema da Aproximação de Weierstrass}{4}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Décimo Terceiro Problema de Hilbert}{7}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Teorema de Hahn-Banach}{9}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Lema de Zorn}{10}{subsection.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Demonstração do teorema de Hahn-Banach}{11}{subsection.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}Aplicações do Teorema de Hahn-Banach}{12}{subsection.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Teorema da Representação de Riesz}{14}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Em espaços de Hilbert}{14}{subsection.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Em Teoria da Medida}{16}{subsection.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Teorema da Aproximação Universal}{20}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}O Teorema}{20}{subsection.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Conclusão e outros resultados}{22}{section.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Referências}{24}{section*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Elementos de Espaços Métricos}{25}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}Elementos de Análise Funcional}{28}{appendix.B}%

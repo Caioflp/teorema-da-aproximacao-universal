@@ -1,0 +1,92 @@
+% !TeX root = ./main.tex
+\section{Conclusão e outros resultados}
+
+Nesse trabalho, tratamos apenas de um dos primeiros resultados relacionados à universalidade de redes neurais, em um contexto não diretamente relacionado com o uso prático delas.
+Entretanto, em \cite{cybenko89} já são apresentadas algumas aplicações do \uat \ em situações mais práticas, como para aproximar funções de decisão:
+\begin{defn}
+    Seja \( P_{ 1 }, P_{ 2 }, \dots, P_{ k } \) uma partição de \( I_{ n } \) em \( k \) subconjuntos mensuráveis de \( I_{ n } \), com relação à medida de Lebesgue, que denotaremos nesta seção por \( m \).
+    Então a \emph{função de decisão} \( f : I_{ n } \to \R \) é dada por
+    \begin{equation*}
+        f(x) = j \text{ se, e somente se } x \in P_{ j }
+    .\end{equation*}
+\end{defn}
+Temos o seguinte resultado, provado em \cite{cybenko89}:
+\begin{teo}
+    Seja \( \sigma \) uma sigmóide contínua.
+    Seja \( f \) a função de decisão para qualquer partição mensurável finita de \( I_{ n } \).
+    Então, para todo \( \varepsilon > 0 \) existem uma soma finita \( G(x) \), da mesma forma que em (\ref{eq: neural_func_form}), e um conjunto \( D \subset I_{ n } \), tais que \( m(D) \geq 1 - \varepsilon \) e
+    \begin{equation*}
+        \abs{ 
+            G(x) - f(x)
+        } < \varepsilon
+    \end{equation*}
+    para todo \( x \in D \).
+\end{teo}
+
+Além disso, outros resultados foram publicadas em anos seguintes, alguns dos quais relacionados a aproximações também das derivadas da função alvo, como necessitado por várias áreas onde redes neurais são aplicadas.
+Antes de apresentarmos dois deles, vamos fixar algumas notações
+
+Denotaremos por \( \mathfrak{R}_{ k }(\psi) \) o conjunto das redes neurais com \( k \) inputs e uma camada intermediária e que têm \( \psi \) como função de ativação, ou seja,
+\begin{equation*}
+    \mathfrak{R}_{ k }(\psi) =
+    \left\{
+        h : \R^{ k } \to \R :
+        h(x) = \sum_{ j=1 }^{ N } \alpha_{ j } \psi (y_{ j }^{ T } x + \theta_{ j }),
+        N \in \N
+    \right\}
+.\end{equation*}
+Uma \( k \)-tupla \( \alpha = ( \alpha_{ 1 }, \dots, \alpha_{ k } ) \) de inteiros não-negativos é chamada de \emph{multi-índice}.
+Nós escrevemos então \( \abs{ \alpha } = \alpha_{ 1 } + \cdots + \alpha_{ k } \) para a ordem do multi-índice \( \alpha \) e
+\begin{equation*}
+    D^{ \alpha } f(x) =
+    \frac{ 
+       \partial^{ \alpha_{ 1 } \cdots \alpha_{ k } } f
+    }{ 
+        \partial \xi_{ 1 }^{ \alpha_{ 1 } } \cdots \partial \xi_{ k }^{ \alpha_{ k } }
+    } (x)
+\end{equation*}
+para a derivada parcial correspondente de uma função \( f \) de \( x = \begin{bmatrix}
+    \xi_{ 1 }, \dots, \xi_{ k }
+\end{bmatrix}^{ T } \in \R^{ k } \), suficientemente derivável.
+
+Escrevemos \( C^{ m }(\R^{ k }) \) para o espaço de todas as funções \( f \) que, junto com suas derivadas parciais \( D^{ \alpha }f \) de ordem \( \abs{ \alpha } \leq m \), são contínuas em \( \R^{ k } \).
+Para todos subconjuntos \( X \) de \( \R^{ k } \) e \( f \in C^{ m }(\R^{ k }) \), seja
+\begin{equation*}
+    \norm{ f }_{ m, X, \infty } =
+    \max_{ \abs{ \alpha } \leq m }
+    \sup_{ x \in X } \abs{ D^{ \alpha } f(x) }
+.\end{equation*}
+Um subconjunto \( S \) de \( C^{ m }(\R^{ k }) \) é dito \emph{uniformemente \emph{m}-denso em compactos} em \( C^{ m }(\R^{ k }) \) se, para toda \( f \in C^{ m }(\R^{ k }) \), para todo subconjunto compacto \( X \) de \( \R^{ k } \) e todo \( \varepsilon > 0 \), existir uma função \( g = g(f, X, \varepsilon) \in S \) tal que \( \norm{ f - g }_{ m, X, \infty } < \varepsilon \).
+
+Para \( f \in C^{ m }(\R^{ k }) \), \( \mu \) uma medida finita em \( \R^{ k } \) e \( 1 \leq p < \infty \), seja
+\begin{equation*}
+    \norm{ f }_{ m, p, \mu } =
+    \left[
+        \sum_{ \abs{ \alpha } \leq m } \int_{ \R^{ k } } \abs{ D^{ \alpha } f }^{ p } \ \mathrm{d} \mu
+    \right]^{ 1/p }
+\end{equation*}
+e seja o \emph{espaço ponderado de Sobolev} \( C^{ m, p }(\mu) \) definido por
+\begin{equation*}
+    C^{ m, p }(\mu) = \left\{ 
+        f \in C^{ m }(\R^{ k }) : \norm{ f }_{ m, p, \mu } < \infty
+    \right\}
+.\end{equation*}
+Um subconjunto \( S \) de \( C^{ m, p }(\mu) \) é denso em \( C^{ m, p }(\mu) \) se para toda \( f \in C^{ m, p }(\mu) \) e \( \varepsilon > 0 \) existir uma função \( g = g(f, \varepsilon) \in S \) tal que \( \norm{ f - g }_{ m, p, \mu } < \varepsilon \).
+
+Por fim, dada uma medida \( \mu \) em \( \R^{ k } \) munido com a \( \sigma \)-álgebra de Borel, definimos o \emph{suporte} de \( \mu  \), e o denotamos por \( \supp (\mu) \), como o maior (no sentido de inclusão) conjunto mensurável \( C \subset \R^{ k } \) tal que todo conjunto aberto \( U \subset \R^{ k } \) com interseção não-vazia com \( C \) seja tal que \( \mu (U \cap C ) > 0 \).
+
+Tendo essas definições, terminamos enunciando dois resultado notáveis provado em \cite{hornik91}:
+
+\begin{teo}
+    Se \( \psi \in C^{ m }(\R^{ k }) \) é não-constante e limitada, então \( \mathfrak{R}_{ k }(\psi) \) é uniformemente \( m \)-denso em compactos em \( C^{ m }(\R^{ k }) \) e denso em \( C^{ m, p }(\mu) \) para toda medida finita \( \mu \) em \( \R^{ k } \) com suporte compacto.
+\end{teo}
+
+\begin{teo}
+    Se \( \psi \in C^{ m }(\R^{ k }) \) é não-constante e todas as suas derivadas de ordem menor ou igual a \( m \) são limitadas, então \( \mathfrak{R}^{ k }(\psi) \) é denso em \( C^{ m, p }(\mu) \) para todas medidas finitas \( \mu \) em \( \R^{ k } \).
+\end{teo}
+
+
+
+%% Para  redes que possuem um número arbitrário de camadas, resultados mais fortes são conhecidos.
+%% Nesta seção vamos enunciar alguns resultados mais gerais obtidos em \cite{hornik}, que exploram o uso de redes mais poderosas.
+%% Porém antes, algumas definições:

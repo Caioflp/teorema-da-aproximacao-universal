@@ -19,7 +19,7 @@ Então é verdade que
 
 Inicialmente, observamos que basta provar o teorema para o caso \( f \in C([0, 1]) \).
 De fato, dada \( f \in C([a, b]) \), considere o homeomorfismo \( \varphi : [0, 1] \to [a, b] \) dado por \( \varphi(x) = a + ( b - a )x \), cuja inversa é \( \varphi^{ -1 } : [a, b] \to [0, 1] \) dada por \( \varphi^{ -1 } (x) = \frac{ x - a }{ b - a } \).
-Então a função \( g = f \circ \varphi \) pertence a \( C([0, 1]) \) e, dado \( \varepsilon > 0 \), se existe um polinômio \( p(x) \) com \( \norm{ g - p }_{ \infty } < \varepsilon \), temos também, como \( \varphi^{ -1 } \) é um polinômio de grau \( 1 \), \[
+Então a função \( g = f \circ \varphi \) pertence a \( C([0, 1]) \) e, dado \( \varepsilon > 0 \), se existe um polinômio \( p(x) \) com \( \norm{ g - p }_{ \infty } < \varepsilon \), temos também, como \( \varphi^{ -1 } \) é uma bijeção, \[
     \norm{ g \circ \varphi^{ -1 } - p \circ \varphi^{ -1 } }_{ \infty } < \varepsilon
 .\]
 Como \( g \circ \varphi^{ -1 } = f \) e \( p \circ \varphi^{ -1 } \) é um polinômio, o resultado vale também para \( C([a, b]) \).
@@ -39,6 +39,7 @@ Em seguida, devemos definir a classe de polinômios que utilizaremos na demonstr
 Note a semelhança entre os polinômios de Bernstein e a expansão binomial de \( ( 1 + ( 1 - x ) )^{ n } \).
 De fato, temos \( B_{ n } (x, 1) = ( 1 + ( 1 - x ) )^{ n } = 1 \).
 Mais geralmente, para toda constante \( c \in \R \) tem-se \( B_{ n } (x, c) = c \).
+Também perceba que a expressão para \( B_{ n }(x, g) \) é linear na função \( g \).
 
 Utilizaremos essa semelhança para obter algumas identidades essenciais para a demonstração do Teorema \ref{thm: weierstrass}.
 Dados \( p \) e \( q \) reais, começamos considerando a expansão binomial de \( ( p + q )^{ n } \): \[
@@ -112,6 +113,9 @@ Com essas ferramentas, podemos então apresentar a
          \right) + \frac{ \varepsilon }{ 2 } \\
          &= \frac{ 2M }{ \delta^2 } \left( 
              x^2 + \frac{ x - x^2 }{ n } - 2 \xi x + \xi^2
+          \right) + \frac{ \varepsilon }{ 2 } \\
+         &= \frac{ 2M }{ \delta^2 } \left( 
+             \frac{ x - x^2 }{ n } + (x - \xi)^2
           \right) + \frac{ \varepsilon }{ 2 } \\
          &= \frac{ \varepsilon }{ 2 } + \frac{ 2M }{ n \delta^2 } ( x - x^2 ) + \frac{ 2M }{ \delta^2 } ( x - \xi )^2
     .\end{align*}
