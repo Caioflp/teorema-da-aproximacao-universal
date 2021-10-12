@@ -1,6 +1,6 @@
 *.synctex.gz
 *.fls
 *output-files
-*/.out
+*.out/
 .vscode
 *.pdf
