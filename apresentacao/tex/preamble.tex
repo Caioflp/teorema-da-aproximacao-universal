@@ -1,0 +1,91 @@
+\usefonttheme{serif}
+\setbeamertemplate{footline}[frame number]
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \usebeamerfont{author in head/foot}\insertshortauthor
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+            \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+        \end{beamercolorbox}}%
+        \vskip0pt%
+    }
+    \makeatother
+
+% \usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, mathtools, mathrsfs, amssymb}
+\usepackage{verbatim}
+\usepackage{pgfplots}
+    \pgfplotsset{compat=1.18}
+    \pgfplotsset{lua debug}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{positioning, matrix}
+\DeclareMathOperator{\proj}{proj \ }
+
+\renewcommand{\arraystretch}{1.4}
+\newcommand{\transpose}{\mathsf{T}}
+
+%% Environments
+
+\theoremstyle{plain} % default
+\newtheorem{teo}{Teorema}[section]
+\newtheorem*{teo*}{Teorema}
+\newtheorem{lem}{Lema}[section]
+\newtheorem{prop}{Proposição}[section]
+\newtheorem{cor}[teo]{Corolário}
+\newtheorem*{axiom}{Axioma}
+
+\newtheorem*{TAU}{Teorema da Aproximação Universal}
+\newtheorem*{Riesz}{Teorema da Representação de Riesz}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definição}[section]
+\newtheorem{conj}{Conjectura}[section]
+\newtheorem{exmp}{Exemplo}[section]
+\newtheorem{rem}{Observação}[section]
+\newtheorem*{rem*}{Observação}
+
+\theoremstyle{remark}
+% \newtheorem*{note}{Nota}
+\newtheorem{case}{Caso}
+
+
+% Macros
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\Re}{\text{Re}}
+
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\bfw}{\mathbf{w}}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\I}{\mathbb{I}}
+
+\DeclarePairedDelimiter{\dotprod}{\langle}{\rangle}
+
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\intt}{int}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rref}{rref}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\lin}{Lin}
+\DeclareMathOperator{\supp}{supp}
+
+
+
+\DeclareMathOperator{\posto}{posto}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.

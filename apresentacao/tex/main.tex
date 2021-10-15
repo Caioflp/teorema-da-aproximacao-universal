@@ -1,0 +1,186 @@
+\documentclass[13pt]{beamer}
+
+\input{preamble.tex}
+\usepackage{global-macros}
+
+\begin{comment}
+    Estrutura:
+     - Slide inicial
+        -- Falar por alto a ideia do Teorema.
+     - Explicar o que é uma rede neural
+        -- Blá blá sobre inspiração nos neurônios do cérebro
+        -- Imagem clássica da feedforward network
+        % -- Link para os vídeos do 3b1b
+     - Apliações de redes neurais
+        -- Citar algumas aplicações bem sucedidas (links para wikipédia)
+        -- Reforçar a importância do TAU
+
+     - Mostrar artigo do Cybenko
+        -- Enunciar Teorema igual na introdução do relatório
+        -- Referência do Artigo
+        -- Print da demonstração
+     - Interludio: começar mais de baixo
+        -- Apresentar Weirstrass e Hilbert
+        -- Explicar por que estudar esses resultados antes
+            --- TAU muito avançado para o que eu sabia
+            --- Curso de medida ainda começando
+            --- Interessante estudar aproximadores em contextos
+                mais simples
+     - Aproximação de Weierstrass
+       -- Contexto mais simples
+       -- Enunciar Teorema
+       -- Já introduzir norma infinito e notação
+       -- Dar ideia da demonstração, usando polinômios de bernstein
+     - Ilustrar Weierstrass
+       -- Mostrar polinômios de Bernstein aproximando uma função ****
+     - Hilbert
+       -- Introduzir problema, falar brevemente sobre como ele foi
+          formulado inicialmente
+       -- Falar um pouco da história do resultado
+       -- Comentar sobre diferenças com relação aos teoremas anteriores
+           --- Aproximação vs Representação Exata
+     - Tentar dar uma ideia da demonstração do 13 de Hilbert
+     - Fim do interlúdio: Volta ao TAU
+       -- Fazer diagrama ilustrando resultados necessários para mostrar o TAU
+     - Pincelada da Prova
+       -- Fornecer principais passos da demonstração em tópicos, mostrando onde
+          cada Teorema é Utilizado
+       -- Falar sobre lema que contém boa parte da demonstração (sigmoide é
+          discriminatória)
+     - Hahn Banach
+       -- Enunciar Teorema, falar um pouco da importância dele
+       -- Falar sobre resultados necessários para prová-lo
+       -- Ilustrar de alguma forma o Teorema
+     - Enunciar o corolário que realmente vai ser utilizado na prova do TAU
+       -- Dar ideia da demonstração
+     - Representação de Riesz
+       -- Falar sobre diferentes versões do Teorema
+       --- Em Análise Funcional (Espaços de Hilbert)
+           --- Em Teorema da Medida (Espaços L_p)
+           --- No contexto do TAU
+       -- Enunciar Teorema que o Cybenko usa, falar que tava fora da minha alçada
+       -- Enunciar versão mais simples, dar ideia da demonstração
+     - Reapresentar demonstração do TAU
+       -- Falar do Lema
+     - Enunciar lema e dar ideia da demonstração
+     - Ilustrar TAU com um exemplo mais de boa, por exemplo alguma função real
+       em R² ****
+     - Problemas do TAU
+       -- Falar de bounds para o número de neurônios na camada intermediária
+       -- Problema de achar a rede que aproxima a função (SGD)
+     - Generalizações
+        -- Comentar sobre resultados relativos a aproximação de derivadas
+     - Falar de próximos passos da IC
+       -- DGM
+     - Link para Repositório do Github
+     - Agradecimentos
+       -- Yuri, CNPq
+\end{comment}
+
+%% TODO: Colocar nome do Yuri no primeiro slide
+%%       Arrumar algum lugar pra falar da bolsa do PICME
+%%       Arrumar Repositório da IC
+%%       Precisa de referenciar imagens? tipo a da rede com várias camadas
+
+\title[Teorema da Aproximação Universal]{Sobre O Teorema da Aproximação Universal}
+\author[C. Lins]{{Caio Lins}}
+%%     {\and} 
+%%     {\textit{Orientador}} 
+%%     {Yuri Saporito}}
+\institute[EMAp]{FGV - EMAp}
+\date[EMAp 2021]{Outubro 2021}
+\logo{\includegraphics[height=0.8cm]{../figuras/fgv_logo.png}}
+
+
+\begin{document}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Intro a Redes Neurais %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \begin{itemize}
+        \item Redes neurais são algoritmos que espelham o funcionamento do cérebro humano.
+            É organizada em camadas de ``neurônios''.
+    \end{itemize}
+    \begin{figure}
+        \begin{center}
+            \input{../figuras/neural-net.tex}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \begin{itemize}
+        \item Input: \( \bfx = ( x_{ 1 }, \dots, x_{ n } ) \in \R^{ n } \).
+        \item Pesos (\emph{weights}): \( \bfw_{ j } = ( w_{ 1, j }, \dots, w_{ N, j } ) \in \R^{ n }, j = 1, \dots, N \).
+        \item Viéses (\emph{biases}): \( \theta_{ j } \in \R , j = 1, \dots, N\).
+        \item Função de ativação: \( \sigma : \R \to \R \).
+    \end{itemize}
+    \begin{center}
+        \input{../figuras/neural-net.tex}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \vspace{2pt}
+    O \( j \)-ésimo neurônio da camada oculta computa a soma
+    \begin{equation*}
+        \bfw_{ j }^{ \transpose } \bfx + \theta_{ j } = w_{ 1, j }x_{ 1 } + w_{ 2,j } x_{ 2 } + \cdots + w_{ n, j } x_{ n } + \theta_{ j }
+    \end{equation*}
+    e passa o resultado pela ativação \( \sigma : \R \to \R \), que é \emph{não linear}.
+    \begin{center}
+        \input{../figuras/neural-net.tex}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \vspace{2pt}
+    Existem várias funções de ativação possíveis, mas tenham em mente a \emph{função logística}, que também será chamada de \emph{sigmoide}:
+    \begin{equation*}
+        \sigma ( x ) = \frac{ 1 }{ 1 + e^{ -x } }
+    .\end{equation*}
+    \begin{center}
+        \input{../figuras/sigmoid-graph.tex}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \vspace{2pt}
+    Neste caso, o output da rede é um escalar, dado pela soma:
+    \(
+        G ( \bfx ) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma ( \bfw_{ j }^{ \transpose } \bfx + \theta_{ j } )
+        \),
+    mas isso não é regra.
+    \begin{center}
+        \input{../figuras/neural-net.tex}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
+    \vspace{2pt}
+    A rede mostrada até o momento tem apenas uma camada oculta, mas redes neurais em geral têm várias.
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{../figuras/multi-layer-neural-network.jpeg}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Overview de Redes Neurais}{Para que servem?}
+    \vspace{2pt}
+    Diversas aplicações:
+    \begin{itemize}
+        \item Classificação de imagens, incluindo reconhecimento facial;
+        \item Predição de séries temporais;
+        \item Análise de regressão;
+        \item O algoritmo usado pela inteligência artificial \emph{AlphaGo} emprega redes neurais convolucionais (CNNs).
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% The vital question: Faz sentido tudo isso? %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

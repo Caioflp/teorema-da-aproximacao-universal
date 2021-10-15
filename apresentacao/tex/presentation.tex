@@ -1,0 +1,330 @@
+\documentclass[15pt]{beamer}
+
+\input{preamble.tex}
+
+\title[Eigenfaces]{Reconhecimento Facial utilizando Eigenfaces}
+\author[C. Lins, J. Martins]{Caio Lins \and Juliane Martins}
+\institute[EMAp]{FGV - EMAp}
+\date[EMAp 2020]{2020}
+\logo{\includegraphics[height=0.8cm]{fgv_logo.png}}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Introdução}
+
+    \begin{itemize}
+        \item<1-> Como humanos reconhecem faces?
+
+        \item<2-> Reconhecimento por Eigenfaces (PCA).
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1-> Dados utilizados: ``AT\&T Database of Faces''\cite{att}.
+        \( 40 \) indivíduos, \( 10 \) imagens de cada.
+        \item<2-> Conjunto de treino: \( 9 \) das \( 10 \) fotos de \( 39 \) indivíduos, totalizando \( 351 \) imagens \( 112 \times 92 \) em escala de cinza.
+         
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item Equivalente a \( \left\{ \Gamma_{ i } \in \R^{ 10304 } \ ; \ 1 \leq i \leq 351 \right\} \)
+    \end{itemize}
+    
+    \pause\bigskip
+
+    \[
+        \begin{bmatrix}
+            0.336 & \cdots & 0.947 \\
+            \vdots & \ddots & \vdots \\
+            0.214 & \cdots & 0.445
+        \end{bmatrix}_{ 112\times92 }
+        \longrightarrow
+        \begin{bmatrix}
+            0.336 \\
+            \vdots \\
+            0.947 \\
+            \vdots \\
+            0.214 \\
+            \vdots \\
+            0.445
+        \end{bmatrix}_{ 10304\times1 }
+    .\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1-> Cálculo da \emph{face média}: \[
+                \Psi = \frac{ 1 }{ 351 } \sum_{ i=1 }^{ 351 } \Gamma_{ i }
+            .\]
+
+        \item<2-> Centralização dos dados: \[
+                \Phi_{ i } = \Gamma_{ i } - \Psi
+            .\]
+
+    \end{itemize}
+
+    \pause
+
+    \begin{center}
+        \includegraphics[height=4cm]{average-face.jpg}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1-> Agora define-se a matriz de dados: \[
+                A =
+                \begin{bmatrix}
+                    \Phi_{ 1 } & \cdots & \Phi_{ 351 }
+                \end{bmatrix}
+            .\]
+
+        \item<2-> Componentes principais por SVD:
+            Matrizes \( U_{ 10304 \times 351 }, V_{ 351 \times 351 } \) ortogonais e \( \Sigma_{ 351 \times 351 } \) diagonal tais que \[
+                A = U \Sigma V^{ T }
+            .\]
+
+        \item<3-> Colunas de \( U \leftrightarrow \) autovetores de \( \frac{ 1 }{ n-1 } AA^{ T } \) (matriz de covariância).
+            Elas são as \emph{Eigenfaces}.
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item Eigenfaces:
+            \begin{center}
+                \begin{figure}
+                    \includegraphics[width=.3\textwidth]{eigenface1}
+                    \includegraphics[width=.3\textwidth]{eigenface2}
+                    \\[\smallskipamount]
+                    \includegraphics[width=.3\textwidth]{eigenface348}
+                    \includegraphics[width=.3\textwidth]{eigenface349}
+                    \caption{Eigenfaces com maiores valores singulares (em cima) e menores valores singulares (embaixo).}
+                \end{figure}
+            \end{center}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item Decaimento dos valores singulares:
+            \begin{figure}
+                \begin{center}
+                    \includegraphics[width=.6\textwidth]{singular-values.png}
+                    \caption{Percebe-se uma rápida queda nos valores singulares, para próximo de \( 0 \).
+                    Utilizamos, então, as \( 33 \) primeiras eigenfaces.}
+                \end{center}
+            \end{figure}
+    \end{itemize}
+
+\end{frame} 
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1-> Projeta-se os vetores \( \Phi_{ i } \) no subespaço \( E \subset \R^{ 10304 } \) gerado pelas eigenfaces \( q_{ 1 }, \dots, q_{ 33 } \) (\emph{face space}).
+
+        \item <2-> Para cada \( \Phi_{ i } \), obtém-se um vetor de coeficientes \( \Omega_{ i } \) tal que \[
+                \proj_{ E } \Phi_{ i } =
+                \begin{bmatrix}
+                    q_{ 1 } & \cdots & q_{ 33 }
+                \end{bmatrix}
+                \Omega_{ i }
+            .\]
+
+        \item<3-> Para a imagem desconhecida \( \Gamma \), obtém-se, de maneira análoga, os vetores \( \Phi \) e \( \Omega \).
+    \end{itemize}
+\end{frame}
+
+    \begin{frame}
+        \frametitle{Reconhecimento utilizando Eigenfaces}
+
+        \begin{center}
+            \begin{figure}
+                \includegraphics[width=.7\textwidth]{diagrama.png}
+                \caption{Representação da projeção de algumas imagens no face space\cite{turk}.}
+            \end{figure}
+        \end{center}
+    
+    \end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1-> Caso o erro de projeção \( \norm{ \Phi - \proj_{ E } \Phi } \) seja maior que um limite \( \theta_{ \delta } \), a imagem não é uma face.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces: Algoritmo 1}
+
+    \begin{itemize}
+        \item<1-> Os vetores \( \Omega_{ i } \) são agrupados por indivíduo (\( 9 \) vetores para cada um).
+        \item<2-> Em cada grupo, é calculada a média dos valores \( \norm{ \Omega - \Omega_{ i } } \).
+        \item<3-> A foto tem mais chances de pertencer ao indivíduo que tiver menor média associada.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces: Algoritmo \( 2 \)}
+
+    \begin{itemize}
+        \item<1-> Calcula-se o erro \( \norm{ \Omega - \Omega_{ i } } \) para todas as imagens do conjunto de treino.
+        \item<2-> Identifica-se qual imagem apresenta o menor erro.
+        \item<3-> A foto desconhecida tem mais chances de pertencer ao indivíduo presente nessa imagem.
+        % \item<1-> Imagem desconhecida tem mais chances de pertencer ao indivíduo presente na foto que minimiza a quantia \( \norm{ \Omega - \Omega_{ i } } \), onde \( i \) varia de \( 1 \) a \( 351 \).
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reconhecimento utilizando Eigenfaces}
+
+    \begin{itemize}
+        \item<1- > Nos dois Algoritmos, se o mínimo obtido é maior que um limite \( \theta_{ \varepsilon } \), a imagem pertence a uma pessoa desconhecida.
+            Esse limite é diferente para cada algoritmo.
+        \item<2-> Escolha de \( \theta_{ \delta } \) e \( \theta_{ \varepsilon } \).
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resultados obtidos}
+
+    A técnica foi testada com três tipos de imagem:
+    \begin{itemize}
+        \item Tipo \( A \) (\( 351 \) imagens): Imagem estava no conjunto de treino.
+        \item Tipo \( B \) (\( 39 \) imagens): Imagem não estava no conjunto de treino, mas a pessoa nela sim.
+        \item Tipo \( C \) (\( 10 \) imagens): Pessoa da imagem não estava no conjunto de treino.
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resultados obtidos: Algoritmo \( 1 \)}
+    \begin{table}
+        \begin{tabular}{ |c|c|c| }
+            \hline
+            Tipo Imagem & Não é face & Face desconhecida \\
+            \hline
+            \( A \) & \( 0.00 \) \% & \( 25.36 \) \% \\
+            \hline
+            \( B \) & \( 0.00 \) \% & \( 38.46 \) \% \\
+            \hline
+            C & \( 0.00 \) \% & \( 100.00 \) \% \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Tipo Imagem & Reconheceu certo & Reconheceu errado \\
+            \hline
+            A & \( 73.79 \) \% & \( 0.85 \) \% \\
+            \hline
+            B & \( 61.54 \) \% & \( 0.00 \) \% \\
+            \hline
+            C & - & \( 0.00 \) \% \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resultados obtidos: Algoritmo \( 2 \)}
+    \begin{table}
+        \begin{tabular}{ |c|c|c| }
+            \hline
+            Tipo Imagem & Não é face & Face desconhecida \\
+            \hline
+            \( A \) & \( 0.00 \) \% & \( 0.00 \) \% \\
+            \hline
+            \( B \) & \( 0.00 \) \% & \( 17.95 \) \% \\
+            \hline
+            C & \( 0.00 \) \% & \( 100.00 \) \% \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Tipo Imagem & Reconheceu certo & Reconheceu errado \\
+            \hline
+            A & \( 100.00 \) \% & \( 0.00 \) \% \\
+            \hline
+            B & \( 82.05 \) \% & \( 0.00 \) \% \\
+            \hline
+            C & - & \( 0.00 \) \% \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discussão dos resultados}
+
+    \begin{itemize}
+        \item<1-> Expectativa: Algoritmo \( 1 \) melhor para fotos do tipo \( B \) e Algoritmo \( 2 \), para fotos do tipo \( A \).
+        \item<2-> Superioridade do Algoritmo \( 2 \).
+        \item<3-> Principais fatores que afetam capacidade de reconhecimento:
+            \begin{itemize}
+                \item Tamanho do rosto na foto
+                \item Posição do rosto na imagem
+                \item Inclinação do rosto
+                \item Iluminação
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discussão dos resultados}
+
+    \begin{figure}
+        \includegraphics[width=.17\textwidth]{s1_1}\hfill
+        \includegraphics[width=.17\textwidth]{s1_2}\hfill
+        \includegraphics[width=.17\textwidth]{s1_6}\hfill
+        \includegraphics[width=.17\textwidth]{s1_9}
+        \caption{Quatro imagens do indivíduo \( 1 \).}
+        \label{fig: ind1}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Referências}
+    \bibliographystyle{plain}
+    \bibliography{eigenfaces}
+\end{frame}
+
+\end{document}

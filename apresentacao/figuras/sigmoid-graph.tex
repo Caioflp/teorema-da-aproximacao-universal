@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=1]
+    \begin{axis}[
+        axis x line=middle,
+        axis y line=middle,
+        yscale=.6,
+        ylabel=\( \sigma ( x ) \),
+        ytick={1},
+        yticklabels={1},
+        y label style={anchor=west},
+        xlabel=\( x \),
+        samples=200
+    ]
+    \addplot[domain=-10:10, blue, thick] {1/(1 + e^(-x))};
+    \end{axis}
+\end{tikzpicture}
