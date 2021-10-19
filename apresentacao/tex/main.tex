@@ -14,7 +14,6 @@
      - Apliações de redes neurais
         -- Citar algumas aplicações bem sucedidas (links para wikipédia)
         -- Reforçar a importância do TAU
-
      - Mostrar artigo do Cybenko
         -- Enunciar Teorema igual na introdução do relatório
         -- Referência do Artigo
@@ -42,11 +41,11 @@
      - Tentar dar uma ideia da demonstração do 13 de Hilbert
      - Fim do interlúdio: Volta ao TAU
        -- Fazer diagrama ilustrando resultados necessários para mostrar o TAU
-     - Pincelada da Prova
-       -- Fornecer principais passos da demonstração em tópicos, mostrando onde
-          cada Teorema é Utilizado
-       -- Falar sobre lema que contém boa parte da demonstração (sigmoide é
-          discriminatória)
+     % - Pincelada da Prova
+     %   -- Fornecer principais passos da demonstração em tópicos, mostrando onde
+     %      cada Teorema é Utilizado
+     %   -- Falar sobre lema que contém boa parte da demonstração (sigmoide é
+     %      discriminatória)
      - Hahn Banach
        -- Enunciar Teorema, falar um pouco da importância dele
        -- Falar sobre resultados necessários para prová-lo
@@ -70,6 +69,7 @@
        -- Problema de achar a rede que aproxima a função (SGD)
      - Generalizações
         -- Comentar sobre resultados relativos a aproximação de derivadas
+
      - Falar de próximos passos da IC
        -- DGM
      - Link para Repositório do Github
@@ -81,6 +81,7 @@
 %%       Arrumar algum lugar pra falar da bolsa do PICME
 %%       Arrumar Repositório da IC
 %%       Precisa de referenciar imagens? tipo a da rede com várias camadas
+%%       Colocar definições de coisas sobre Analise Funcional e Espaços Métricos?
 
 \title[Teorema da Aproximação Universal]{Sobre O Teorema da Aproximação Universal}
 \author[C. Lins]{{Caio Lins}}
@@ -138,7 +139,7 @@
 
 \begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
     \vspace{2pt}
-    Existem várias funções de ativação possíveis, mas tenham em mente a \emph{função logística}, que também será chamada de \emph{sigmoide}:
+    Existem várias funções de ativação possíveis, mas tenham em mente a \emph{função logística}:
     \begin{equation*}
         \sigma ( x ) = \frac{ 1 }{ 1 + e^{ -x } }
     .\end{equation*}
@@ -181,6 +182,514 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% The vital question: Faz sentido tudo isso? %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Redes Neurais Funcionam?}
+    \begin{itemize}
+        \item<1-> Podemos nos questionar se Redes Neurais são capazes de realizar essas tarefas arbitrariamente bem (no fundo, tudo se resume a aproximar funções).
+        \item<2-> A resposta é sim.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Redes Neurais Funcionam?}
+    \begin{TAU}
+        Seja \( \sigma : \R \to \R \) uma função contínua e discriminatória qualquer.
+        Então, dada uma função \( f : [0, 1]^{ n } \to \R \) contínua, e um \( \varepsilon > 0 \), existe uma função \( G : [0, 1]^{ n } \to \R \), da seguinte forma:
+        \begin{equation*}
+            G ( \bfx ) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma ( \bfw_{ j }^{ \transpose } \bfx + \theta_{ j } )
+        ,\end{equation*}
+        onde \( \alpha_{ j }, \theta_{ j } \in \R \) e \( \bfw_{ j } \in \R^{ n } \), \( j = 1, \dots, N \), tal que
+        \begin{equation*}
+            \abs{ G ( \bfx ) - f ( \bfx ) } < \varepsilon
+        \end{equation*}
+        para todo \( \bfx \in \R^{ n } \).
+    \end{TAU}
+\end{frame}
+
+\begin{frame}{Redes Neurais Funcionam?}
+    \begin{itemize}
+        \item<1-> Mais à frente especificaremos o que significa ``discriminatória''.
+        \item<2-> Ou seja, redes neurais com uma camada oculta são aproximadores universais de funções reais contínuas definidas em \( [0, 1]^{ n } = \vcentcolon \I^{ n } \).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Redes Neurais Funcionam?}
+    \begin{itemize}
+        \item<1-> Artigo onde esse resultado foi provado: \cite{cybenko89}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{../figuras/cybenko.png}
+    \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Interlúdio: Weierstrass e Hilbert %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Interlúdio}{Outros resultados relacionados}
+    \begin{itemize}
+        \item<1-> Demonstração utiliza resultados de Análise Funcional e Teoria da Medida.
+        \item<2-> Estudar aproximações em outros contextos
+        \item<3-> Teorema da Aproximação de Weierstrass:
+            \begin{itemize}
+                \item<4-> \emph{Aproximar} funções contínuas de um intervalo na reta por meio de \emph{polinômios}.
+            \end{itemize}
+        \item<5-> Um desdobramento do \( 13^{ \circ } \) problema de Hilbert:
+            \begin{itemize}
+                \item<6-> Representar \emph{de maneira exata} funções contínuas de \( \I^{ n } \) em \( \R \) por meio de composições e adições de \emph{funções contínuas de \( \R \) em \( \R \)}.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    Um pouco de notação:
+    \begin{itemize}
+        \item Dado \( X \subseteq \R^{ n } \), definimos
+            \begin{equation*}
+                C ( X ) = \left\{ \varphi : X \to \R \mid \varphi \text{ é contínua } \right\}
+            .\end{equation*}
+        \item \( C ( X ) \) é um espaço vetorial no qual introduzimos a seguinte norma:
+            \begin{equation*}
+                \norm{ \varphi }_{ \infty } \defeq \sup \left\{ \abs{ \varphi ( x ) } : x \in X \right\}
+            .\end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    \begin{teo*}[Aproximação de Weierstrass]
+        Dada \( f \in C ( [a, b] ) \), para todo \( \varepsilon > 0 \) existe um polinômio \( p : [a, b] \to \R \) tal que
+        \begin{equation*}
+            \norm{ f - p }_{ \infty } < \varepsilon
+        .\end{equation*}
+    \end{teo*}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    Ideia da demonstração:
+    \begin{itemize}
+        \item<1-> Reduzir ao caso em que \( a = 0 \) e \( b = 1 \).
+        \item<2-> Aproximar \( f \) pelos seus \emph{Polinômios de Bernstein}:
+            \begin{equation*}
+                B_{ n } ( x, f ) \defeq \sum_{ k=0 }^{ n } f
+                \left( \frac{ k }{ n } \right)
+                \binom{n}{k}
+                x^{ k }
+                ( 1 - x )^{ n - k }
+            .\end{equation*}
+        \item<3-> De fato, temos
+            \begin{equation*}
+                \lim_{ n \to \infty } \norm{ B_{ n } ( \cdot, f ) - f }_{ \infty } = 0
+            .\end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    \vspace{3pt}
+    Ilustrando o Teorema:
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_seno.png}
+        \( f ( x ) = \sen \left( \frac{ 1 }{ 3 ( x + 0.05 ) } \right) \)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    \vspace{3pt}
+    Ilustrando o Teorema:
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cauchy.png}
+        \( f ( x ) = \frac{ 1 }{ 100 ( x - 0.5 )^2 + 1 } \)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
+    \vspace{3pt}
+    Um exemplo com \( f \) descontínua:
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cobrinha.png}
+        \( f ( x ) = \abs{ \floor{3\sen ( x )} } \)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
+    \begin{itemize}
+        \item Com a linguagem da época, Hilbert conjecturou que existem funções contínuas \( f : \I^{ 3 } \to \R \) que não podem ser representadas como composições e somas de funções contínuas de \( \R \to \R \).
+        \item Exemplo em \( \I^{ 2 } \): \( f ( x, y ) = xy \). Observe que
+            \begin{align*}
+                f ( x, y) &= xy = ( x+1 ) ( y+1 ) - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right) \\
+                          &= e^{ [ \log ( x + 1 ) + \log ( y+1 ) ] } - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right)
+            .\end{align*}
+            (Somamos \( 1 \) para evitar \( \log 0 \)).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
+    \begin{itemize}
+        \item<1-> Essa conjectura era \textbf{falsa}.
+            \begin{itemize}
+                \item<2-> Provado por Vladimir Igorevich Arnol'd em 1957, baseado no trabalho de seu orientador, Andrej Nikolajewitseh Kolmogorov.
+            \end{itemize}
+        \item<3-> Teorema da Superposição de Kolmogorov.
+        \item<4-> Foi generalizado posteriormente.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
+    \begin{teo*}[Kolmogorov, Arnol'd, Kahane, Lorentz e Sprechner]
+        Para todo \( n \in \N \) com \( n \geq 2 \), existem números reais \( \lambda_{ 1 }, \lambda_{ 2 }, \dots, \lambda_{ n } \) e funções contínuas \( \varphi_{ k } : \I \to \R \), para \( k = 1, \dots, 2n+1 \), com a propriedade de que para toda função contínua \( f : \I^{ n } \to \R \) existe uma função contínua \( g : \R \to \R \) tal que, para todo \( ( x_{ 1 }, \dots, x_{ n } ) \in \I^{ n } \),
+        \begin{equation*}
+            f ( x_{ 1 }, \dots, x_{ n } ) = \sum_{ k=1 }^{ 2n+1 } g ( \lambda_{ 1 } \varphi_{ k } ( x_{ 1 } ) + \cdots + \lambda_{ n } \varphi_{ k } ( x_{ n } ) )
+        .\end{equation*}
+    \end{teo*}
+\end{frame}
+
+\begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
+    \vspace{2pt}
+    Diferenças com o Teorema da Aproximação Universal:
+    \begin{itemize}
+        \item<1-> A representação é \emph{exata}, não aproximada.
+        \item<2-> As funções \( g \) permitem utilizar uma gama de não-linearidades muito maior do que apenas a função de ativação \( \sigma \).
+    \end{itemize}
+\end{frame}
+
+%% TODO: Decidir se vale a pena colocar ideia da demonstração
+%% \begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
+%%     \vspace{2pt}
+%%     Ideia da demonstração (para o caso \( n = 2 \):
+%%     \begin{itemize}
+%%         \item 
+%%     \end{itemize}
+%% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% Volta ao TAU %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Voltando}
+    Voltando ao Teorema da Aproximação Universal, sua demonstração pode ser vista como uma simples aplicação dos seguintes Teoremas:
+    \begin{itemize}
+        \item<2-> Teorema de Hahn-Banach
+        \item<3-> Teorema da Representação de Riesz-Markov
+    \end{itemize}
+    \visible<4->{Há, também, o Lema que relaciona funções discriminatórias com as funções de ativação de redes neurais.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% Hahn-Banach %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{O Teorema de Hahn-Banach}
+    \begin{defn*}
+        Dado um espaço vetorial real \( V \), uma função \( p : V \to \R \) é chamada de \emph{funcional sublinear} se para todos \( \bfx, \bfy \in V \) e \( \lambda \in \R \) temos
+        \begin{align*}
+            p ( \bfx + \bfy ) &\leq p ( \bfx ) + p ( \bfy ) \\
+            p ( \lambda \bfx ) &= \lambda p ( \bfx )
+        ,\end{align*}
+        e, além disso, \( p ( \mathbf{0} ) = 0 \).
+    \end{defn*}
+\end{frame}
+
+\begin{frame}{O Teorema de Hahn-Banach}
+    \begin{teo*}
+        Sejam \( V \) um espaço vetorial real, M um subespaço de \( V \) e \( p \) um funcional sublinear em \( V \).
+        Se \( f \) é um funcional linear em \( M \) dominado por \( p \), ou seja, tal que \( f ( \bfv ) \leq p ( \bfv ) \) para todo \( \bfv \in M \), então existe um funcional linear \( F \) em \( V \), que coincide com \( f \) em \( M \) e que também é dominado por \( p \). O funcional \( F \) é a \emph{extensão de Hahn-Banach} de \( f \).
+    \end{teo*}
+\end{frame}
+
+\begin{frame}{O Teorema de Hahn-banach}
+    %% TODO: Arrumar um jeito de ilustrar o teorema
+\end{frame}
+
+
+\begin{frame}{O Teorema de Hahn-banach}
+    Sua demonstração é elementar, constituindo de basicamente uma aplicação do Lema de Zorn:
+    \begin{axiom}[Lema de Zorn]
+        Todo conjunto parcialmente ordenado, tal que todos seus subconjuntos totalmente ordenados possuem cota superior, possui elemento maximal.
+    \end{axiom}
+\end{frame}
+
+
+\begin{frame}{O Teorema de Hahn-Banach}
+    Na verdade, o que realmente utilizaremos é um corolário desse Teorema:
+    \begin{defn*}
+        Dado um espaço vetorial \( V \), definimos
+        \begin{equation*}
+            V^{ * } = \left\{ f : V \to \R \mid f \text{ é linear limitada} \right\}
+        .\end{equation*}
+    \end{defn*}
+    \begin{cor*}
+        Um subespaço \( M \) de um espaço vetorial \( V \) é denso se, e somente se, o único elemento de \( V^{ * } \) que se anula em \( M \) é o funcional nulo.
+    \end{cor*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Representação de Riesz %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{O Teorema da Representação de Riesz}
+    \begin{itemize}
+        \item Um nome para vários teoremas, mas todos se preocupam com representar funcionais lineares utilizando alguma estrutura do espaço onde eles estão definidos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{O Teorema da Representação de Riesz}{Em Análise Funcional}
+    Geralmente, no contexto de Análise Funcional (mais especificamente, na teoria de espaços de Hilbert), esse teorema trata da associação natural entre um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \):
+    \begin{teo*}[Representação de Riesz - Análise Funcional]
+        Dado um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \), a função
+        \begin{align*}
+            \gamma : &\bH \to \bH^{ * } \\
+                     &\bfv \mapsto \gamma ( \bfv ) = f_{ \bfv }
+        ,\end{align*}
+        tal que \( f_{ \bfv } = \dotprod{\bfv, \cdot} \), é uma isometria antilinear e sobrejetiva em \( \bH^{ * } \).
+    \end{teo*}
+\end{frame}
+
+\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+    Já no contexto de Teoria da Medida, há mais de uma possibilidade.
+    Em geral, ele se refere à dualidade entre os espaços \( L_{ p } \) e \( L_{ q } \):
+    \begin{teo*}[Representação de Riesz - Teoria da Medida]
+        Se \( ( X, \bfX, \mu ) \) é um espaço de medida arbitrário e \( G \) é um funcional linear limitado em \( L_{ p } ( X, \bfX, \mu ) \), \( 1 < p < \infty \), então existe uma \( g \) em \( L_{ q } ( X, \bfX, \mu ), \) onde \( 1/p + 1/q = 1 \), tal que
+        \begin{equation*}
+            G ( f ) = \int f g \ \mathrm{d} \mu
+        \end{equation*}
+        para toda \( f \in L_{ p } \).
+    \end{teo*}
+    Se \( \mu \) é \( \sigma \)-finita, o resultado vale para \( L_{ 1 } \), cujo dual é \( L_{ \infty } \).
+\end{frame}
+
+\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+    Entretanto, também pode ser referir à representação de funcionais lineares por meio de medidas.
+    Nesse sentido, também é chamado de Teorema de Riesz-Markov.
+
+    A versão exata que usaremos posteriormente é esta:
+\end{frame}
+
+\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+    \begin{teo*}[Representação de Riesz-Markov]
+        Seja \( X \) um espaço compacto Hausdorff e \( C ( X ) \) o espaço das funções reais contínuas em \( X \).
+        Então, a cada funcional linear limitado \( F : C ( X ) \to \R \) corresponde uma única medida de Baire, finita, com sinal, \( \nu \) em \( X \) tal que
+        \begin{equation*}
+            F ( f ) = \int f \ \mathrm{d} \nu
+        \end{equation*}
+        para cada \( f \) em \( C ( X ) \).
+    \end{teo*}
+    Na prática, como \( \I^{ n } \) é um espaço métrico compacto, a medida \( \nu \) será uma medida de Borel regular.
+\end{frame}
+
+\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+    Esta é uma versão mais simples desse Teorema, cuja demonstração foi estudada em maior detalhe:
+    \begin{teo*}[Representão de Riesz]
+        Seja \( J = [a, b] \).
+        Se \( G \) é um funcional linear limitado no espaço \( C ( J ) \) das funções reais contínuas definidas em \( J \), então existe uma medida \( \gamma \), definida nos subconjuntos de Borel de \( \R \), tal que
+        \begin{equation*}
+            G ( f ) = \int_{ J } f \ \mathrm{d} \gamma
+        \end{equation*}
+        para toda \( f \in C ( J ) \).
+    \end{teo*}
+\end{frame}
+
+%% TODO: Dar alguma ideia da demonstração?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Teorema da Aproximação Universal %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{O Teorema da Aproximação Universal}{Funções discriminatórias}
+    Tendo os Teoremas de Hahn-Banach e de Riesz-Markov em mãos, vamos provar o Teorema da Aproximação Universal.
+    Mas, antes, devemos dizer o que significa \( \sigma \) ser discriminatória:
+    \begin{defn*}
+        Seja \( M ( \I^{ n } ) \) o espaço das medidas de Borel finitas, com sinal e regulares em \( \I^{ n } \).
+        Dizemos que \( \sigma \) é \emph{discriminatória} se a única medida \( \mu \in M ( \I^{ n } ) \) que satisfaz
+        \begin{equation*}
+            \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx + \theta ) \ \mathrm{d} \mu (\bfx) = 0
+        \end{equation*}
+        para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \) é a medida nula.
+    \end{defn*}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Enunciado}
+    Relembramos o enunciado do Teorema:
+    \begin{TAU}
+        Seja \( \sigma \) uma função contínua discriminatória qualquer.
+        Então as somas finitas da forma
+        \begin{equation*}
+            G ( \bfx ) = \sum_{ j=1 }^{ N } \alpha_{ j } \sigma ( \bfw_{ j }^{ \transpose } \bfx + \theta_{ j } )
+        .\end{equation*}
+        são densas em \( C ( \I^{ n } ) \).
+        Em outras palavras, dada qualquer \( f \in C ( \I^{ n } ) \) e \( \varepsilon > 0 \), existe uma soma, \( G ( \bfx ) \), com a forma acima, tal que
+        \begin{equation*}
+            \norm{ G - f }_{ \infty } < \varepsilon
+        .\end{equation*}
+    \end{TAU}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+    \begin{itemize}
+        \item<1-> Seja \( S \subseteq C ( \I^{ n } ) \) o subespaço formado pelas somas \( G \) do enunciado do Teorema.
+        \item<2-> Suponha que o Teorema seja \textbf{falso}, ou, seja, que \( S \) não é denso em \( C ( \I^{ n } ) \).
+        \item<3-> Por Hahn-Banach (corolário) existe \( L : C ( \I^{ n } ) \to \R \) linear e limitado tal que \( L \) \textbf{é não nulo}, porém \( L ( S ) = 0 \).
+        \item<4-> Por Riesz-Markov, existe \( \mu \in M ( \I^{ n } ) \) tal que
+            \begin{equation*}
+                L ( f ) = \int_{ \I^{ n } } f ( \bfx ) \ \mathrm{d}\mu ( \bfx )
+            \end{equation*}
+            para toda \( f \in C ( \I^{ n } ) \).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+    \begin{itemize}
+        \item<1-> Entretanto, perceba que para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \), a função \( G_{ \bfy, \theta } : \I^{ n } \to \R \) dada por
+            \begin{equation*}
+                G_{ \bfy, \theta } ( \bfx ) = \sigma ( \bfy^{ \transpose } \bfx + \theta )
+            \end{equation*}
+            pertence a \( S \).
+        \item<2-> Logo, para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \) temos
+            \begin{align*}
+                0 = F ( G_{ \bfy, \theta } ) &= \int_{ \I^{ n } } G_{ \bfy, \theta } ( \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
+                                             &= \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx + \theta ) \ \mathrm{d} \mu ( \bfx )
+            .\end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+    \begin{itemize}
+        \item<1-> Porém, supomos que \( \sigma \) é discriminatória, ou seja, isso implica \( \mu = 0 \).
+        \item<2-> Com isso, \( F \) é o funcional nulo, e obtemos uma contradição.
+        \item<3-> Portanto, \( S \) é denso em \( C (  \I^{ n } ) \), e acabamos. \hfill \qed
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Lema}
+    Ainda não provamos que Redes Neurais com uma camada oculta são aproximadores universais, pois resta mostrar que funções de ativação, como a função logística que apresentamos anteriormente, são discriminatórias.
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Lema}
+    \begin{defn*}
+        Dizemos que \( \sigma : \R \to \R \) é uma \emph{sigmoide} se
+        \begin{equation*}
+            \sigma ( x ) \to
+            \begin{cases}
+                1, \text{ quando } x \to + \infty \\
+                0, \text{ quando } x \to - \infty \\
+            \end{cases}
+        .\end{equation*}
+    \end{defn*}
+
+    Observe que a função logística \( \sigma ( x ) = 1/( 1 + e^{ -x } ) \) é uma sigmoide contínua.
+
+    \begin{lem*}
+        Todas sigmoides limitadas e mensuráveis são discriminatórias.
+    \end{lem*}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Lema}
+    Ideia da demonstração:
+    \begin{itemize}
+        \item<1-> Sendo \( \sigma \) uma sigmoide limitada mensurável, tomar \( \mu \in M ( \I^{ n } ) \) tal que
+            \begin{equation*}
+                \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx ) + \theta \ \mathrm{d} \mu ( \bfx ) = 0
+            \end{equation*}
+            para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \).
+            Queremos mostrar que \( \mu = 0 \).
+        \item<2-> Utilizar o Teorema da Convergência Dominada para mostrar que
+            \begin{equation*}
+                \mu ( \Pi_{ \bfy, \theta } ) + \mu ( H_{ \bfy, \theta } ) = 0
+            \end{equation*}
+            para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \), onde
+            \begin{equation*}
+                \begin{cases}
+                    H_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta > 0 \right\} \\
+                    \Pi_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta = 0 \right\} \\
+                \end{cases}
+            .\end{equation*}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{O Teorema da Aproximação Universal}{Lema}
+    \begin{itemize}
+        \item<1-> Com isso, mostrar que o funcional linear \( F_{ \bfy } : L_{ \infty } ( \R ) \to \R \) dado por
+            \begin{equation*}
+                F_{ \bfy } ( h ) \defeq \int_{ \I^{ n } } h ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+            \end{equation*}
+            é nulo.
+        \item<2-> Notar que como \( \sen \) e \( \cos \) pertencem a \( L_{ \infty } ( \R ) \), temos
+            \begin{align*}
+                0 &= F_{ \bfy } ( \sen + i \cos ) \\
+                  &= \int_{ \I^{ n } } \sen ( \bfy^{ \transpose } \bfx ) + i \cos ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
+                  &= \int_{ \I^{ n } } \exp ( i \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+            .\end{align*}
+            Para todo \( \bfy \in \R^{ n } \).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{O Teorema da Aproximação Universal}{Lema}
+    \begin{itemize}
+        \item Com isso, a transformada de Fourier de \( \mu \) é nula e, assim, \( \mu \) deve ser nula também
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Problemas do TAU %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Limitações do Teorema}
+    \begin{itemize}
+        \item<1-> Não é especificado quantos neurônios são necessários para aproximar uma dada função
+        \item<2-> Nem um \emph{algoritmo} para encontrar a aproximação
+            \begin{itemize}
+                \item<3-> Atualmente utiliza-se variações de \emph{Stochastic Gradient Descent}.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Generalizações %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Possíveis Generalizações}
+    \begin{itemize}
+        \item<1-> Em anos posteriores, foram publicados reultados que generalizam o Teorema apresentado.
+        \item<2-> Em particular, há resultados que garantem a proximidade das derivadas da rede com as da função objetivo.
+        \item<3-> Também há estudos sobre outras funções de ativação, em particular, a ReLU:
+            \begin{equation*}
+                \operatorname{ReLU} ( x ) = \max \left\{ x, 0 \right\}
+            ,\end{equation*}
+            que também dá origem a uma família de redes com a propriedade de serem aproximadores universais.
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Próximos passos %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Próximos passos}
+    Estudo de Redes Neurais como ferramentas para obter soluções de Equações Diferenciais Parciais.
+    \begin{itemize}
+        \item<2-> DGM: Deep Galerkin Method.
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Agradecimentos %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Agradecimentos}
+    \begin{itemize}
+        \item<1-> Orientador: Yuri Saporito
+        \item<2-> CNPq: bolsa PICME
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Repositório}
+    \href{https://github.com/Caioflp/relatorio-ic}{Link para o reposiório no GitHub} com o relatório e esta apresentação.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% Referências %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Referências}
+    \printbibliography[heading=bibintoc, title={Referências}]
+\end{frame}
 
 \end{document}
 

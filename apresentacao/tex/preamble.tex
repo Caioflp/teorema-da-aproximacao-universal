@@ -1,6 +1,13 @@
 \usefonttheme{serif}
 \setbeamertemplate{footline}[frame number]
 
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    sorting=ynt
+]{biblatex}
+\addbibresource{../bib/bibliografia.bib}
+
 \makeatletter
 \setbeamertemplate{footline}
 {
@@ -20,8 +27,8 @@
     }
     \makeatother
 
-% \usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{amsmath, mathtools, mathrsfs, amssymb}
 \usepackage{verbatim}
@@ -31,8 +38,18 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usetikzlibrary{positioning, matrix}
-\DeclareMathOperator{\proj}{proj \ }
+\usepackage{bm}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
 
+\DeclareMathOperator{\proj}{proj \ }
 \renewcommand{\arraystretch}{1.4}
 \newcommand{\transpose}{\mathsf{T}}
 
@@ -42,8 +59,10 @@
 \newtheorem{teo}{Teorema}[section]
 \newtheorem*{teo*}{Teorema}
 \newtheorem{lem}{Lema}[section]
+\newtheorem*{lem*}{Lema}
 \newtheorem{prop}{Proposição}[section]
 \newtheorem{cor}[teo]{Corolário}
+\newtheorem*{cor*}{Corolário}
 \newtheorem*{axiom}{Axioma}
 
 \newtheorem*{TAU}{Teorema da Aproximação Universal}
@@ -51,6 +70,7 @@
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definição}[section]
+\newtheorem*{defn*}{Definição}
 \newtheorem{conj}{Conjectura}[section]
 \newtheorem{exmp}{Exemplo}[section]
 \newtheorem{rem}{Observação}[section]
@@ -66,9 +86,14 @@
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \renewcommand{\Re}{\text{Re}}
 
-\newcommand{\bfx}{\mathbf{x}}
-\newcommand{\bfw}{\mathbf{w}}
+\newcommand{\bfx}{\bm{x}}
+\newcommand{\bfX}{\bm{X}}
+\newcommand{\bfy}{\bm{y}}
+\newcommand{\bfw}{\bm{w}}
+\newcommand{\bfv}{\bm{v}}
 
+
+\newcommand{\bH}{\mathbb{H}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\I}{\mathbb{I}}
 
