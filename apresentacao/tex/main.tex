@@ -78,13 +78,11 @@
 \end{comment}
 
 %% TODO: Colocar nome do Yuri no primeiro slide
-%%       Arrumar algum lugar pra falar da bolsa do PICME
 %%       Arrumar Repositório da IC
-%%       Precisa de referenciar imagens? tipo a da rede com várias camadas
-%%       Colocar definições de coisas sobre Analise Funcional e Espaços Métricos?
 
-\title[Teorema da Aproximação Universal]{Sobre O Teorema da Aproximação Universal}
-\author[C. Lins]{{Caio Lins}}
+\title[Teorema da Aproximação Universal]{Sobre o Teorema da Aproximação Universal}
+% \author[C. Lins]{{Caio Lins }}
+\author[C. Lins]{Caio Lins \texorpdfstring{\\}{}[1ex]  {\small Orientador: Yuri Saporito}}
 %%     {\and} 
 %%     {\textit{Orientador}} 
 %%     {Yuri Saporito}}
@@ -103,7 +101,7 @@
 
 \begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
     \begin{itemize}
-        \item Redes neurais são algoritmos que espelham o funcionamento do cérebro humano.
+        \item Redes neurais são funções que espelham o funcionamento do cérebro humano.
             É organizada em camadas de ``neurônios''.
     \end{itemize}
     \begin{figure}
@@ -172,10 +170,11 @@
     \vspace{2pt}
     Diversas aplicações:
     \begin{itemize}
-        \item Classificação de imagens, incluindo reconhecimento facial;
-        \item Predição de séries temporais;
-        \item Análise de regressão;
-        \item O algoritmo usado pela inteligência artificial \emph{AlphaGo} emprega redes neurais convolucionais (CNNs).
+        \item<1-> Classificação de imagens, incluindo reconhecimento facial;
+        \item<2-> Predição de séries temporais;
+        \item<3-> Análise de regressão;
+        \item<4-> O algoritmo usado pela inteligência artificial \emph{AlphaGo} emprega redes neurais convolucionais (CNNs).
+        \item<5-> Deep Galerkin Method (DGM): Algoritmo de Deep Learning para resolver equações diferenciais parciais.
     \end{itemize}
 \end{frame}
 
@@ -201,7 +200,7 @@
         \begin{equation*}
             \abs{ G ( \bfx ) - f ( \bfx ) } < \varepsilon
         \end{equation*}
-        para todo \( \bfx \in \R^{ n } \).
+        para todo \( \bfx \in [0, 1]^{ n } \).
     \end{TAU}
 \end{frame}
 
@@ -264,9 +263,9 @@
 \end{frame}
 
 \begin{frame}{Interlúdio}{Teorema da Aproximação de Weierstrass}
-    Ideia da demonstração:
+    Ideia da demonstração \cite{weierstrass}:
     \begin{itemize}
-        \item<1-> Reduzir ao caso em que \( a = 0 \) e \( b = 1 \).
+        \item<1-> Reduzir ao caso em que \( [a, b] = [0, 1] \).
         \item<2-> Aproximar \( f \) pelos seus \emph{Polinômios de Bernstein}:
             \begin{equation*}
                 B_{ n } ( x, f ) \defeq \sum_{ k=0 }^{ n } f
@@ -311,7 +310,7 @@
 
 \begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
     \begin{itemize}
-        \item Com a linguagem da época, Hilbert conjecturou que existem funções contínuas \( f : \I^{ 3 } \to \R \) que não podem ser representadas como composições e somas de funções contínuas de \( \R \to \R \).
+        \item Com a linguagem da época, Hilbert conjecturou que existem funções contínuas \( f : \I^{ 3 } \to \R \) que não podem ser representadas como composições e somas de funções contínuas de \( \R \to \R \) \cite{hilbert}.
         \item Exemplo em \( \I^{ 2 } \): \( f ( x, y ) = xy \). Observe que
             \begin{align*}
                 f ( x, y) &= xy = ( x+1 ) ( y+1 ) - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right) \\
@@ -366,10 +365,10 @@
 \begin{frame}{Voltando}
     Voltando ao Teorema da Aproximação Universal, sua demonstração pode ser vista como uma simples aplicação dos seguintes Teoremas:
     \begin{itemize}
-        \item<2-> Teorema de Hahn-Banach
-        \item<3-> Teorema da Representação de Riesz-Markov
+        \item<2-> Teorema de Hahn-Banach \cite{func-anal}.
+        \item<3-> Teorema da Representação de Riesz-Markov \cite{royden}.
     \end{itemize}
-    \visible<4->{Há, também, o Lema que relaciona funções discriminatórias com as funções de ativação de redes neurais.}
+    \visible<4->{Há, também, o lema que relaciona funções discriminatórias com as funções de ativação de redes neurais.}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,75 +556,75 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{O Teorema da Aproximação Universal}{Lema}
-    Ainda não provamos que Redes Neurais com uma camada oculta são aproximadores universais, pois resta mostrar que funções de ativação, como a função logística que apresentamos anteriormente, são discriminatórias.
-\end{frame}
-
-\begin{frame}{O Teorema da Aproximação Universal}{Lema}
-    \begin{defn*}
-        Dizemos que \( \sigma : \R \to \R \) é uma \emph{sigmoide} se
-        \begin{equation*}
-            \sigma ( x ) \to
-            \begin{cases}
-                1, \text{ quando } x \to + \infty \\
-                0, \text{ quando } x \to - \infty \\
-            \end{cases}
-        .\end{equation*}
-    \end{defn*}
-
-    Observe que a função logística \( \sigma ( x ) = 1/( 1 + e^{ -x } ) \) é uma sigmoide contínua.
-
-    \begin{lem*}
-        Todas sigmoides limitadas e mensuráveis são discriminatórias.
-    \end{lem*}
-\end{frame}
-
-\begin{frame}{O Teorema da Aproximação Universal}{Lema}
-    Ideia da demonstração:
-    \begin{itemize}
-        \item<1-> Sendo \( \sigma \) uma sigmoide limitada mensurável, tomar \( \mu \in M ( \I^{ n } ) \) tal que
-            \begin{equation*}
-                \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx ) + \theta \ \mathrm{d} \mu ( \bfx ) = 0
-            \end{equation*}
-            para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \).
-            Queremos mostrar que \( \mu = 0 \).
-        \item<2-> Utilizar o Teorema da Convergência Dominada para mostrar que
-            \begin{equation*}
-                \mu ( \Pi_{ \bfy, \theta } ) + \mu ( H_{ \bfy, \theta } ) = 0
-            \end{equation*}
-            para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \), onde
-            \begin{equation*}
-                \begin{cases}
-                    H_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta > 0 \right\} \\
-                    \Pi_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta = 0 \right\} \\
-                \end{cases}
-            .\end{equation*}
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}{O Teorema da Aproximação Universal}{Lema}
-    \begin{itemize}
-        \item<1-> Com isso, mostrar que o funcional linear \( F_{ \bfy } : L_{ \infty } ( \R ) \to \R \) dado por
-            \begin{equation*}
-                F_{ \bfy } ( h ) \defeq \int_{ \I^{ n } } h ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
-            \end{equation*}
-            é nulo.
-        \item<2-> Notar que como \( \sen \) e \( \cos \) pertencem a \( L_{ \infty } ( \R ) \), temos
-            \begin{align*}
-                0 &= F_{ \bfy } ( \sen + i \cos ) \\
-                  &= \int_{ \I^{ n } } \sen ( \bfy^{ \transpose } \bfx ) + i \cos ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
-                  &= \int_{ \I^{ n } } \exp ( i \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
-            .\end{align*}
-            Para todo \( \bfy \in \R^{ n } \).
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{O Teorema da Aproximação Universal}{Lema}
-    \begin{itemize}
-        \item Com isso, a transformada de Fourier de \( \mu \) é nula e, assim, \( \mu \) deve ser nula também
-    \end{itemize}
-\end{frame}
+% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
+%     Ainda não provamos que Redes Neurais com uma camada oculta são aproximadores universais, pois resta mostrar que funções de ativação, como a função logística que apresentamos anteriormente, são discriminatórias.
+% \end{frame}
+% 
+% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
+%     \begin{defn*}
+%         Dizemos que \( \sigma : \R \to \R \) é uma \emph{sigmoide} se
+%         \begin{equation*}
+%             \sigma ( x ) \to
+%             \begin{cases}
+%                 1, \text{ quando } x \to + \infty \\
+%                 0, \text{ quando } x \to - \infty \\
+%             \end{cases}
+%         .\end{equation*}
+%     \end{defn*}
+% 
+%     Observe que a função logística \( \sigma ( x ) = 1/( 1 + e^{ -x } ) \) é uma sigmoide contínua.
+% 
+%     \begin{lem*}
+%         Todas sigmoides limitadas e mensuráveis são discriminatórias.
+%     \end{lem*}
+% \end{frame}
+% 
+% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
+%     Ideia da demonstração:
+%     \begin{itemize}
+%         \item<1-> Sendo \( \sigma \) uma sigmoide limitada mensurável, tomar \( \mu \in M ( \I^{ n } ) \) tal que
+%             \begin{equation*}
+%                 \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx ) + \theta \ \mathrm{d} \mu ( \bfx ) = 0
+%             \end{equation*}
+%             para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \).
+%             Queremos mostrar que \( \mu = 0 \).
+%         \item<2-> Utilizar o Teorema da Convergência Dominada para mostrar que
+%             \begin{equation*}
+%                 \mu ( \Pi_{ \bfy, \theta } ) + \mu ( H_{ \bfy, \theta } ) = 0
+%             \end{equation*}
+%             para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \), onde
+%             \begin{equation*}
+%                 \begin{cases}
+%                     H_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta > 0 \right\} \\
+%                     \Pi_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta = 0 \right\} \\
+%                 \end{cases}
+%             .\end{equation*}
+%     \end{itemize}
+% \end{frame}
+% 
+% 
+% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
+%     \begin{itemize}
+%         \item<1-> Com isso, mostrar que o funcional linear \( F_{ \bfy } : L_{ \infty } ( \R ) \to \R \) dado por
+%             \begin{equation*}
+%                 F_{ \bfy } ( h ) \defeq \int_{ \I^{ n } } h ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+%             \end{equation*}
+%             é nulo.
+%         \item<2-> Notar que como \( \sen \) e \( \cos \) pertencem a \( L_{ \infty } ( \R ) \), temos
+%             \begin{align*}
+%                 0 &= F_{ \bfy } ( \sen + i \cos ) \\
+%                   &= \int_{ \I^{ n } } \sen ( \bfy^{ \transpose } \bfx ) + i \cos ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
+%                   &= \int_{ \I^{ n } } \exp ( i \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+%             .\end{align*}
+%             Para todo \( \bfy \in \R^{ n } \).
+%     \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
+%     \begin{itemize}
+%         \item Com isso, a transformada de Fourier de \( \mu \) é nula e, assim, \( \mu \) deve ser nula também
+%     \end{itemize}
+% \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Problemas do TAU %%%%%%%%%%%%%%%%%%%%
@@ -636,7 +635,7 @@
         \item<1-> Não é especificado quantos neurônios são necessários para aproximar uma dada função
         \item<2-> Nem um \emph{algoritmo} para encontrar a aproximação
             \begin{itemize}
-                \item<3-> Atualmente utiliza-se variações de \emph{Stochastic Gradient Descent}.
+                \item<3-> Atualmente utiliza-se variações de \emph{Stochastic Gradient Descent}, junto com \emph{Backpropagation} para o cálculo dos gradientes.
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -687,7 +686,7 @@
 %%%%%%%%%%%%%%%%%%%%%%% Referências %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Referências}
+\begin{frame}[allowframebreaks]{Referências}
     \printbibliography[heading=bibintoc, title={Referências}]
 \end{frame}
 
