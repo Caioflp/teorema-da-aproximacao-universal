@@ -69,16 +69,12 @@
        -- Problema de achar a rede que aproxima a função (SGD)
      - Generalizações
         -- Comentar sobre resultados relativos a aproximação de derivadas
-
      - Falar de próximos passos da IC
        -- DGM
      - Link para Repositório do Github
      - Agradecimentos
        -- Yuri, CNPq
 \end{comment}
-
-%% TODO: Colocar nome do Yuri no primeiro slide
-%%       Arrumar Repositório da IC
 
 \title[Teorema da Aproximação Universal]{Sobre o Teorema da Aproximação Universal}
 % \author[C. Lins]{{Caio Lins }}
@@ -101,8 +97,8 @@
 
 \begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
     \begin{itemize}
-        \item Redes neurais são funções que espelham o funcionamento do cérebro humano.
-            É organizada em camadas de ``neurônios''.
+        \item Redes neurais são funções inspiradas em um modelo do funcionamento do cérebro humano.
+            São organizadas em camadas de ``neurônios''.
     \end{itemize}
     \begin{figure}
         \begin{center}
@@ -114,7 +110,7 @@
 \begin{frame}{Overview de Redes Neurais}{O que são redes neurais?}
     \begin{itemize}
         \item Input: \( \bfx = ( x_{ 1 }, \dots, x_{ n } ) \in \R^{ n } \).
-        \item Pesos (\emph{weights}): \( \bfw_{ j } = ( w_{ 1, j }, \dots, w_{ N, j } ) \in \R^{ n }, j = 1, \dots, N \).
+        \item Pesos (\emph{weights}): \( \bfw_{ j } = ( w_{ 1, j }, \dots, w_{ n, j } ) \in \R^{ n }, j = 1, \dots, N \).
         \item Viéses (\emph{biases}): \( \theta_{ j } \in \R , j = 1, \dots, N\).
         \item Função de ativação: \( \sigma : \R \to \R \).
     \end{itemize}
@@ -170,11 +166,11 @@
     \vspace{2pt}
     Diversas aplicações:
     \begin{itemize}
-        \item<1-> Classificação de imagens, incluindo reconhecimento facial;
-        \item<2-> Predição de séries temporais;
-        \item<3-> Análise de regressão;
-        \item<4-> O algoritmo usado pela inteligência artificial \emph{AlphaGo} emprega redes neurais convolucionais (CNNs).
-        \item<5-> Deep Galerkin Method (DGM): Algoritmo de Deep Learning para resolver equações diferenciais parciais.
+        \item Classificação de imagens, incluindo reconhecimento facial;
+        \item Predição de séries temporais;
+        \item Análise de regressão;
+        \item O algoritmo usado pela inteligência artificial \emph{AlphaGo} emprega redes neurais convolucionais (CNNs).
+        \item Deep Galerkin Method (DGM): Algoritmo de Deep Learning para resolver equações diferenciais parciais.
     \end{itemize}
 \end{frame}
 
@@ -213,7 +209,7 @@
 
 \begin{frame}{Redes Neurais Funcionam?}
     \begin{itemize}
-        \item<1-> Artigo onde esse resultado foi provado: \cite{cybenko89}
+        \item<1-> Artigo onde esse resultado foi provado: ``Approximation by superpositions of a sigmoidal function'' \cite{cybenko89}
     \end{itemize}
     \begin{center}
         \includegraphics[width=.7\textwidth]{../figuras/cybenko.png}
@@ -228,13 +224,15 @@
     \begin{itemize}
         \item<1-> Demonstração utiliza resultados de Análise Funcional e Teoria da Medida.
         \item<2-> Estudar aproximações em outros contextos
-        \item<3-> Teorema da Aproximação de Weierstrass:
             \begin{itemize}
-                \item<4-> \emph{Aproximar} funções contínuas de um intervalo na reta por meio de \emph{polinômios}.
-            \end{itemize}
-        \item<5-> Um desdobramento do \( 13^{ \circ } \) problema de Hilbert:
-            \begin{itemize}
-                \item<6-> Representar \emph{de maneira exata} funções contínuas de \( \I^{ n } \) em \( \R \) por meio de composições e adições de \emph{funções contínuas de \( \R \) em \( \R \)}.
+                \item<3-> Teorema da Aproximação de Weierstrass:
+                    \begin{itemize}
+                        \item<4-> \emph{Aproximar} funções contínuas de um intervalo na reta por meio de \emph{polinômios}.
+                    \end{itemize}
+                \item<5-> Um desdobramento do \( 13^{ \circ } \) problema de Hilbert:
+                    \begin{itemize}
+                        \item<6-> Representar \emph{de maneira exata} funções contínuas de \( \I^{ n } \) em \( \R \) por meio de composições e adições de \emph{funções contínuas de \( \R \) em \( \R \)}.
+                    \end{itemize}
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -285,7 +283,7 @@
     \vspace{3pt}
     Ilustrando o Teorema:
     \begin{center}
-        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_seno.png}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_seno.pdf}
         \( f ( x ) = \sen \left( \frac{ 1 }{ 3 ( x + 0.05 ) } \right) \)
     \end{center}
 \end{frame}
@@ -294,7 +292,7 @@
     \vspace{3pt}
     Ilustrando o Teorema:
     \begin{center}
-        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cauchy.png}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cauchy.pdf}
         \( f ( x ) = \frac{ 1 }{ 100 ( x - 0.5 )^2 + 1 } \)
     \end{center}
 \end{frame}
@@ -303,7 +301,7 @@
     \vspace{3pt}
     Um exemplo com \( f \) descontínua:
     \begin{center}
-        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cobrinha.png}
+        \includegraphics[width=.75\textwidth]{../figuras/weierstrass_cobrinha.pdf}
         \( f ( x ) = \abs{ \floor{3\sen ( x )} } \)
     \end{center}
 \end{frame}
@@ -311,12 +309,13 @@
 \begin{frame}{Interlúdio}{\( 13^{ \circ } \) problema de Hilbert}
     \begin{itemize}
         \item Com a linguagem da época, Hilbert conjecturou que existem funções contínuas \( f : \I^{ 3 } \to \R \) que não podem ser representadas como composições e somas de funções contínuas de \( \R \to \R \) \cite{hilbert}.
-        \item Exemplo em \( \I^{ 2 } \): \( f ( x, y ) = xy \). Observe que
+        \item<2-> Exemplo em \( \I^{ 2 } \): \( f ( x, y ) = xy \).
+            Observe que
             \begin{align*}
-                f ( x, y) &= xy = ( x+1 ) ( y+1 ) - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right) \\
-                          &= e^{ [ \log ( x + 1 ) + \log ( y+1 ) ] } - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right)
+                \visible<3->{f ( x, y) &= xy = ( x+1 ) ( y+1 ) - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right) \\}
+                \visible<4->{&= e^{ [ \log ( x + 1 ) + \log ( y+1 ) ] } - \left(x + \frac{ 1 }{ 2 }\right) - \left(y + \frac{ 1 }{ 2 }\right)}
             .\end{align*}
-            (Somamos \( 1 \) para evitar \( \log 0 \)).
+            \visible<5->{(Somamos \( 1 \) para evitar \( \log 0 \)).}
     \end{itemize}
 \end{frame}
 
@@ -363,7 +362,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Voltando}
-    Voltando ao Teorema da Aproximação Universal, sua demonstração pode ser vista como uma simples aplicação dos seguintes Teoremas:
+    Voltando ao Teorema da Aproximação Universal, sua demonstração pode ser vista como uma aplicação dos seguintes Teoremas:
     \begin{itemize}
         \item<2-> Teorema de Hahn-Banach \cite{func-anal}.
         \item<3-> Teorema da Representação de Riesz-Markov \cite{royden}.
@@ -375,73 +374,85 @@
 %%%%%%%%%%%%%%%%%%%%%%% Hahn-Banach %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{O Teorema de Hahn-Banach}
-    \begin{defn*}
-        Dado um espaço vetorial real \( V \), uma função \( p : V \to \R \) é chamada de \emph{funcional sublinear} se para todos \( \bfx, \bfy \in V \) e \( \lambda \in \R \) temos
-        \begin{align*}
-            p ( \bfx + \bfy ) &\leq p ( \bfx ) + p ( \bfy ) \\
-            p ( \lambda \bfx ) &= \lambda p ( \bfx )
-        ,\end{align*}
-        e, além disso, \( p ( \mathbf{0} ) = 0 \).
-    \end{defn*}
-\end{frame}
+% \begin{frame}{Teorema de Hahn-Banach}
+%     \begin{defn*}
+%         Dado um espaço vetorial real \( V \), uma função \( p : V \to \R \) é chamada de \emph{funcional sublinear} se para todos \( \bfx, \bfy \in V \) e \( \lambda \in \R \) temos
+%         \begin{align*}
+%             p ( \bfx + \bfy ) &\leq p ( \bfx ) + p ( \bfy ) \\
+%             p ( \lambda \bfx ) &= \lambda p ( \bfx )
+%         ,\end{align*}
+%         e, além disso, \( p ( \mathbf{0} ) = 0 \).
+%     \end{defn*}
+% \end{frame}
 
-\begin{frame}{O Teorema de Hahn-Banach}
-    \begin{teo*}
-        Sejam \( V \) um espaço vetorial real, M um subespaço de \( V \) e \( p \) um funcional sublinear em \( V \).
-        Se \( f \) é um funcional linear em \( M \) dominado por \( p \), ou seja, tal que \( f ( \bfv ) \leq p ( \bfv ) \) para todo \( \bfv \in M \), então existe um funcional linear \( F \) em \( V \), que coincide com \( f \) em \( M \) e que também é dominado por \( p \). O funcional \( F \) é a \emph{extensão de Hahn-Banach} de \( f \).
-    \end{teo*}
-\end{frame}
+% \begin{frame}{Teorema da Aproximação Universal}{Teorema de Hahn-Banach}
+%     \begin{teo*}
+%         Sejam \( V \) um espaço vetorial real, M um subespaço de \( V \) e \( p \) um funcional sublinear em \( V \).
+%         Se \( f \) é um funcional linear em \( M \) dominado por \( p \), ou seja, tal que \( f ( \bfv ) \leq p ( \bfv ) \) para todo \( \bfv \in M \), então existe um funcional linear \( F \) em \( V \), que coincide com \( f \) em \( M \) e que também é dominado por \( p \). O funcional \( F \) é a \emph{extensão de Hahn-Banach} de \( f \).
+%     \end{teo*}
+% \end{frame}
 
-\begin{frame}{O Teorema de Hahn-banach}
-    %% TODO: Arrumar um jeito de ilustrar o teorema
-\end{frame}
-
-
-\begin{frame}{O Teorema de Hahn-banach}
-    Sua demonstração é elementar, constituindo de basicamente uma aplicação do Lema de Zorn:
-    \begin{axiom}[Lema de Zorn]
-        Todo conjunto parcialmente ordenado, tal que todos seus subconjuntos totalmente ordenados possuem cota superior, possui elemento maximal.
-    \end{axiom}
-\end{frame}
+% \begin{frame}{O Teorema de Hahn-banach}
+%     %% TODO: Arrumar um jeito de ilustrar o teorema
+% \end{frame}
 
 
-\begin{frame}{O Teorema de Hahn-Banach}
-    Na verdade, o que realmente utilizaremos é um corolário desse Teorema:
-    \begin{defn*}
-        Dado um espaço vetorial \( V \), definimos
-        \begin{equation*}
-            V^{ * } = \left\{ f : V \to \R \mid f \text{ é linear limitada} \right\}
-        .\end{equation*}
-    \end{defn*}
-    \begin{cor*}
-        Um subespaço \( M \) de um espaço vetorial \( V \) é denso se, e somente se, o único elemento de \( V^{ * } \) que se anula em \( M \) é o funcional nulo.
-    \end{cor*}
+% \begin{frame}{Teorema da Aproximação Universal}{Teorema de Hahn-banach}
+%     Sua demonstração é elementar, constituindo de basicamente uma aplicação do Lema de Zorn:
+%     \begin{axiom}[Lema de Zorn]
+%         Todo conjunto parcialmente ordenado, tal que todos seus subconjuntos totalmente ordenados possuem cota superior, possui elemento maximal.
+%     \end{axiom}
+% \end{frame}
+
+
+\begin{frame}{Teorema da Aproximação Universal}{Teorema de Hahn-Banach}
+    \begin{itemize}
+        \item<1-> É um teorema relacionado à extensão de funcionais lineares, de um subespaço para o espaço inteiro.
+        \item<2-> O que vamos utilizar mais à frente o seguinte corolário:
+    \end{itemize}
+%     \begin{defn*}
+%         Dado um espaço vetorial \( V \), definimos
+%         \begin{equation*}
+%             V^{ * } = \left\{ f : V \to \R \mid f \text{ é linear limitada} \right\}
+%         .\end{equation*}
+%     \end{defn*}
+    \visible<2->{
+        \begin{cor*}
+            Um subespaço \( M \) de um espaço vetorial \( V \) é denso se, e somente se, o único funcional linear limitado \( f : V \to \R \) tal que \( f ( \bfw ) = 0 \) para todo \( \bfw \in M \) é o funcional identicamente nulo.
+        \end{cor*}
+    }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%% Representação de Riesz %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{O Teorema da Representação de Riesz}
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}
     \begin{itemize}
-        \item Um nome para vários teoremas, mas todos se preocupam com representar funcionais lineares utilizando alguma estrutura do espaço onde eles estão definidos.
+        \item Um nome para vários teoremas, mas todos se preocupam com representar funcionais lineares por meio de algo semelhante a um produto interno.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{O Teorema da Representação de Riesz}{Em Análise Funcional}
-    Geralmente, no contexto de Análise Funcional (mais especificamente, na teoria de espaços de Hilbert), esse teorema trata da associação natural entre um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \):
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Análise Funcional}
+    Geralmente, no contexto de Análise Funcional (mais especificamente, na teoria de espaços de Hilbert), esse teorema trata da associação natural entre um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \).
+    \visible<2->{
+        \begin{defn}
+            Dado um espaço vetorial \( V \), definimos
+            \begin{equation*}
+                V^{ * } = \left\{ f : V \to \R \mid f \text{ é linear limitado } \right\}
+            .\end{equation*}
+        \end{defn}
+    }
+\end{frame}
+
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Análise Funcional}
     \begin{teo*}[Representação de Riesz - Análise Funcional]
-        Dado um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \), a função
-        \begin{align*}
-            \gamma : &\bH \to \bH^{ * } \\
-                     &\bfv \mapsto \gamma ( \bfv ) = f_{ \bfv }
-        ,\end{align*}
-        tal que \( f_{ \bfv } = \dotprod{\bfv, \cdot} \), é uma isometria antilinear e sobrejetiva em \( \bH^{ * } \).
+        Dado um espaço de Hilbert \( \bH \) e seu dual \( \bH^{ * } \), a função \( \bfv \mapsto \dotprod{ \bfv, \cdot } \), de \( \bH \) em \( \bH^{ * } \),  é bijetiva, ou seja, para cada funcional \( f \in \bH^{ * } \) existe um único \( \bfv_{ f } \in \bH \) tal que \( f = \dotprod{\bfv_{ f }, \cdot} \).
     \end{teo*}
 \end{frame}
 
-\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Teoria da Medida}
     Já no contexto de Teoria da Medida, há mais de uma possibilidade.
     Em geral, ele se refere à dualidade entre os espaços \( L_{ p } \) e \( L_{ q } \):
     \begin{teo*}[Representação de Riesz - Teoria da Medida]
@@ -454,14 +465,14 @@
     Se \( \mu \) é \( \sigma \)-finita, o resultado vale para \( L_{ 1 } \), cujo dual é \( L_{ \infty } \).
 \end{frame}
 
-\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Teoria da Medida}
     Entretanto, também pode ser referir à representação de funcionais lineares por meio de medidas.
     Nesse sentido, também é chamado de Teorema de Riesz-Markov.
 
     A versão exata que usaremos posteriormente é esta:
 \end{frame}
 
-\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Teoria da Medida}
     \begin{teo*}[Representação de Riesz-Markov]
         Seja \( X \) um espaço compacto Hausdorff e \( C ( X ) \) o espaço das funções reais contínuas em \( X \).
         Então, a cada funcional linear limitado \( F : C ( X ) \to \R \) corresponde uma única medida de Baire, finita, com sinal, \( \nu \) em \( X \) tal que
@@ -473,7 +484,7 @@
     Na prática, como \( \I^{ n } \) é um espaço métrico compacto, a medida \( \nu \) será uma medida de Borel regular.
 \end{frame}
 
-\begin{frame}{O Teorema da Representação de Riesz}{Em Teoria da Medida}
+\begin{frame}{Teorema da Aproximação Universal}{Teorema da Representação de Riesz}%{Em Teoria da Medida}
     Esta é uma versão mais simples desse Teorema, cuja demonstração foi estudada em maior detalhe:
     \begin{teo*}[Representão de Riesz]
         Seja \( J = [a, b] \).
@@ -491,7 +502,7 @@
 %%%%%%%%%%%%% Teorema da Aproximação Universal %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{O Teorema da Aproximação Universal}{Funções discriminatórias}
+\begin{frame}{Teorema da Aproximação Universal}{Funções discriminatórias}
     Tendo os Teoremas de Hahn-Banach e de Riesz-Markov em mãos, vamos provar o Teorema da Aproximação Universal.
     Mas, antes, devemos dizer o que significa \( \sigma \) ser discriminatória:
     \begin{defn*}
@@ -504,7 +515,7 @@
     \end{defn*}
 \end{frame}
 
-\begin{frame}{O Teorema da Aproximação Universal}{Enunciado}
+\begin{frame}{Teorema da Aproximação Universal}{Enunciado}
     Relembramos o enunciado do Teorema:
     \begin{TAU}
         Seja \( \sigma \) uma função contínua discriminatória qualquer.
@@ -520,7 +531,7 @@
     \end{TAU}
 \end{frame}
 
-\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+\begin{frame}{Teorema da Aproximação Universal}{Demonstração}
     \begin{itemize}
         \item<1-> Seja \( S \subseteq C ( \I^{ n } ) \) o subespaço formado pelas somas \( G \) do enunciado do Teorema.
         \item<2-> Suponha que o Teorema seja \textbf{falso}, ou, seja, que \( S \) não é denso em \( C ( \I^{ n } ) \).
@@ -533,7 +544,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+\begin{frame}{Teorema da Aproximação Universal}{Demonstração}
     \begin{itemize}
         \item<1-> Entretanto, perceba que para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \), a função \( G_{ \bfy, \theta } : \I^{ n } \to \R \) dada por
             \begin{equation*}
@@ -548,7 +559,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{O Teorema da Aproximação Universal}{Demonstração}
+\begin{frame}{Teorema da Aproximação Universal}{Demonstração}
     \begin{itemize}
         \item<1-> Porém, supomos que \( \sigma \) é discriminatória, ou seja, isso implica \( \mu = 0 \).
         \item<2-> Com isso, \( F \) é o funcional nulo, e obtemos uma contradição.
@@ -556,75 +567,75 @@
     \end{itemize}
 \end{frame}
 
-% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
-%     Ainda não provamos que Redes Neurais com uma camada oculta são aproximadores universais, pois resta mostrar que funções de ativação, como a função logística que apresentamos anteriormente, são discriminatórias.
-% \end{frame}
-% 
-% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
-%     \begin{defn*}
-%         Dizemos que \( \sigma : \R \to \R \) é uma \emph{sigmoide} se
-%         \begin{equation*}
-%             \sigma ( x ) \to
-%             \begin{cases}
-%                 1, \text{ quando } x \to + \infty \\
-%                 0, \text{ quando } x \to - \infty \\
-%             \end{cases}
-%         .\end{equation*}
-%     \end{defn*}
-% 
-%     Observe que a função logística \( \sigma ( x ) = 1/( 1 + e^{ -x } ) \) é uma sigmoide contínua.
-% 
-%     \begin{lem*}
-%         Todas sigmoides limitadas e mensuráveis são discriminatórias.
-%     \end{lem*}
-% \end{frame}
-% 
-% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
-%     Ideia da demonstração:
-%     \begin{itemize}
-%         \item<1-> Sendo \( \sigma \) uma sigmoide limitada mensurável, tomar \( \mu \in M ( \I^{ n } ) \) tal que
-%             \begin{equation*}
-%                 \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx ) + \theta \ \mathrm{d} \mu ( \bfx ) = 0
-%             \end{equation*}
-%             para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \).
-%             Queremos mostrar que \( \mu = 0 \).
-%         \item<2-> Utilizar o Teorema da Convergência Dominada para mostrar que
-%             \begin{equation*}
-%                 \mu ( \Pi_{ \bfy, \theta } ) + \mu ( H_{ \bfy, \theta } ) = 0
-%             \end{equation*}
-%             para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \), onde
-%             \begin{equation*}
-%                 \begin{cases}
-%                     H_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta > 0 \right\} \\
-%                     \Pi_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta = 0 \right\} \\
-%                 \end{cases}
-%             .\end{equation*}
-%     \end{itemize}
-% \end{frame}
-% 
-% 
-% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
-%     \begin{itemize}
-%         \item<1-> Com isso, mostrar que o funcional linear \( F_{ \bfy } : L_{ \infty } ( \R ) \to \R \) dado por
-%             \begin{equation*}
-%                 F_{ \bfy } ( h ) \defeq \int_{ \I^{ n } } h ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
-%             \end{equation*}
-%             é nulo.
-%         \item<2-> Notar que como \( \sen \) e \( \cos \) pertencem a \( L_{ \infty } ( \R ) \), temos
-%             \begin{align*}
-%                 0 &= F_{ \bfy } ( \sen + i \cos ) \\
-%                   &= \int_{ \I^{ n } } \sen ( \bfy^{ \transpose } \bfx ) + i \cos ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
-%                   &= \int_{ \I^{ n } } \exp ( i \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
-%             .\end{align*}
-%             Para todo \( \bfy \in \R^{ n } \).
-%     \end{itemize}
-% \end{frame}
-% 
-% \begin{frame}{O Teorema da Aproximação Universal}{Lema}
-%     \begin{itemize}
-%         \item Com isso, a transformada de Fourier de \( \mu \) é nula e, assim, \( \mu \) deve ser nula também
-%     \end{itemize}
-% \end{frame}
+\begin{frame}{Teorema da Aproximação Universal}{Lema}
+    Ainda não provamos que Redes Neurais com uma camada oculta são aproximadores universais, pois resta mostrar que funções de ativação, como a função logística que apresentamos anteriormente, são discriminatórias.
+\end{frame}
+
+\begin{frame}{Teorema da Aproximação Universal}{Lema}
+    \begin{defn*}
+        Dizemos que \( \sigma : \R \to \R \) é uma \emph{sigmoide} se
+        \begin{equation*}
+            \sigma ( x ) \to
+            \begin{cases}
+                1, \text{ quando } x \to + \infty \\
+                0, \text{ quando } x \to - \infty \\
+            \end{cases}
+        .\end{equation*}
+    \end{defn*}
+
+    Observe que a função logística \( \sigma ( x ) = 1/( 1 + e^{ -x } ) \) é uma sigmoide contínua.
+
+    \begin{lem*}
+        Todas sigmoides limitadas e mensuráveis são discriminatórias.
+    \end{lem*}
+\end{frame}
+
+\begin{frame}{Teorema da Aproximação Universal}{Lema}
+    Ideia da demonstração:
+    \begin{itemize}
+        \item<1-> Sendo \( \sigma \) uma sigmoide limitada mensurável, tomar \( \mu \in M ( \I^{ n } ) \) tal que
+            \begin{equation*}
+                \int_{ \I^{ n } } \sigma ( \bfy^{ \transpose } \bfx ) + \theta \ \mathrm{d} \mu ( \bfx ) = 0
+            \end{equation*}
+            para todo \( \bfy \in \R^{ n } \) e \( \theta \in \R \).
+            Queremos mostrar que \( \mu = 0 \).
+        \item<2-> Utilizar o Teorema da Convergência Dominada para mostrar que
+            \begin{equation*}
+                \mu ( \Pi_{ \bfy, \theta } ) + \mu ( H_{ \bfy, \theta } ) = 0
+            \end{equation*}
+            para todos \( \bfy \in \R^{ n } \) e \( \theta \in \R \), onde
+            \begin{equation*}
+                \begin{cases}
+                    H_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta > 0 \right\} \\
+                    \Pi_{ \bfy, \theta } \defeq \left\{ \bfx \in \R^{ n } : \bfy^{ \transpose } \bfx + \theta = 0 \right\} \\
+                \end{cases}
+            .\end{equation*}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Teorema da Aproximação Universal}{Lema}
+    \begin{itemize}
+        \item<1-> Com isso, mostrar que o funcional linear \( F_{ \bfy } : L_{ \infty } ( \R ) \to \R \) dado por
+            \begin{equation*}
+                F_{ \bfy } ( h ) \defeq \int_{ \I^{ n } } h ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+            \end{equation*}
+            é nulo.
+        \item<2-> Notar que como \( \sen \) e \( \cos \) pertencem a \( L_{ \infty } ( \R ) \), temos
+            \begin{align*}
+                0 &= F_{ \bfy } ( \sen + i \cos ) \\
+                  &= \int_{ \I^{ n } } \sen ( \bfy^{ \transpose } \bfx ) + i \cos ( \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx ) \\
+                  &= \int_{ \I^{ n } } \exp ( i \bfy^{ \transpose } \bfx ) \ \mathrm{d} \mu ( \bfx )
+            .\end{align*}
+            Para todo \( \bfy \in \R^{ n } \).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Teorema da Aproximação Universal}{Lema}
+    \begin{itemize}
+        \item Com isso, a transformada de Fourier de \( \mu \) é nula e, assim, \( \mu \) deve ser nula também
+    \end{itemize}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% Problemas do TAU %%%%%%%%%%%%%%%%%%%%
@@ -646,7 +657,7 @@
 
 \begin{frame}{Possíveis Generalizações}
     \begin{itemize}
-        \item<1-> Em anos posteriores, foram publicados reultados que generalizam o Teorema apresentado.
+        \item<1-> Em anos posteriores, foram publicados resultados que generalizam o Teorema apresentado.
         \item<2-> Em particular, há resultados que garantem a proximidade das derivadas da rede com as da função objetivo.
         \item<3-> Também há estudos sobre outras funções de ativação, em particular, a ReLU:
             \begin{equation*}
@@ -675,6 +686,7 @@
     \begin{itemize}
         \item<1-> Orientador: Yuri Saporito
         \item<2-> CNPq: bolsa PICME
+        \item<2-> CDMC
     \end{itemize}
 \end{frame}
 

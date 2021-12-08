@@ -24,5 +24,5 @@ for f, name in [( lambda x: np.sin(1/(3*(x+0.05))), "seno" ),
         plt.xlabel("x")
         plt.ylabel("y")
         plt.legend(loc="best")
-    plt.savefig(f"../figuras/weierstrass_{name}.png")
+    plt.savefig(f"../figuras/weierstrass_{name}.pdf")
     plt.show()
